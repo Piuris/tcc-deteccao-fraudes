@@ -1,0 +1,18 @@
+{
+  "model": "mlp",
+  "balancing": "undersample",
+  "params": {
+    "clf__alpha": 3.5498788321965036e-05,
+    "clf__hidden_layer_sizes": [
+      128,
+      64
+    ],
+    "clf__learning_rate_init": 0.0016722697006183683,
+    "sampler__sampling_strategy": 0.01
+  },
+  "members": null,
+  "train_frac": 0.4,
+  "n_windows": 6,
+  "label_delay": 0,
+  "seed": 42
+}

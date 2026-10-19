@@ -1,0 +1,17 @@
+{
+  "model": "lightgbm",
+  "balancing": "smote",
+  "params": {
+    "clf__colsample_bytree": 0.8056937753654446,
+    "clf__learning_rate": 0.09948637159577052,
+    "clf__min_child_samples": 12,
+    "clf__n_estimators": 684,
+    "clf__num_leaves": 65,
+    "clf__subsample": 0.8721230154351118,
+    "sampler__sampling_strategy": 0.05
+  },
+  "train_frac": 0.4,
+  "n_windows": 6,
+  "label_delay": 0,
+  "seed": 42
+}

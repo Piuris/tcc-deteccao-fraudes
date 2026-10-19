@@ -1,0 +1,703 @@
+15:05:03 INFO fraude: Base: {'name': 'ulb_creditcard', 'kind': 'creditcard', 'n_rows': 284807, 'n_features': 30, 'n_fraud': 492, 'fraud_rate_pct': 0.1727}
+15:05:03 INFO fraude.experiments: [1/21] logreg__none ...
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+15:05:34 INFO fraude.experiments:     AUC-PR teste=0.7418  CV=0.7631±0.0400  treino=1.0s  latência=1.54ms
+15:05:34 INFO fraude.experiments: [2/21] logreg__smote ...
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] O sistema não pode encontrar o arquivo especificado
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+15:06:14 INFO fraude.experiments:     AUC-PR teste=0.7416  CV=0.7614±0.0383  treino=1.2s  latência=1.66ms
+15:06:14 INFO fraude.experiments: [3/21] logreg__undersample ...
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+15:06:38 INFO fraude.experiments:     AUC-PR teste=0.7453  CV=0.7642±0.0378  treino=1.0s  latência=1.57ms
+15:06:38 INFO fraude.experiments: [4/21] logreg__class_weight ...
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+15:07:12 INFO fraude.experiments:     AUC-PR teste=0.7086  CV=0.7476±0.0386  treino=1.2s  latência=1.54ms
+15:07:12 INFO fraude.experiments: [5/21] random_forest__none ...
+15:45:07 INFO fraude.experiments:     AUC-PR teste=0.8746  CV=0.8383±0.0494  treino=96.0s  latência=14.97ms
+15:45:07 INFO fraude.experiments: [6/21] random_forest__smote ...
+16:43:27 INFO fraude.experiments:     AUC-PR teste=0.8758  CV=0.8515±0.0393  treino=37.1s  latência=15.07ms
+16:43:27 INFO fraude.experiments: [7/21] random_forest__undersample ...
+16:47:00 INFO fraude.experiments:     AUC-PR teste=0.8245  CV=0.7921±0.0429  treino=13.0s  latência=14.68ms
+16:47:00 INFO fraude.experiments: [8/21] random_forest__class_weight ...
+17:07:57 INFO fraude.experiments:     AUC-PR teste=0.8549  CV=0.8377±0.0383  treino=18.0s  latência=14.59ms
+17:07:57 INFO fraude.experiments: [9/21] xgboost__none ...
+17:09:57 INFO fraude.experiments:     AUC-PR teste=0.8725  CV=0.8507±0.0395  treino=2.7s  latência=2.15ms
+17:09:57 INFO fraude.experiments: [10/21] xgboost__smote ...
+17:12:49 INFO fraude.experiments:     AUC-PR teste=0.8753  CV=0.8562±0.0377  treino=3.4s  latência=2.13ms
+17:12:49 INFO fraude.experiments: [11/21] xgboost__undersample ...
+17:13:47 INFO fraude.experiments:     AUC-PR teste=0.8552  CV=0.8345±0.0322  treino=1.4s  latência=2.12ms
+17:13:47 INFO fraude.experiments: [12/21] xgboost__class_weight ...
+17:16:06 INFO fraude.experiments:     AUC-PR teste=0.8846  CV=0.8485±0.0409  treino=3.1s  latência=2.12ms
+17:16:06 INFO fraude.experiments: [13/21] lightgbm__none ...
+17:18:12 INFO fraude.experiments:     AUC-PR teste=0.8784  CV=0.8511±0.0453  treino=3.7s  latência=2.26ms
+17:18:13 INFO fraude.experiments: [14/21] lightgbm__smote ...
+17:20:51 INFO fraude.experiments:     AUC-PR teste=0.8824  CV=0.8568±0.0435  treino=3.6s  latência=2.26ms
+17:20:51 INFO fraude.experiments: [15/21] lightgbm__undersample ...
+17:21:52 INFO fraude.experiments:     AUC-PR teste=0.8639  CV=0.8294±0.0392  treino=1.4s  latência=2.25ms
+17:21:52 INFO fraude.experiments: [16/21] lightgbm__class_weight ...
+17:23:50 INFO fraude.experiments:     AUC-PR teste=0.8444  CV=0.8375±0.0380  treino=3.7s  latência=2.28ms
+17:23:51 INFO fraude.experiments: [17/21] mlp__none ...
+17:25:36 INFO fraude.experiments:     AUC-PR teste=0.8679  CV=0.8370±0.0392  treino=10.5s  latência=1.55ms
+17:25:36 INFO fraude.experiments: [18/21] mlp__smote ...
+17:28:24 INFO fraude.experiments:     AUC-PR teste=0.8287  CV=0.8234±0.0364  treino=17.0s  latência=1.54ms
+17:28:24 INFO fraude.experiments: [19/21] mlp__undersample ...
+17:29:00 INFO fraude.experiments:     AUC-PR teste=0.6938  CV=0.7861±0.0703  treino=1.9s  latência=1.55ms
+17:29:00 INFO fraude.experiments: [20/21] mlp__class_weight ...
+17:30:54 INFO fraude.experiments:     AUC-PR teste=0.8236  CV=0.8246±0.0333  treino=8.8s  latência=1.54ms
+17:30:54 INFO fraude.experiments: [21/21] isolation_forest__none ...
+17:34:13 INFO fraude.experiments:     AUC-PR teste=0.3298  CV=0.2944±0.0548  treino=5.7s  latência=3.86ms
+17:34:15 INFO fraude: Relatório em C:\Users\T-GAMER\TCC\reports\creditcard\experiments\summary.md
+           model    balancing  auc_pr  auc_roc  precision  recall     f1    mcc  latency_mean_ms
+         xgboost class_weight  0.8846   0.9793     0.7522  0.8673 0.8057 0.8074           2.1162
+        lightgbm        smote  0.8824   0.9855     0.7107  0.8776 0.7854 0.7894           2.2571
+        lightgbm         none  0.8784   0.9811     0.7611  0.8776 0.8152 0.8169           2.2619
+   random_forest        smote  0.8758   0.9771     0.7350  0.8776 0.8000 0.8028          15.0670
+         xgboost        smote  0.8753   0.9869     0.7456  0.8673 0.8019 0.8038           2.1317
+   random_forest         none  0.8746   0.9752     0.7544  0.8776 0.8113 0.8133          14.9707
+         xgboost         none  0.8725   0.9808     0.8000  0.8571 0.8276 0.8278           2.1480
+             mlp         none  0.8679   0.9758     0.6418  0.8776 0.7414 0.7500           1.5525
+        lightgbm  undersample  0.8639   0.9768     0.5811  0.8776 0.6992 0.7135           2.2453
+         xgboost  undersample  0.8552   0.9812     0.6296  0.8673 0.7296 0.7385           2.1226
+   random_forest class_weight  0.8549   0.9614     0.6187  0.8776 0.7257 0.7363          14.5923
+        lightgbm class_weight  0.8444   0.9569     0.6721  0.8367 0.7455 0.7495           2.2839
+             mlp        smote  0.8287   0.9741     0.5793  0.8571 0.6914 0.7041           1.5373
+   random_forest  undersample  0.8245   0.9742     0.7167  0.8776 0.7890 0.7927          14.6783
+             mlp class_weight  0.8236   0.9752     0.4830  0.8673 0.6204 0.6465           1.5415
+          logreg  undersample  0.7453   0.9694     0.6148  0.8469 0.7124 0.7211           1.5682
+          logreg         none  0.7418   0.9686     0.6159  0.8673 0.7203 0.7304           1.5378
+          logreg        smote  0.7416   0.9693     0.6159  0.8673 0.7203 0.7304           1.6599
+          logreg class_weight  0.7086   0.9714     0.5183  0.8673 0.6489 0.6698           1.5436
+             mlp  undersample  0.6938   0.9454     0.7843  0.8163 0.8000 0.7998           1.5494
+isolation_forest         none  0.3298   0.9574     0.1494  0.7041 0.2464 0.3221           3.8649
+17:34:17 INFO fraude: Configuração escolhida pela CV: lightgbm + smote (AUC-PR CV=0.8568)
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] O sistema não pode encontrar o arquivo especificado
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+17:34:40 INFO fraude.artifact: Artefato salvo em C:\Users\T-GAMER\TCC\artifacts\model_creditcard.joblib (limiar=0.0006)
+{
+  "kind": "creditcard",
+  "dataset": "ulb_creditcard",
+  "model": "lightgbm",
+  "balancing": "smote",
+  "params": {
+    "clf__colsample_bytree": 0.8056937753654446,
+    "clf__learning_rate": 0.09948637159577052,
+    "clf__min_child_samples": 12,
+    "clf__n_estimators": 684,
+    "clf__num_leaves": 65,
+    "clf__subsample": 0.8721230154351118,
+    "sampler__sampling_strategy": 0.05
+  },
+  "threshold": 0.0005956123523934582,
+  "threshold_policy": {
+    "scenario": "moderado",
+    "fn": 100.0,
+    "fp": 5.0,
+    "fn_use_amount": false
+  },
+  "undersampling_beta": null,
+  "input_columns": [
+    "Time",
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "V9",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "Amount"
+  ],
+  "test_metrics": {
+    "threshold": 0.0005956123523934582,
+    "precision": 0.7107438016528925,
+    "recall": 0.8775510204081632,
+    "f1": 0.7853881278538812,
+    "mcc": 0.7893613548612645,
+    "auc_roc": 0.985499774614404,
+    "auc_pr": 0.8823678119226959,
+    "accuracy": 0.9991748885221726,
+    "brier": 0.0003646979659276144,
+    "tp": 86,
+    "fp": 35,
+    "tn": 56829,
+    "fn": 12,
+    "fpr": 0.0006155036578503095
+  },
+  "test_cost": {
+    "cost_config": {
+      "fn": 100.0,
+      "fp": 5.0,
+      "fn_use_amount": false
+    },
+    "threshold": 0.0005956123523934582,
+    "cost": 1375.0,
+    "cost_approve_all": 9800.0,
+    "cost_block_all": 284320.0,
+    "savings_vs_approve_all_pct": 85.96938775510205
+  },
+  "latency": {
+    "latency_mean_ms": 2.2483199988103784,
+    "latency_p50_ms": 2.1997999865561724,
+    "latency_p95_ms": 2.493504952872172,
+    "latency_p99_ms": 2.6161150092957537,
+    "batch_throughput_tps": 254478.17955790606
+  },
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "imbalanced-learn": "0.12.4",
+    "xgboost": "2.1.3",
+    "lightgbm": "4.5.0",
+    "shap": "0.46.0"
+  },
+  "seed": 42,
+  "created_at": "2026-10-17T20:34:40.056291+00:00"
+}
+[
+  {
+    "feature": "V14",
+    "mean_abs_shap": 1.595890778435661
+  },
+  {
+    "feature": "hour_cos",
+    "mean_abs_shap": 1.507775902313842
+  },
+  {
+    "feature": "V4",
+    "mean_abs_shap": 1.4703919077931742
+  },
+  {
+    "feature": "hour_sin",
+    "mean_abs_shap": 1.370029041400876
+  },
+  {
+    "feature": "V12",
+    "mean_abs_shap": 0.8815403506353117
+  },
+  {
+    "feature": "V1",
+    "mean_abs_shap": 0.8389716930614247
+  },
+  {
+    "feature": "V3",
+    "mean_abs_shap": 0.710021406945214
+  },
+  {
+    "feature": "V8",
+    "mean_abs_shap": 0.6802772292985904
+  },
+  {
+    "feature": "V10",
+    "mean_abs_shap": 0.5973387992442336
+  },
+  {
+    "feature": "V11",
+    "mean_abs_shap": 0.5187719630523792
+  }
+]
+17:34:48 INFO fraude: Configuração escolhida pela CV: lightgbm + smote (AUC-PR CV=0.8568)
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] O sistema não pode encontrar o arquivo especificado
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+17:34:53 INFO fraude.drift: janela 1/6: fraudes=28  AUC-PR estático=0.7676
+17:34:59 INFO fraude.drift: janela 2/6: fraudes=91  AUC-PR estático=0.8477
+17:35:06 INFO fraude.drift: janela 3/6: fraudes=24  AUC-PR estático=0.6533
+17:35:13 INFO fraude.drift: janela 4/6: fraudes=33  AUC-PR estático=0.8268
+17:35:22 INFO fraude.drift: janela 5/6: fraudes=53  AUC-PR estático=0.8355
+17:35:30 INFO fraude.drift: janela 6/6: fraudes=22  AUC-PR estático=0.6554
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7676    0.7676             0.7676
+2            0.8403    0.8477             0.8146
+3            0.6992    0.6533             0.7015
+4            0.8385    0.8268             0.8011
+5            0.8338    0.8355             0.8441
+6            0.7464    0.6554             0.7271
+17:35:32 INFO fraude: Configuração escolhida pela CV: lightgbm + smote (AUC-PR CV=0.8568)
+C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:
+[WinError 2] O sistema não pode encontrar o arquivo especificado
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+17:35:37 INFO fraude.drift: janela 1/6: fraudes=28  AUC-PR estático=0.7676
+17:35:39 INFO fraude.drift: janela 2/6: fraudes=91  AUC-PR estático=0.8477
+17:35:45 INFO fraude.drift: janela 3/6: fraudes=24  AUC-PR estático=0.6533
+17:35:52 INFO fraude.drift: janela 4/6: fraudes=33  AUC-PR estático=0.8268
+17:35:59 INFO fraude.drift: janela 5/6: fraudes=53  AUC-PR estático=0.8355
+17:36:07 INFO fraude.drift: janela 6/6: fraudes=22  AUC-PR estático=0.6554
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7676    0.7676             0.7676
+2            0.8477    0.8477             0.8477
+3            0.6707    0.6533             0.6722
+4            0.8422    0.8268             0.8324
+5            0.8270    0.8355             0.8082
+6            0.7341    0.6554             0.7527
+FLUXO COMPLETO CONCLUIDO

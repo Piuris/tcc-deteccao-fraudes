@@ -1,0 +1,302 @@
+16:04:54 INFO fraude.data: Duplicatas removidas: 9144 (fraudes: 19)
+16:04:54 INFO fraude.stats: [1/31] logreg__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [2/31] logreg__smote já avaliado — pulando
+16:04:54 INFO fraude.stats: [3/31] logreg__undersample já avaliado — pulando
+16:04:54 INFO fraude.stats: [4/31] logreg__class_weight já avaliado — pulando
+16:04:54 INFO fraude.stats: [5/31] random_forest__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [6/31] random_forest__smote já avaliado — pulando
+16:04:54 INFO fraude.stats: [7/31] random_forest__undersample já avaliado — pulando
+16:04:54 INFO fraude.stats: [8/31] random_forest__class_weight já avaliado — pulando
+16:04:54 INFO fraude.stats: [9/31] xgboost__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [10/31] xgboost__smote já avaliado — pulando
+16:04:54 INFO fraude.stats: [11/31] xgboost__undersample já avaliado — pulando
+16:04:54 INFO fraude.stats: [12/31] xgboost__class_weight já avaliado — pulando
+16:04:54 INFO fraude.stats: [13/31] lightgbm__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [14/31] lightgbm__smote já avaliado — pulando
+16:04:54 INFO fraude.stats: [15/31] lightgbm__undersample já avaliado — pulando
+16:04:54 INFO fraude.stats: [16/31] lightgbm__class_weight já avaliado — pulando
+16:04:54 INFO fraude.stats: [17/31] mlp__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [18/31] mlp__smote já avaliado — pulando
+16:04:54 INFO fraude.stats: [19/31] mlp__undersample já avaliado — pulando
+16:04:54 INFO fraude.stats: [20/31] mlp__class_weight já avaliado — pulando
+16:04:54 INFO fraude.stats: [21/31] isolation_forest__none já avaliado — pulando
+16:04:54 INFO fraude.stats: [22/31] xgboost__none@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [23/31] xgboost__smote@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [24/31] xgboost__undersample@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [25/31] xgboost__class_weight@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [26/31] lightgbm__none@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [27/31] lightgbm__smote@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [28/31] lightgbm__undersample@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [29/31] lightgbm__class_weight@busca50 já avaliado — pulando
+16:04:54 INFO fraude.stats: [30/31] ensemble_gbdt__misto@ensemble já avaliado — pulando
+16:04:54 INFO fraude.stats: [31/31] ensemble_arvores__misto@ensemble já avaliado — pulando
+# Comparação estatística
+
+CV repetida 5×3 no treino (15 partições, as mesmas para todas as configurações).
+
+- Friedman: χ² = 327.52, p = 9.47e-52; Nemenyi CD = 12.50
+- Melhor média: **Ensemble XGBoost + LightGBM — Melhor de cada membro [ensemble]** (0.8573)
+- Regra: entre as configurações não significativamente piores que a melhor (t corrigido de Nadeau-Bengio, Holm, α=0,05) e a no máximo 0.01 de AUC-PR dela, a de maior AUC-PR entre as mais rápidas (tolerância 0.5 ms)
+16:04:56 INFO fraude: Configuração escolhida pela comparação estatística: xgboost + class_weight
+16:04:58 INFO fraude.data: Duplicatas removidas: 9144 (fraudes: 19)
+16:05:12 INFO fraude.artifact: Calibração: sigmoid (Brier CV interna: {'none': 0.000386, 'sigmoid': 0.000366, 'isotonic': 0.000372})
+16:05:17 INFO fraude.artifact: Artefato salvo em C:\Users\T-GAMER\TCC\artifacts\model_creditcard.joblib (limiar=0.0345)
+{
+  "kind": "creditcard",
+  "dataset": "ulb_creditcard",
+  "model": "xgboost",
+  "balancing": "class_weight",
+  "params": {
+    "clf__colsample_bytree": 0.6911740650167767,
+    "clf__learning_rate": 0.06358398347237385,
+    "clf__max_depth": 6,
+    "clf__min_child_weight": 1,
+    "clf__n_estimators": 432,
+    "clf__subsample": 0.7219125032632117
+  },
+  "members": null,
+  "threshold": 0.0345108647924632,
+  "threshold_policy": {
+    "scenario": "moderado",
+    "fn": 100.0,
+    "fp": 5.0,
+    "fn_use_amount": false
+  },
+  "undersampling_beta": null,
+  "calibration": {
+    "method": "sigmoid",
+    "inner_cv_brier": {
+      "none": 0.0003856494737326748,
+      "sigmoid": 0.0003663185368989397,
+      "isotonic": 0.00037204015995645045
+    },
+    "test_raw": {
+      "brier": 0.0005379805617614624,
+      "log_loss": 0.003830128294910877,
+      "ece": 0.0004913081861703541,
+      "auc_pr": 0.8392798823870276
+    },
+    "test_calibrated": {
+      "brier": 0.0004966087738711278,
+      "log_loss": 0.0029190572514934416,
+      "ece": 0.0002376581726192562,
+      "auc_pr": 0.8392798823870276
+    }
+  },
+  "input_columns": [
+    "Time",
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "V9",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "Amount"
+  ],
+  "dataset_info": {
+    "name": "ulb_creditcard",
+    "kind": "creditcard",
+    "n_rows": 275663,
+    "n_features": 30,
+    "n_fraud": 473,
+    "fraud_rate_pct": 0.1716,
+    "duplicates_removed": 9144,
+    "duplicate_frauds_removed": 19
+  },
+  "train_seconds": 3.1442865999997593,
+  "test_metrics": {
+    "threshold": 0.0345108647924632,
+    "precision": 0.7669902912621359,
+    "recall": 0.8315789473684211,
+    "f1": 0.797979797979798,
+    "mcc": 0.7982711746306911,
+    "auc_roc": 0.9804286416466328,
+    "auc_pr": 0.8392798823870276,
+    "accuracy": 0.99927448170787,
+    "brier": 0.0004966087738711278,
+    "tp": 79,
+    "fp": 24,
+    "tn": 55014,
+    "fn": 16,
+    "fpr": 0.00043606235691703914
+  },
+  "test_cost": {
+    "cost_config": {
+      "fn": 100.0,
+      "fp": 5.0,
+      "fn_use_amount": false
+    },
+    "threshold": 0.0345108647924632,
+    "cost": 1720.0,
+    "cost_approve_all": 9500.0,
+    "cost_block_all": 275190.0,
+    "savings_vs_approve_all_pct": 81.89473684210526
+  },
+  "test_cost_all_scenarios": {
+    "conservador": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 10.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.1064672522997269,
+      "cost": 2060.0,
+      "cost_approve_all": 9500.0,
+      "cost_block_all": 550380.0,
+      "savings_vs_approve_all_pct": 78.3157894736842
+    },
+    "moderado": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 5.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.0345108647924632,
+      "cost": 1720.0,
+      "cost_approve_all": 9500.0,
+      "cost_block_all": 275190.0,
+      "savings_vs_approve_all_pct": 81.89473684210526
+    },
+    "agressivo": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 1.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.005591970847291182,
+      "cost": 1418.0,
+      "cost_approve_all": 9500.0,
+      "cost_block_all": 55038.0,
+      "savings_vs_approve_all_pct": 85.07368421052631
+    },
+    "valor_transacao": {
+      "cost_config": {
+        "fn": 25.0,
+        "fp": 5.0,
+        "fn_use_amount": true
+      },
+      "threshold": 0.07553313728908763,
+      "cost": 3739.56,
+      "cost_approve_all": 14760.99,
+      "cost_block_all": 275190.0,
+      "savings_vs_approve_all_pct": 74.6659268788882
+    }
+  },
+  "latency": {
+    "latency_mean_ms": 2.2672253321312987,
+    "latency_p50_ms": 2.1968499931972474,
+    "latency_p95_ms": 2.584315001149662,
+    "latency_p99_ms": 3.2221420266432683,
+    "batch_throughput_tps": 563828.1674694781
+  },
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "imbalanced-learn": "0.12.4",
+    "xgboost": "2.1.3",
+    "lightgbm": "4.5.0",
+    "shap": "0.46.0"
+  },
+  "seed": 42,
+  "created_at": "2026-10-18T19:05:17.707696+00:00"
+}
+16:05:21 INFO fraude.data: Duplicatas removidas: 9144 (fraudes: 19)
+[
+  {
+    "feature": "V14",
+    "mean_abs_shap": 2.232116460800171
+  },
+  {
+    "feature": "V4",
+    "mean_abs_shap": 1.9063483476638794
+  },
+  {
+    "feature": "V12",
+    "mean_abs_shap": 1.1402385234832764
+  },
+  {
+    "feature": "V10",
+    "mean_abs_shap": 1.098402738571167
+  },
+  {
+    "feature": "V3",
+    "mean_abs_shap": 0.9642653465270996
+  },
+  {
+    "feature": "V11",
+    "mean_abs_shap": 0.9204333424568176
+  },
+  {
+    "feature": "V8",
+    "mean_abs_shap": 0.7150783538818359
+  },
+  {
+    "feature": "amount_log",
+    "mean_abs_shap": 0.5521924495697021
+  },
+  {
+    "feature": "V1",
+    "mean_abs_shap": 0.5411069393157959
+  },
+  {
+    "feature": "V26",
+    "mean_abs_shap": 0.530768871307373
+  }
+]
+16:05:25 INFO fraude: Configuração escolhida pela comparação estatística: xgboost + class_weight
+16:05:27 INFO fraude.data: Duplicatas removidas: 9144 (fraudes: 19)
+16:05:31 INFO fraude.drift: janela 1/6: fraudes=26  AUC-PR estático=0.7249
+16:05:36 INFO fraude.drift: janela 2/6: fraudes=80  AUC-PR estático=0.8296
+16:05:42 INFO fraude.drift: janela 3/6: fraudes=23  AUC-PR estático=0.6608
+16:05:48 INFO fraude.drift: janela 4/6: fraudes=34  AUC-PR estático=0.8482
+16:05:55 INFO fraude.drift: janela 5/6: fraudes=52  AUC-PR estático=0.8350
+16:06:02 INFO fraude.drift: janela 6/6: fraudes=22  AUC-PR estático=0.6973
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7249    0.7249             0.7249
+2            0.8196    0.8296             0.8183
+3            0.7020    0.6608             0.7126
+4            0.8508    0.8482             0.8291
+5            0.8293    0.8350             0.8340
+6            0.7345    0.6973             0.7075
+16:06:04 INFO fraude: Configuração escolhida pela comparação estatística: xgboost + class_weight
+16:06:05 INFO fraude.data: Duplicatas removidas: 9144 (fraudes: 19)
+16:06:09 INFO fraude.drift: janela 1/6: fraudes=26  AUC-PR estático=0.7249
+16:06:11 INFO fraude.drift: janela 2/6: fraudes=80  AUC-PR estático=0.8296
+16:06:16 INFO fraude.drift: janela 3/6: fraudes=23  AUC-PR estático=0.6608
+16:06:22 INFO fraude.drift: janela 4/6: fraudes=34  AUC-PR estático=0.8482
+16:06:28 INFO fraude.drift: janela 5/6: fraudes=52  AUC-PR estático=0.8350
+16:06:35 INFO fraude.drift: janela 6/6: fraudes=22  AUC-PR estático=0.6973
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7249    0.7249             0.7249
+2            0.8296    0.8296             0.8296
+3            0.6754    0.6608             0.6527
+4            0.8445    0.8482             0.8395
+5            0.8398    0.8350             0.8282
+6            0.7373    0.6973             0.7295
+REFEITO OK

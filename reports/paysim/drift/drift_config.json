@@ -1,0 +1,15 @@
+{
+  "model": "random_forest",
+  "balancing": "class_weight",
+  "params": {
+    "clf__n_estimators": 300,
+    "clf__min_samples_leaf": 2,
+    "clf__max_features": 0.5,
+    "clf__max_depth": 8
+  },
+  "members": null,
+  "train_frac": 0.4,
+  "n_windows": 6,
+  "label_delay": 0,
+  "seed": 42
+}

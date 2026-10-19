@@ -1,0 +1,21 @@
+{
+  "key": "xgboost__class_weight@busca50",
+  "spec": {
+    "model": "xgboost",
+    "balancing": "class_weight",
+    "params": {
+      "clf__colsample_bytree": 0.6911740650167767,
+      "clf__learning_rate": 0.06358398347237385,
+      "clf__max_depth": 6,
+      "clf__min_child_weight": 1,
+      "clf__n_estimators": 432,
+      "clf__subsample": 0.7219125032632117
+    },
+    "members": null
+  },
+  "best_by_mean": "ensemble_gbdt__misto@ensemble",
+  "rule": "entre as configurações não significativamente piores que a melhor (t corrigido de Nadeau-Bengio, Holm, α=0,05) e a no máximo 0.01 de AUC-PR dela, a de maior AUC-PR entre as mais rápidas (tolerância 0.5 ms)",
+  "chosen_auc_pr_mean": 0.856646154838584,
+  "best_auc_pr_mean": 0.8572768295057475,
+  "p_holm_vs_best": 1.0
+}

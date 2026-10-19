@@ -1,0 +1,43 @@
+{
+  "friedman_nemenyi": {
+    "statistic": 327.5226951785355,
+    "p_value": 9.472098728123706e-52,
+    "critical_difference": 12.498609512728247,
+    "average_ranks": {
+      "ensemble_gbdt__misto@ensemble": 5.6,
+      "xgboost__class_weight@busca50": 6.0,
+      "lightgbm__smote@busca50": 7.3333,
+      "lightgbm__none": 7.7,
+      "lightgbm__none@busca50": 7.7,
+      "ensemble_arvores__misto@ensemble": 8.0,
+      "xgboost__smote@busca50": 8.6333,
+      "xgboost__smote": 8.6333,
+      "lightgbm__smote": 8.8,
+      "xgboost__none@busca50": 9.9333,
+      "xgboost__none": 10.4,
+      "xgboost__class_weight": 10.6667,
+      "random_forest__smote": 11.2667,
+      "lightgbm__undersample@busca50": 13.4667,
+      "xgboost__undersample@busca50": 14.9333,
+      "lightgbm__undersample": 15.1333,
+      "random_forest__none": 17.2,
+      "mlp__none": 17.4,
+      "xgboost__undersample": 17.5333,
+      "random_forest__class_weight": 18.3333,
+      "lightgbm__class_weight@busca50": 19.3667,
+      "lightgbm__class_weight": 19.3667,
+      "mlp__smote": 19.8,
+      "mlp__class_weight": 21.1333,
+      "random_forest__undersample": 21.5333,
+      "mlp__undersample": 27.2667,
+      "logreg__none": 27.2667,
+      "logreg__undersample": 27.7333,
+      "logreg__smote": 28.1333,
+      "logreg__class_weight": 28.7333,
+      "isolation_forest__none": 31.0
+    }
+  },
+  "n_folds": 15,
+  "repeats": 3,
+  "cv_folds": 5
+}

@@ -1,0 +1,14 @@
+feature,mean_abs_shap
+dest_zero_before_after,0.26780001975651974
+amount_log,0.17927843375939567
+type_TRANSFER,0.10639116086536055
+hour_sin,0.06623228927869722
+type_CASH_OUT,0.0567526586709882
+hour_cos,0.05253980758951444
+oldbalanceDest_log,0.025920065520193023
+newbalanceDest_log,0.025473216678575678
+error_balance_dest_log,0.013842760496130833
+type_CASH_IN,0.0
+dest_is_merchant,0.0
+type_DEBIT,0.0
+type_PAYMENT,0.0

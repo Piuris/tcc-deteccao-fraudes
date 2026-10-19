@@ -1,0 +1,22 @@
+{
+  "key": "mlp__undersample",
+  "spec": {
+    "model": "mlp",
+    "balancing": "undersample",
+    "params": {
+      "clf__alpha": 3.5498788321965036e-05,
+      "clf__hidden_layer_sizes": [
+        128,
+        64
+      ],
+      "clf__learning_rate_init": 0.0016722697006183683,
+      "sampler__sampling_strategy": 0.01
+    },
+    "members": null
+  },
+  "best_by_mean": "xgboost__none@busca50",
+  "rule": "entre as configurações não significativamente piores que a melhor (t corrigido de Nadeau-Bengio, Holm, α=0,05) e a no máximo 0.01 de AUC-PR dela, a de maior AUC-PR entre as mais rápidas (tolerância 0.5 ms)",
+  "chosen_auc_pr_mean": 0.7614222841881408,
+  "best_auc_pr_mean": 0.7688252258262221,
+  "p_holm_vs_best": 0.3945981892295698
+}

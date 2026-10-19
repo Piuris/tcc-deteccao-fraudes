@@ -1,0 +1,171 @@
+{
+  "method": "shap_tree",
+  "global_top10": [
+    {
+      "feature": "error_balance_orig_log",
+      "mean_abs_shap": 0.36446029797921947
+    },
+    {
+      "feature": "newbalanceOrig_log",
+      "mean_abs_shap": 0.05748495376503287
+    },
+    {
+      "feature": "orig_emptied",
+      "mean_abs_shap": 0.051422947687056
+    },
+    {
+      "feature": "oldbalanceOrg_log",
+      "mean_abs_shap": 0.042259883570459233
+    },
+    {
+      "feature": "amount_to_balance_ratio",
+      "mean_abs_shap": 0.022497955147378384
+    },
+    {
+      "feature": "amount_log",
+      "mean_abs_shap": 0.011777765842329136
+    },
+    {
+      "feature": "dest_zero_before_after",
+      "mean_abs_shap": 0.010274423748539796
+    },
+    {
+      "feature": "oldbalanceDest_log",
+      "mean_abs_shap": 0.0079924401821724
+    },
+    {
+      "feature": "type_TRANSFER",
+      "mean_abs_shap": 0.0065953887919180205
+    },
+    {
+      "feature": "newbalanceDest_log",
+      "mean_abs_shap": 0.004879033391381169
+    }
+  ],
+  "cases": {
+    "verdadeiro_positivo": {
+      "test_index": 110727,
+      "probability": 1.0,
+      "true_label": 1,
+      "shap_top5": [
+        "error_balance_orig_log",
+        "newbalanceOrig_log",
+        "oldbalanceOrg_log",
+        "orig_emptied",
+        "amount_to_balance_ratio"
+      ],
+      "lime_top5": [
+        "amount_to_balance_ratio",
+        "dest_zero_before_after",
+        "error_balance_dest_log",
+        "newbalanceDest_log",
+        "error_balance_orig_log"
+      ],
+      "lime_rules": [
+        [
+          "amount_to_balance_ratio <= -0.29",
+          -0.04244908443052959
+        ],
+        [
+          "dest_zero_before_after <= -0.05",
+          0.014400898217851987
+        ],
+        [
+          "error_balance_dest_log <= 0.08",
+          -0.010074664635785246
+        ],
+        [
+          "newbalanceDest_log <= -0.49",
+          0.00596411511186751
+        ],
+        [
+          "error_balance_orig_log <= 0.00",
+          -0.004054350803273543
+        ],
+        [
+          "oldbalanceOrg_log > 1.00",
+          -0.0038726792008398963
+        ],
+        [
+          "-0.64 < amount_log <= 0.00",
+          0.0038665293744398112
+        ],
+        [
+          "newbalanceOrig_log <= -0.33",
+          0.003535965181463893
+        ],
+        [
+          "type_TRANSFER <= 0.00",
+          0.0030967625594308986
+        ],
+        [
+          "oldbalanceDest_log <= 0.01",
+          -0.00210162664034153
+        ]
+      ],
+      "top5_overlap": 2
+    },
+    "falso_negativo": {
+      "test_index": 2859,
+      "probability": 0.0005136106831022085,
+      "true_label": 1,
+      "shap_top5": [
+        "error_balance_orig_log",
+        "orig_emptied",
+        "oldbalanceOrg_log",
+        "amount_log",
+        "newbalanceOrig_log"
+      ],
+      "lime_top5": [
+        "amount_to_balance_ratio",
+        "error_balance_dest_log",
+        "dest_zero_before_after",
+        "amount_log",
+        "type_TRANSFER"
+      ],
+      "lime_rules": [
+        [
+          "amount_to_balance_ratio > -0.02",
+          0.12431246539597682
+        ],
+        [
+          "error_balance_dest_log > 0.08",
+          0.009896397841169004
+        ],
+        [
+          "dest_zero_before_after <= -0.05",
+          -0.006976932692022428
+        ],
+        [
+          "-0.64 < amount_log <= 0.00",
+          0.0047659515005271
+        ],
+        [
+          "type_TRANSFER <= 0.00",
+          0.00445010571180825
+        ],
+        [
+          "oldbalanceOrg_log <= -1.01",
+          0.004022753462664077
+        ],
+        [
+          "orig_emptied <= -0.86",
+          0.003998351827007092
+        ],
+        [
+          "0.29 < error_balance_orig_log <= 0.47",
+          -0.00343564246415661
+        ],
+        [
+          "oldbalanceDest_log <= 0.01",
+          -0.003041376181579955
+        ],
+        [
+          "hour_cos <= -0.86",
+          0.002866217654483362
+        ]
+      ],
+      "top5_overlap": 1
+    }
+  }
+}

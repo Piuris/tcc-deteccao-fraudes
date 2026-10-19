@@ -1,0 +1,12 @@
+{
+  "requests": 1000,
+  "concurrency": 8,
+  "explain": true,
+  "errors": 0,
+  "throughput_tps": 130.0,
+  "client_p50_ms": 61.11,
+  "client_p95_ms": 63.73,
+  "client_p99_ms": 70.74,
+  "server_mean_ms": 55.8,
+  "server_p95_ms": 58.21
+}

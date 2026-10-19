@@ -1,0 +1,2610 @@
+{
+  "n_rows": 554082,
+  "n_fraud": 1643,
+  "fraud_rate_pct": 0.2965,
+  "trivial_accuracy_pct": 99.7035,
+  "duplicates": 0
+}
+16:18:59 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+16:18:59 INFO fraude: Base: {'name': 'paysim_sem_saldo[20%]', 'kind': 'paysim_restrito', 'n_rows': 554082, 'n_features': 6, 'n_fraud': 1643, 'fraud_rate_pct': 0.2965, 'duplicates_removed': 0, 'duplicate_frauds_removed': 0}
+16:19:00 INFO fraude.experiments: [1/21] logreg__none ...
+16:19:48 INFO fraude.experiments:     AUC-PR teste=0.6076  CV=0.5841±0.0305  treino=1.2s  latência=2.84ms
+16:19:48 INFO fraude.experiments: [2/21] logreg__smote ...
+16:20:34 INFO fraude.experiments:     AUC-PR teste=0.5412  CV=0.5319±0.0399  treino=1.1s  latência=2.72ms
+16:20:34 INFO fraude.experiments: [3/21] logreg__undersample ...
+16:21:05 INFO fraude.experiments:     AUC-PR teste=0.5963  CV=0.5756±0.0338  treino=1.0s  latência=2.76ms
+16:21:05 INFO fraude.experiments: [4/21] logreg__class_weight ...
+16:21:49 INFO fraude.experiments:     AUC-PR teste=0.4582  CV=0.4565±0.0432  treino=1.5s  latência=2.74ms
+16:21:49 INFO fraude.experiments: [5/21] random_forest__none ...
+16:36:42 INFO fraude.experiments:     AUC-PR teste=0.8018  CV=0.7593±0.0125  treino=22.3s  latência=16.34ms
+16:36:42 INFO fraude.experiments: [6/21] random_forest__smote ...
+17:00:21 INFO fraude.experiments:     AUC-PR teste=0.8000  CV=0.7607±0.0124  treino=29.8s  latência=16.61ms
+17:00:21 INFO fraude.experiments: [7/21] random_forest__undersample ...
+17:02:40 INFO fraude.experiments:     AUC-PR teste=0.7971  CV=0.7533±0.0130  treino=6.1s  latência=16.54ms
+17:02:40 INFO fraude.experiments: [8/21] random_forest__class_weight ...
+17:17:45 INFO fraude.experiments:     AUC-PR teste=0.7917  CV=0.7537±0.0135  treino=23.4s  latência=16.90ms
+17:17:45 INFO fraude.experiments: [9/21] xgboost__none ...
+17:21:03 INFO fraude.experiments:     AUC-PR teste=0.8062  CV=0.7681±0.0115  treino=3.9s  latência=3.65ms
+17:21:03 INFO fraude.experiments: [10/21] xgboost__smote ...
+17:25:02 INFO fraude.experiments:     AUC-PR teste=0.8017  CV=0.7604±0.0127  treino=4.2s  latência=3.64ms
+17:25:02 INFO fraude.experiments: [11/21] xgboost__undersample ...
+17:26:20 INFO fraude.experiments:     AUC-PR teste=0.8005  CV=0.7603±0.0132  treino=1.2s  latência=3.52ms
+17:26:20 INFO fraude.experiments: [12/21] xgboost__class_weight ...
+17:29:03 INFO fraude.experiments:     AUC-PR teste=0.8010  CV=0.7599±0.0122  treino=3.7s  latência=3.52ms
+17:29:03 INFO fraude.experiments: [13/21] lightgbm__none ...
+17:31:16 INFO fraude.experiments:     AUC-PR teste=0.7922  CV=0.7578±0.0128  treino=2.5s  latência=3.58ms
+17:31:17 INFO fraude.experiments: [14/21] lightgbm__smote ...
+17:33:45 INFO fraude.experiments:     AUC-PR teste=0.7908  CV=0.7533±0.0117  treino=1.9s  latência=3.55ms
+17:33:45 INFO fraude.experiments: [15/21] lightgbm__undersample ...
+17:35:04 INFO fraude.experiments:     AUC-PR teste=0.7836  CV=0.7452±0.0192  treino=1.2s  latência=3.57ms
+17:35:05 INFO fraude.experiments: [16/21] lightgbm__class_weight ...
+17:37:20 INFO fraude.experiments:     AUC-PR teste=0.7641  CV=0.7338±0.0147  treino=3.1s  latência=3.61ms
+17:37:20 INFO fraude.experiments: [17/21] mlp__none ...
+17:39:16 INFO fraude.experiments:     AUC-PR teste=0.8055  CV=0.7629±0.0111  treino=10.9s  latência=2.74ms
+17:39:17 INFO fraude.experiments: [18/21] mlp__smote ...
+17:47:27 INFO fraude.experiments:     AUC-PR teste=0.8020  CV=0.7600±0.0127  treino=25.3s  latência=2.74ms
+17:47:27 INFO fraude.experiments: [19/21] mlp__undersample ...
+17:48:21 INFO fraude.experiments:     AUC-PR teste=0.7999  CV=0.7603±0.0158  treino=4.3s  latência=2.80ms
+17:48:22 INFO fraude.experiments: [20/21] mlp__class_weight ...
+17:52:05 INFO fraude.experiments:     AUC-PR teste=0.8050  CV=0.7567±0.0107  treino=8.3s  latência=2.77ms
+17:52:05 INFO fraude.experiments: [21/21] isolation_forest__none ...
+17:56:26 INFO fraude.experiments:     AUC-PR teste=0.5328  CV=0.5095±0.0333  treino=3.1s  latência=3.54ms
+17:56:28 INFO fraude: Relatório em C:\Users\T-GAMER\TCC\reports\paysim_sem_saldo\experiments\summary.md
+           model    balancing  auc_pr  auc_roc  precision  recall     f1    mcc  latency_mean_ms
+         xgboost         none  0.8062   0.9529     0.7108  0.7994 0.7525 0.7530           3.6464
+             mlp         none  0.8055   0.9560     0.6100  0.8176 0.6987 0.7052           2.7374
+             mlp class_weight  0.8050   0.9514     0.6186  0.8085 0.7009 0.7062           2.7718
+             mlp        smote  0.8020   0.9503     0.6551  0.8024 0.7213 0.7241           2.7356
+   random_forest         none  0.8018   0.9351     0.6909  0.8085 0.7451 0.7466          16.3418
+         xgboost        smote  0.8017   0.9473     0.6735  0.7964 0.7298 0.7315           3.6359
+         xgboost class_weight  0.8010   0.9516     0.6253  0.7964 0.7005 0.7047           3.5237
+         xgboost  undersample  0.8005   0.9517     0.6527  0.8055 0.7211 0.7242           3.5171
+   random_forest        smote  0.8000   0.9473     0.7414  0.7842 0.7622 0.7618          16.6069
+             mlp  undersample  0.7999   0.9515     0.8591  0.7599 0.8065 0.8074           2.7982
+   random_forest  undersample  0.7971   0.9440     0.7049  0.7842 0.7424 0.7427          16.5372
+        lightgbm         none  0.7922   0.9475     0.6855  0.7751 0.7275 0.7281           3.5750
+   random_forest class_weight  0.7917   0.9380     0.5742  0.7994 0.6684 0.6764          16.8984
+        lightgbm        smote  0.7908   0.9511     0.5959  0.7933 0.6806 0.6865           3.5461
+        lightgbm  undersample  0.7836   0.9472     0.6523  0.7812 0.7109 0.7129           3.5717
+        lightgbm class_weight  0.7641   0.9450     0.6596  0.7599 0.7062 0.7071           3.6112
+          logreg         none  0.6076   0.9213     0.4966  0.6717 0.5711 0.5761           2.8351
+          logreg  undersample  0.5963   0.9260     0.4629  0.7021 0.5580 0.5686           2.7622
+          logreg        smote  0.5412   0.9326     0.5213  0.7082 0.6005 0.6062           2.7207
+isolation_forest         none  0.5328   0.8787     0.9548  0.5137 0.6680 0.6997           3.5392
+          logreg class_weight  0.4582   0.9329     0.4828  0.6809 0.5649 0.5718           2.7407
+17:56:36 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+17:56:36 INFO fraude: Base: {'name': 'paysim_sem_saldo[20%]', 'kind': 'paysim_restrito', 'n_rows': 554082, 'n_features': 6, 'n_fraud': 1643, 'fraud_rate_pct': 0.2965, 'duplicates_removed': 0, 'duplicate_frauds_removed': 0}
+17:56:36 INFO fraude.experiments: [1/8] xgboost__none ...
+18:06:52 INFO fraude.experiments:     AUC-PR teste=0.8094  CV=0.7689±0.0114  treino=2.0s  latência=3.47ms
+18:06:52 INFO fraude.experiments: [2/8] xgboost__smote ...
+18:19:40 INFO fraude.experiments:     AUC-PR teste=0.8007  CV=0.7615±0.0124  treino=2.4s  latência=3.45ms
+18:19:40 INFO fraude.experiments: [3/8] xgboost__undersample ...
+18:24:40 INFO fraude.experiments:     AUC-PR teste=0.8086  CV=0.7673±0.0112  treino=1.5s  latência=3.44ms
+18:24:40 INFO fraude.experiments: [4/8] xgboost__class_weight ...
+18:35:27 INFO fraude.experiments:     AUC-PR teste=0.7980  CV=0.7605±0.0136  treino=3.1s  latência=3.48ms
+18:35:27 INFO fraude.experiments: [5/8] lightgbm__none ...
+18:45:25 INFO fraude.experiments:     AUC-PR teste=0.8006  CV=0.7626±0.0097  treino=2.7s  latência=3.58ms
+18:45:25 INFO fraude.experiments: [6/8] lightgbm__smote ...
+18:57:31 INFO fraude.experiments:     AUC-PR teste=0.7945  CV=0.7564±0.0138  treino=2.0s  latência=3.64ms
+18:57:31 INFO fraude.experiments: [7/8] lightgbm__undersample ...
+19:03:38 INFO fraude.experiments:     AUC-PR teste=0.8006  CV=0.7639±0.0118  treino=1.2s  latência=3.58ms
+19:03:38 INFO fraude.experiments: [8/8] lightgbm__class_weight ...
+19:12:43 INFO fraude.experiments:     AUC-PR teste=0.7625  CV=0.7366±0.0150  treino=2.8s  latência=3.66ms
+19:12:44 INFO fraude: Relatório em C:\Users\T-GAMER\TCC\reports\paysim_sem_saldo\experiments_busca50\summary.md
+   model    balancing  auc_pr  auc_roc  precision  recall     f1    mcc  latency_mean_ms
+ xgboost         none  0.8094   0.9540     0.6667  0.8085 0.7308 0.7333           3.4658
+ xgboost  undersample  0.8086   0.9549     0.7458  0.8024 0.7731 0.7729           3.4434
+ xgboost        smote  0.8007   0.9509     0.7222  0.7903 0.7547 0.7547           3.4494
+lightgbm         none  0.8006   0.9507     0.5923  0.7994 0.6805 0.6871           3.5823
+lightgbm  undersample  0.8006   0.9474     0.6700  0.8085 0.7328 0.7352           3.5826
+ xgboost class_weight  0.7980   0.9519     0.6359  0.7964 0.7072 0.7107           3.4804
+lightgbm        smote  0.7945   0.9524     0.6927  0.7812 0.7343 0.7348           3.6449
+lightgbm class_weight  0.7625   0.9451     0.6038  0.7781 0.6799 0.6844           3.6633
+19:13:00 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:13:01 INFO fraude: ensemble_gbdt: [('xgboost', 'none', 'experiments_busca50'), ('lightgbm', 'undersample', 'experiments_busca50')]
+19:13:01 INFO fraude: ensemble_arvores: [('xgboost', 'none', 'experiments_busca50'), ('lightgbm', 'undersample', 'experiments_busca50'), ('random_forest', 'smote', 'experiments')]
+19:13:01 INFO fraude.experiments: [1/2] ensemble_gbdt__misto ...
+19:13:22 INFO fraude.experiments:     AUC-PR teste=0.8070  CV=0.7681±0.0118  treino=2.4s  latência=3.91ms
+19:13:22 INFO fraude.experiments: [2/2] ensemble_arvores__misto ...
+19:15:51 INFO fraude.experiments:     AUC-PR teste=0.8082  CV=0.7676±0.0126  treino=28.4s  latência=21.09ms
+           model   auc_pr   recall  precision  latency_mean_ms
+ensemble_arvores 0.808151 0.799392   0.718579        21.086946
+   ensemble_gbdt 0.807036 0.799392   0.706989         3.910588
+19:16:00 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:16:00 INFO fraude.stats: [1/31] CV repetida: logreg__none ...
+19:16:14 INFO fraude.stats:     AUC-PR = 0.5838 ± 0.0288
+19:16:14 INFO fraude.stats: [2/31] CV repetida: logreg__smote ...
+19:16:28 INFO fraude.stats:     AUC-PR = 0.5323 ± 0.0300
+19:16:28 INFO fraude.stats: [3/31] CV repetida: logreg__undersample ...
+19:16:40 INFO fraude.stats:     AUC-PR = 0.5758 ± 0.0296
+19:16:40 INFO fraude.stats: [4/31] CV repetida: logreg__class_weight ...
+19:16:58 INFO fraude.stats:     AUC-PR = 0.4550 ± 0.0301
+19:16:58 INFO fraude.stats: [5/31] CV repetida: random_forest__none ...
+19:20:45 INFO fraude.stats:     AUC-PR = 0.7594 ± 0.0247
+19:20:45 INFO fraude.stats: [6/31] CV repetida: random_forest__smote ...
+19:25:46 INFO fraude.stats:     AUC-PR = 0.7604 ± 0.0237
+19:25:46 INFO fraude.stats: [7/31] CV repetida: random_forest__undersample ...
+19:26:47 INFO fraude.stats:     AUC-PR = 0.7531 ± 0.0235
+19:26:47 INFO fraude.stats: [8/31] CV repetida: random_forest__class_weight ...
+19:30:29 INFO fraude.stats:     AUC-PR = 0.7519 ± 0.0241
+19:30:29 INFO fraude.stats: [9/31] CV repetida: xgboost__none ...
+19:31:11 INFO fraude.stats:     AUC-PR = 0.7680 ± 0.0239
+19:31:11 INFO fraude.stats: [10/31] CV repetida: xgboost__smote ...
+19:31:55 INFO fraude.stats:     AUC-PR = 0.7599 ± 0.0237
+19:31:55 INFO fraude.stats: [11/31] CV repetida: xgboost__undersample ...
+19:32:11 INFO fraude.stats:     AUC-PR = 0.7608 ± 0.0243
+19:32:11 INFO fraude.stats: [12/31] CV repetida: xgboost__class_weight ...
+19:32:56 INFO fraude.stats:     AUC-PR = 0.7595 ± 0.0222
+19:32:56 INFO fraude.stats: [13/31] CV repetida: lightgbm__none ...
+19:33:29 INFO fraude.stats:     AUC-PR = 0.7579 ± 0.0251
+19:33:29 INFO fraude.stats: [14/31] CV repetida: lightgbm__smote ...
+19:33:54 INFO fraude.stats:     AUC-PR = 0.7534 ± 0.0231
+19:33:54 INFO fraude.stats: [15/31] CV repetida: lightgbm__undersample ...
+19:34:16 INFO fraude.stats:     AUC-PR = 0.7474 ± 0.0253
+19:34:16 INFO fraude.stats: [16/31] CV repetida: lightgbm__class_weight ...
+19:35:01 INFO fraude.stats:     AUC-PR = 0.7356 ± 0.0261
+19:35:01 INFO fraude.stats: [17/31] CV repetida: mlp__none ...
+19:37:12 INFO fraude.stats:     AUC-PR = 0.7606 ± 0.0206
+19:37:12 INFO fraude.stats: [18/31] CV repetida: mlp__smote ...
+19:43:28 INFO fraude.stats:     AUC-PR = 0.7610 ± 0.0216
+19:43:28 INFO fraude.stats: [19/31] CV repetida: mlp__undersample ...
+19:44:27 INFO fraude.stats:     AUC-PR = 0.7614 ± 0.0240
+19:44:27 INFO fraude.stats: [20/31] CV repetida: mlp__class_weight ...
+19:46:13 INFO fraude.stats:     AUC-PR = 0.7561 ± 0.0248
+19:46:13 INFO fraude.stats: [21/31] CV repetida: isolation_forest__none ...
+19:46:55 INFO fraude.stats:     AUC-PR = 0.5090 ± 0.0321
+19:46:55 INFO fraude.stats: [22/31] CV repetida: xgboost__none@busca50 ...
+19:47:19 INFO fraude.stats:     AUC-PR = 0.7688 ± 0.0239
+19:47:19 INFO fraude.stats: [23/31] CV repetida: xgboost__smote@busca50 ...
+19:47:50 INFO fraude.stats:     AUC-PR = 0.7609 ± 0.0226
+19:47:50 INFO fraude.stats: [24/31] CV repetida: xgboost__undersample@busca50 ...
+19:48:09 INFO fraude.stats:     AUC-PR = 0.7673 ± 0.0230
+19:48:09 INFO fraude.stats: [25/31] CV repetida: xgboost__class_weight@busca50 ...
+19:48:44 INFO fraude.stats:     AUC-PR = 0.7596 ± 0.0226
+19:48:44 INFO fraude.stats: [26/31] CV repetida: lightgbm__none@busca50 ...
+19:49:22 INFO fraude.stats:     AUC-PR = 0.7614 ± 0.0244
+19:49:22 INFO fraude.stats: [27/31] CV repetida: lightgbm__smote@busca50 ...
+19:49:48 INFO fraude.stats:     AUC-PR = 0.7569 ± 0.0250
+19:49:48 INFO fraude.stats: [28/31] CV repetida: lightgbm__undersample@busca50 ...
+19:50:06 INFO fraude.stats:     AUC-PR = 0.7626 ± 0.0237
+19:50:06 INFO fraude.stats: [29/31] CV repetida: lightgbm__class_weight@busca50 ...
+19:50:46 INFO fraude.stats:     AUC-PR = 0.7355 ± 0.0210
+19:50:46 INFO fraude.stats: [30/31] CV repetida: ensemble_gbdt__misto@ensemble ...
+19:51:17 INFO fraude.stats:     AUC-PR = 0.7672 ± 0.0239
+19:51:17 INFO fraude.stats: [31/31] CV repetida: ensemble_arvores__misto@ensemble ...
+19:56:39 INFO fraude.stats:     AUC-PR = 0.7675 ± 0.0240
+# Comparação estatística
+
+CV repetida 5×3 no treino (15 partições, as mesmas para todas as configurações).
+
+- Friedman: χ² = 373.10, p = 7.35e-61; Nemenyi CD = 12.50
+- Melhor média: **XGBoost — Sem tratamento [busca50]** (0.7688)
+- Regra: entre as configurações não significativamente piores que a melhor (t corrigido de Nadeau-Bengio, Holm, α=0,05) e a no máximo 0.01 de AUC-PR dela, a de maior AUC-PR entre as mais rápidas (tolerância 0.5 ms)
+19:56:41 INFO fraude: Configuração escolhida pela comparação estatística: mlp + undersample
+19:56:47 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:57:08 INFO fraude.artifact: Calibração: isotonic (Brier CV interna: {'none': 0.001065, 'sigmoid': 0.000981, 'isotonic': 0.000981})
+19:57:15 INFO fraude.artifact: Artefato salvo em C:\Users\T-GAMER\TCC\artifacts\model_paysim_restrito.joblib (limiar=0.0714)
+{
+  "kind": "paysim_restrito",
+  "dataset": "paysim_sem_saldo[20%]",
+  "model": "mlp",
+  "balancing": "undersample",
+  "params": {
+    "clf__alpha": 3.5498788321965036e-05,
+    "clf__hidden_layer_sizes": [
+      128,
+      64
+    ],
+    "clf__learning_rate_init": 0.0016722697006183683,
+    "sampler__sampling_strategy": 0.01
+  },
+  "members": null,
+  "threshold": 0.07142857142857142,
+  "threshold_policy": {
+    "scenario": "moderado",
+    "fn": 100.0,
+    "fp": 5.0,
+    "fn_use_amount": false
+  },
+  "undersampling_beta": null,
+  "calibration": {
+    "method": "isotonic",
+    "inner_cv_brier": {
+      "none": 0.0010654043575889856,
+      "sigmoid": 0.0009811123725763362,
+      "isotonic": 0.0009806085536730891
+    },
+    "test_raw": {
+      "brier": 0.0008772388674961198,
+      "log_loss": 0.005809393661293851,
+      "ece": 0.000821711886450742,
+      "auc_pr": 0.7999213740836472
+    },
+    "test_calibrated": {
+      "brier": 0.0009454734035678351,
+      "log_loss": 0.005813027651663776,
+      "ece": 0.0005013487481628979,
+      "auc_pr": 0.7920023470778522
+    }
+  },
+  "input_columns": [
+    "step",
+    "type",
+    "amount",
+    "oldbalanceDest",
+    "newbalanceDest",
+    "nameDest"
+  ],
+  "dataset_info": {
+    "name": "paysim_sem_saldo[20%]",
+    "kind": "paysim_restrito",
+    "n_rows": 554082,
+    "n_features": 6,
+    "n_fraud": 1643,
+    "fraud_rate_pct": 0.2965,
+    "duplicates_removed": 0,
+    "duplicate_frauds_removed": 0
+  },
+  "train_seconds": 4.2462988999905065,
+  "test_metrics": {
+    "threshold": 0.07142857142857142,
+    "precision": 0.8591065292096219,
+    "recall": 0.7598784194528876,
+    "f1": 0.8064516129032258,
+    "mcc": 0.8074372080634671,
+    "auc_roc": 0.9526892191348291,
+    "auc_pr": 0.7920023470778522,
+    "accuracy": 0.9989171336527789,
+    "brier": 0.0009454734035667625,
+    "tp": 250,
+    "fp": 41,
+    "tn": 110447,
+    "fn": 79,
+    "fpr": 0.0003710810223734704
+  },
+  "test_cost": {
+    "cost_config": {
+      "fn": 100.0,
+      "fp": 5.0,
+      "fn_use_amount": false
+    },
+    "threshold": 0.07142857142857142,
+    "cost": 8105.0,
+    "cost_approve_all": 32900.0,
+    "cost_block_all": 552440.0,
+    "savings_vs_approve_all_pct": 75.36474164133739
+  },
+  "test_cost_all_scenarios": {
+    "conservador": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 10.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.17894736842105263,
+      "cost": 8870.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 1104880.0,
+      "savings_vs_approve_all_pct": 73.03951367781156
+    },
+    "moderado": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 5.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.07142857142857142,
+      "cost": 8105.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 552440.0,
+      "savings_vs_approve_all_pct": 75.36474164133739
+    },
+    "agressivo": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 1.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.015015015015015015,
+      "cost": 6740.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 110488.0,
+      "savings_vs_approve_all_pct": 79.51367781155015
+    },
+    "valor_transacao": {
+      "cost_config": {
+        "fn": 25.0,
+        "fp": 5.0,
+        "fn_use_amount": true
+      },
+      "threshold": 2.905625290562529e-05,
+      "cost": 493120.0,
+      "cost_approve_all": 475453302.21000004,
+      "cost_block_all": 552440.0,
+      "savings_vs_approve_all_pct": 99.89628424122667
+    }
+  },
+  "latency": {
+    "latency_mean_ms": 2.8003423303986588,
+    "latency_p50_ms": 2.7758500073105097,
+    "latency_p95_ms": 2.910834987415001,
+    "latency_p99_ms": 3.027847990742883,
+    "batch_throughput_tps": 853825.1361155733
+  },
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "imbalanced-learn": "0.12.4",
+    "xgboost": "2.1.3",
+    "lightgbm": "4.5.0",
+    "shap": "0.46.0"
+  },
+  "seed": 42,
+  "created_at": "2026-10-18T22:57:15.507009+00:00"
+}
+19:57:23 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.01866719,  0.18340031,  0.040984  ,  0.01888828,  0.37089489,
+        0.20858138, -0.0057453 , -0.01073999,  0.03007866])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.00979679,  0.15442572,  0.02513843,  0.01185835,  0.35139442,
+        0.13238725, -0.00223623, -0.00825963,  0.03242691])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02169086,  0.02623754,  0.00351212, -0.14639517,  0.13521628,
+        0.0284335 ,  0.00250332, -0.00363028,  0.01729787])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00439745,  0.00446861, -0.00067078,  0.00058337,  0.01224174,
+       -0.01591339, -0.00081308, -0.00054335,  0.00452792])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.01262937, -0.02018747,  0.12030303, -0.01350408,  0.02666498,
+       -0.03197611,  0.45510666,  0.1468083 ,  0.27423295])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 1.44960968e-02,  8.64671803e-05,  2.00771512e-04, -1.44800659e-02,
+       -1.72925753e-03, -6.81024931e-05, -7.56603183e-04, -1.72468572e-03,
+        3.20001216e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.25556724,  0.00898568, -0.02403801, -0.02436553, -0.00834799,
+       -0.00862215,  0.54607612,  0.10997792,  0.13870115])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.20420709, -0.01311784, -0.00890961, -0.01354284, -0.01179741,
+        0.00548323,  0.55719566,  0.09789658,  0.17605727])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.02071402,  0.0103128 ,  0.05037778,  0.00407655, -0.03185986,
+        0.01857566,  0.48954342,  0.14087434,  0.27411729])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00337991, -0.00162741,  0.00047442,  0.00054214, -0.00913417,
+        0.0101582 ,  0.00040989, -0.00043696,  0.00343162])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.03834306,  0.06180728, -0.00126392,  0.00254205, -0.03706071,
+        0.05320233, -0.00163719, -0.00132499,  0.01013727])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.30044573, -0.13917575,  0.01402302,  0.00228426,  0.02056287,
+       -0.01446134,  0.01249878,  0.008208  ,  0.00723978])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00730742,  0.01176709,  0.07810049, -0.00632088,  0.00109224,
+        0.03385465,  0.51778759,  0.10554861,  0.2551396 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.02092684,  0.01743413,  0.01691717, -0.00103482,  0.03561896,
+        0.05540782,  0.56161989,  0.08436855,  0.20487516])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.36735836,  0.02074717, -0.03498642, -0.0305151 ,  0.07070884,
+        0.06525606,  0.49190025,  0.05704686, -0.00890523])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.62663774,  0.13786949,  0.02930062, -0.29566568,  0.06786353,
+       -0.07001698,  0.00115441,  0.01860266,  0.01259042])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.01272001,  0.01377837,  0.0507066 , -0.01808751, -0.01027003,
+       -0.02090025,  0.47083823,  0.15932371,  0.29653389])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.77689413, -0.06598773, -0.01710981, -0.12905792, -0.01041387,
+        0.02141927,  0.00383013,  0.02152666,  0.04246038])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02557296,  0.00464676,  0.1234461 , -0.00714958, -0.01719152,
+       -0.01392562,  0.45205988,  0.15338133,  0.27965421])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02846557,  0.00401611,  0.11251731, -0.00618338, -0.02768639,
+        0.02946881,  0.43790967,  0.15454382,  0.28531015])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.0206764 ,  0.00303101,  0.04002729,  0.00124408, -0.01905354,
+        0.02931437,  0.53797718,  0.11726672,  0.25397745])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.03895068,  0.00152931,  0.01885666,  0.01806782, -0.00821848,
+        0.04662456,  0.53883356,  0.11578473,  0.2219058 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.03153892,  0.0172925 ,  0.10103436, -0.00492026,  0.00921885,
+        0.04014456,  0.50311521,  0.10189027,  0.25292353])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.18832317,  0.01528796, -0.02250523, -0.0309798 ,  0.09917759,
+        0.02947577,  0.56079004,  0.08596223,  0.07254751])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00059259,  0.01086015,  0.03941033, -0.0013612 ,  0.05664593,
+       -0.02929293,  0.50624359,  0.12874913,  0.26849003])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.10481518,  0.00359393,  0.00093442, -0.01961893,  0.02646188,
+       -0.04030359,  0.55765783,  0.11454778,  0.23880419])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-3.71705121e-03, -2.06456495e-04,  6.66034134e-04,  2.47085048e-04,
+        9.40400171e-03, -1.10995218e-02,  3.76737910e-04, -9.17379559e-05,
+        3.68568840e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.1430943 , -0.00833508, -0.00307332, -0.00062253,  0.01945112,
+       -0.04627322,  0.53444278,  0.11262276,  0.23324016])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.01659677,  0.01273167,  0.03411353,  0.00492948, -0.02497551,
+        0.04389144,  0.5362998 ,  0.13184405,  0.23528477])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 9.38975084e-01,  4.11067171e-04,  2.01789101e-04,  7.37018073e-04,
+       -2.34221007e-03,  7.00254097e-03, -1.26201732e-03,  1.02139759e-03,
+        5.33171715e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.3034264 ,  0.0089614 , -0.04485724, -0.02821238, -0.00319262,
+        0.05305134,  0.57729996,  0.07342226,  0.05821811])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.23028875,  0.00272769, -0.02921206, -0.00512618,  0.01849057,
+        0.05018258,  0.59446787,  0.05986647,  0.07650723])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-3.24485184e-04, -8.40057865e-03,  1.06225701e-03,  5.83770287e-04,
+        2.42552620e-03,  6.18441521e-03, -7.91340106e-05, -1.28063392e-03,
+        4.75820676e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02339821,  0.15105781,  0.03867499,  0.01479651,  0.35348467,
+        0.12709397, -0.00128963,  0.00819847,  0.03208526])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.13994884, -0.03032677,  0.00212069,  0.00850009,  0.15559492,
+       -0.00048545,  0.00513354,  0.00391236,  0.02395677])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.00905344,  0.01148928,  0.00860649,  0.00031399,  0.0416789 ,
+       -0.06997472, -0.00417918, -0.0048559 ,  0.00762638])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.28808123,  0.01477765, -0.04438199, -0.01466504,  0.01899937,
+       -0.06024753,  0.56611351,  0.10854784,  0.11772811])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.00689151, -0.0053088 ,  0.03105932, -0.01087244,  0.02595698,
+       -0.0292003 ,  0.4994802 ,  0.14224471,  0.30180421])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.01412164, -0.01120293,  0.05938765, -0.00762069, -0.02115785,
+        0.00690967,  0.49184606,  0.15341731,  0.28288145])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 4.15422843e-01,  5.84562466e-02,  4.02720452e-02,  1.84767241e-02,
+       -1.13277144e-01,  1.69099820e-01,  4.00358982e-04,  5.13355212e-03,
+        3.07975206e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 9.00046623e-01, -1.07660298e-02, -2.46649443e-03,  9.40515863e-03,
+       -5.90380992e-04,  1.97630490e-02, -5.77456456e-04,  7.51674300e-03,
+        4.90767231e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.02263082,  0.00492486,  0.03049345, -0.00077369,  0.01250446,
+        0.06711196,  0.55179008,  0.0982075 ,  0.20750091])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.0080426 ,  0.01371299,  0.05369997, -0.00091276, -0.00064432,
+        0.05576235,  0.53366909,  0.10692551,  0.23751186])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02048934,  0.01754242,  0.0703696 , -0.01229843,  0.05847878,
+        0.04676075,  0.52556475,  0.10849809,  0.19887124])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00650667,  0.03221937,  0.01069637,  0.00097683,  0.09070087,
+       -0.12817486,  0.00304875,  0.00640398,  0.00366843])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.00969851,  0.00992951,  0.00929898, -0.01452358,  0.05604251,
+       -0.03189195,  0.5133052 ,  0.13090655,  0.29158267])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.04079997,  0.00762782,  0.0075027 , -0.00800928,  0.03732041,
+       -0.03554096,  0.52314588,  0.1335733 ,  0.2659979 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02446397,  0.00414952,  0.05776705, -0.00417772,  0.01788396,
+       -0.04096217,  0.47592574,  0.15012009,  0.3109238 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.33115916,  0.02712107, -0.04838014, -0.0673351 , -0.01653253,
+        0.00221952,  0.56508773,  0.09742777,  0.10484107])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([0.01526944, 0.02466503, 0.02286715, 0.0153691 , 0.01952611,
+       0.05014294, 0.58562764, 0.09643284, 0.16626871])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([3.29259178e-01, 1.33161273e-01, 3.22095162e-03, 1.40041409e-02,
+       2.54617230e-01, 2.11927366e-01, 3.11291020e-04, 5.46479071e-03,
+       4.14676166e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00624286, -0.00332021,  0.00017128,  0.0003808 ,  0.05611895,
+       -0.0536459 ,  0.0005471 ,  0.00028638,  0.0057207 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 5.14750241e-01,  1.23130588e-01,  3.46206892e-02, -2.34119101e-01,
+        1.08203560e-01, -1.81495895e-01,  4.10726380e-03, -4.05493880e-04,
+        1.56097067e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00061328, -0.00079252, -0.00012773, -0.00113146,  0.00197296,
+       -0.00210645,  0.00012207,  0.00014881,  0.00140105])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.02681509,  0.00088884,  0.03916346, -0.00707236, -0.01389361,
+        0.0027665 ,  0.51503859,  0.13718219,  0.27547338])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.24874677,  0.05097568,  0.01563105,  0.01182584, -0.11553704,
+        0.07196115,  0.0031386 , -0.00208926,  0.0228166 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.08590578, -0.03568641, -0.01352488,  0.0098511 ,  0.29805143,
+        0.15539514,  0.00239646, -0.00756329,  0.03070198])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.79780585, -0.01468394, -0.0113009 ,  0.01078138,  0.07174325,
+        0.07465691, -0.00130685,  0.00163603,  0.06847086])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.21649461,  0.02368946, -0.02802651, -0.03209024,  0.10328436,
+       -0.00680968,  0.5671538 ,  0.08233144,  0.07130833])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 3.90538468e-02,  1.15905283e-02,  5.12144658e-04, -9.58102740e-03,
+        7.74975448e-02, -3.70355382e-02,  5.26423309e-01,  1.29355087e-01,
+        2.46863399e-01])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00384587,  0.00474348,  0.0396252 , -0.00477377,  0.01733769,
+       -0.03650941,  0.48936816,  0.15049659,  0.29932431])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.08663476,  0.0179701 ,  0.00406243, -0.00673364,  0.06109378,
+       -0.15281565,  0.00196575, -0.0047895 ,  0.00900796])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.08035234,  0.02068311,  0.01990786,  0.00318746,  0.05631409,
+       -0.15104594, -0.00612888, -0.00331988,  0.00241496])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.27420165,  0.00384871, -0.02314799, -0.02594782,  0.0098642 ,
+       -0.02932831,  0.56014261,  0.09590983,  0.12960376])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.26632388,  0.01033581, -0.02721326, -0.02281251, -0.01960818,
+       -0.02155992,  0.5464705 ,  0.11307333,  0.14949818])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00623925,  0.00135769, -0.00046338,  0.0011154 , -0.00618311,
+        0.00652737, -0.00017177, -0.0010859 ,  0.00536921])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.40439325, -0.00325443, -0.05307293,  0.00937575, -0.01839931,
+        0.01261679,  0.58009152,  0.03794258,  0.02879312])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.40756344,  0.00921557, -0.02512594,  0.00336816,  0.00778184,
+        0.02599245,  0.54041313,  0.03472652, -0.00524514])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.03639108,  0.00857795, -0.02033905, -0.01080641,  0.08141081,
+       -0.00277415,  0.55925822,  0.11635593,  0.2231846 ])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.06080539, -0.02872536,  0.00277385,  0.00018749,  0.09525215,
+       -0.10053944, -0.00822623,  0.0077197 ,  0.00900573])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.02057554,  0.00183721,  0.04275384, -0.01309912,  0.06269798,
+       -0.02903269,  0.48891617,  0.14403134,  0.29138217])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.12119419,  0.02295918, -0.00441763,  0.00139733,  0.0580901 ,
+       -0.19091262, -0.00126738,  0.00344914,  0.01920973])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.39011167,  0.01446495, -0.07407565,  0.01286617,  0.00145334,
+       -0.00973653,  0.56240461,  0.06307482,  0.03768031])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.19158257,  0.01822959, -0.01548967, -0.00574133,  0.00379291,
+       -0.03867578,  0.53612458,  0.11594022,  0.18388292])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-1.52622453e-03, -4.76262535e-04,  6.53449312e-04,  3.90338707e-05,
+        4.46664948e-03, -6.45019997e-03,  5.85453257e-04, -8.21158580e-04,
+        2.88616966e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.01127184, -0.00376081,  0.04874996, -0.00177568, -0.01889605,
+       -0.00707346,  0.48612888,  0.15346806,  0.28567076])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00685424,  0.00151008, -0.00154172, -0.00279059, -0.00585072,
+        0.00125343,  0.05970309, -0.01561756, -0.02485764])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-5.28793347e-03, -9.30485080e-04,  8.98930007e-04, -7.53953721e-05,
+       -4.22710802e-03,  5.39366394e-03,  2.68899093e-04, -9.29235385e-04,
+        4.27669870e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-6.61218767e-03,  8.71074041e-03, -8.80526077e-05,  1.02825830e-03,
+       -2.36236779e-02,  1.65016569e-02, -7.16581682e-04,  3.51587753e-04,
+        6.97179762e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 9.10538364e-01,  3.95050268e-03,  1.27309829e-03,  8.86055328e-03,
+       -6.11291314e-03,  2.02751618e-02, -6.34773349e-04,  2.25205025e-03,
+        5.43564525e-02])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.02380149,  0.00892869,  0.01809773, -0.01240371,  0.04990115,
+        0.0735599 ,  0.56427212,  0.08740358,  0.18241473])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-3.21681018e-03,  8.80567898e-04,  5.32726616e-04,  1.71833902e-04,
+        4.31045678e-03, -6.00997366e-03,  9.79194834e-05, -1.30642862e-03,
+        3.92295255e-03])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00163322,  0.00568829,  0.0601295 , -0.01010458, -0.00603485,
+       -0.01559907,  0.46972486,  0.15552276,  0.29653024])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.15953655, -0.00847974, -0.01410523, -0.01590884,  0.01424151,
+        0.04640599,  0.57339039,  0.09726427,  0.14425326])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.03502008, -0.00471504,  0.03205468,  0.00499301,  0.00462822,
+        0.06464558,  0.57356407,  0.09555981,  0.18938824])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.38368513,  0.11151968,  0.00045315,  0.02047016,  0.27365956,
+        0.15580554,  0.00275735, -0.00758045,  0.04336247])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.40815585,  0.06791085,  0.00485285,  0.01775369,  0.22461874,
+        0.22072379,  0.00356845, -0.00244993,  0.04944739])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([0.31051206, 0.0841291 , 0.01042391, 0.00756957, 0.24126993,
+       0.26484105, 0.00430737, 0.01180932, 0.06100438])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([ 0.16037012,  0.01589666, -0.03853208, -0.04321482,  0.12109502,
+        0.0224389 ,  0.56186718,  0.08899589,  0.10867357])
+19:57:24 INFO shap: num_full_subsets = 1
+19:57:24 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:24 INFO shap: num_paired_subset_sizes = 4
+19:57:24 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:24 INFO shap: phi = array([-0.00509707, -0.01442893,  0.06331614, -0.00506328,  0.00297003,
+       -0.02231984,  0.46346434,  0.15210575,  0.30724711])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00848662,  0.00530486,  0.0012207 ,  0.00112389, -0.04706949,
+        0.02525574, -0.00058189,  0.00098521,  0.01147219])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00851787, -0.0060811 , -0.00019923,  0.00042481, -0.00806885,
+        0.00876913,  0.00054604, -0.00072672,  0.00332948])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00702171,  0.00452983,  0.06736576, -0.01734964,  0.01329968,
+        0.06173858,  0.55549885,  0.09326933,  0.22200426])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00943602,  0.00342444,  0.06269359, -0.01734312,  0.01724288,
+        0.06484483,  0.53571193,  0.10608512,  0.22971044])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([0.43794247, 0.05315231, 0.00375838, 0.01550701, 0.22192885,
+       0.09666877, 0.00162688, 0.00467956, 0.03436067])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.51358774,  0.11339534,  0.006613  ,  0.012172  ,  0.14736131,
+        0.14966282,  0.00948548, -0.0073871 ,  0.04949572])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.34382719,  0.02168454, -0.03377729, -0.04473338,  0.0691208 ,
+        0.04057688,  0.54160109,  0.04825638,  0.0120283 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.19305373, -0.00722974, -0.03398289, -0.02530982,  0.09901175,
+        0.06298622,  0.56792468,  0.07548628,  0.06623073])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02394801,  0.01828744,  0.0401405 , -0.01658124,  0.0671743 ,
+       -0.0217235 ,  0.49300055,  0.14236067,  0.2742371 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.0028709 , -0.00485848, -0.00105376, -0.00068957,  0.031343  ,
+       -0.02516488,  0.00092098, -0.00098194,  0.00243069])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00097869,  0.01716199,  0.01408841, -0.01565105,  0.05690024,
+       -0.03764298,  0.50490646,  0.13741478,  0.29388173])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00306307,  0.00120125,  0.00064244, -0.0001057 ,  0.03017461,
+       -0.0394251 ,  0.00117427, -0.00123234,  0.00381291])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.64884716, -0.0785727 ,  0.03328341,  0.02470796,  0.00242877,
+       -0.16409384, -0.00221267,  0.0073753 ,  0.03356061])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 9.85602918e-03,  1.21243277e-02,  2.58833848e-02, -1.43756148e-04,
+       -9.39287953e-03, -1.36361223e-02,  4.98263645e-01,  1.52342967e-01,
+        2.84442004e-01])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 2.82603171e-01,  8.28422493e-03, -2.78204203e-02, -2.83436377e-04,
+       -2.25696266e-02,  2.92937528e-02,  5.53748391e-01,  7.88430396e-02,
+        9.44902996e-02])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.23947643,  0.01217705, -0.01805734, -0.04558176, -0.03477787,
+        0.05091136,  0.56501541,  0.09441835,  0.13296078])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.03401535,  0.03226742, -0.00387717, -0.00426323, -0.09459549,
+        0.04852125,  0.00459107, -0.00019265,  0.00637922])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-1.25352033e-03,  4.49813448e-03,  2.01536553e-03,  6.83620479e-04,
+       -2.26838735e-02,  1.56983986e-02,  1.96191588e-05, -1.35660473e-03,
+        7.32047684e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.60599697, -0.0190154 ,  0.01537939,  0.01807094,  0.04142577,
+        0.02116568,  0.0022544 ,  0.01264517,  0.02937794])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-3.96190585e-03,  2.77942777e-03,  1.13061653e-03, -1.17144300e-04,
+       -9.49140609e-03,  1.04671844e-02, -5.30842128e-05, -8.35520866e-04,
+        6.15258515e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02643546,  0.00428244,  0.08131598, -0.00461906,  0.00435507,
+        0.06746388,  0.5177006 ,  0.10586092,  0.24105415])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.18297685,  0.00534876, -0.05622176, -0.02152781,  0.07818467,
+        0.04607918,  0.5757339 ,  0.08155189,  0.10519665])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.22126329,  0.02314073, -0.0332247 , -0.02852586,  0.05939101,
+       -0.02424208,  0.55900168,  0.09678709,  0.12295993])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00168057,  0.00665797, -0.00243015,  0.00083275,  0.00912346,
+       -0.02108929,  0.00012179,  0.00051904,  0.00518931])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.02868729,  0.02862026, -0.00525074,  0.00517849, -0.05845182,
+        0.0246556 , -0.00181333, -0.00827868,  0.00706375])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.1806457 , -0.00685193, -0.00080608, -0.02811311, -0.03318276,
+        0.03864592,  0.55736648,  0.10854754,  0.17837908])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.64856318,  0.04657972,  0.03531645,  0.02555053, -0.06332473,
+        0.15150285,  0.00314113,  0.00699295,  0.04063439])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02468637,  0.00787307,  0.10153279, -0.01124207,  0.02904408,
+        0.05206595,  0.51889537,  0.10037906,  0.21784371])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.29745047,  0.19940217, -0.0063212 ,  0.01831486,  0.1840117 ,
+        0.14614576,  0.00167201,  0.00969515,  0.03288873])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02840298,  0.00193969,  0.01255479,  0.00321859,  0.05625256,
+        0.01381923,  0.00010651, -0.00301802,  0.01319216])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.01208824,  0.01156013,  0.01176845, -0.02814391,  0.10229792,
+        0.01391204,  0.52657978,  0.11299662,  0.22973345])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00556542,  0.00515374,  0.00485492, -0.01331943,  0.09870454,
+        0.00667753,  0.5311252 ,  0.10220362,  0.24857692])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.34567608,  0.01733055, -0.05977035, -0.00541607,  0.08150409,
+       -0.00205325,  0.54270015,  0.04943288,  0.02907581])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.01357134, -0.00059948,  0.01113365, -0.02412157,  0.08226977,
+       -0.01020463,  0.52570432,  0.13081107,  0.25876826])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00754184, -0.00751859, -0.00227895, -0.00026032,  0.05017066,
+       -0.03658516,  0.00049228,  0.00061503,  0.00306575])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 9.49644041e-02,  2.87658615e-02,  5.00771855e-03,  5.36185271e-03,
+        5.64008758e-02, -1.77393042e-01, -1.66568131e-03, -2.89737001e-05,
+        8.63244224e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.03174796,  0.01612505,  0.00067131,  0.00792743,  0.01397297,
+       -0.06072775, -0.00480366,  0.00153853,  0.00234675])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00370549, -0.00012914,  0.0005327 ,  0.00053123, -0.00198175,
+        0.00229593, -0.00015778, -0.00145001,  0.00402044])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.03904176, -0.01418565,  0.03643288,  0.01084113, -0.03288915,
+        0.01427553,  0.51173146,  0.14928923,  0.26234954])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.41457009,  0.0055488 , -0.05757517,  0.00094468, -0.02637379,
+        0.01128158,  0.58206019,  0.03990268,  0.02812728])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.26212362,  0.00404768, -0.01204297, -0.01425029, -0.01314586,
+        0.02787634,  0.55037643,  0.08638736,  0.10389901])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.11023276, -0.0131916 ,  0.00864428, -0.01585644, -0.01756692,
+        0.04951252,  0.54605978,  0.12872759,  0.19767216])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.80429134,  0.05245715,  0.00946407,  0.01855705, -0.00248152,
+        0.04218717,  0.00097276,  0.00426265,  0.04602068])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.21865412,  0.02311829, -0.0382638 , -0.03066995, -0.00844248,
+        0.07815523,  0.58771834,  0.08936804,  0.07845532])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00555793, -0.00725576,  0.0371417 ,  0.00276012,  0.02259404,
+        0.06221085,  0.55399232,  0.11057692,  0.20704745])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.0054316 , -0.00637916, -0.00073297,  0.00091476,  0.05284658,
+       -0.04296962, -0.00127115, -0.00187968,  0.00527818])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.12181247, -0.00114351, -0.00213334,  0.00134321, -0.01371261,
+       -0.02532151,  0.53924065,  0.13602023,  0.22846788])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.1530397 , -0.05043514,  0.03175872,  0.00769059,  0.00768952,
+       -0.04442568, -0.00067161, -0.00058259,  0.00814294])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.15819413,  0.00143382,  0.02559164,  0.00526622, -0.0526895 ,
+        0.02444668, -0.00084827, -0.00166215,  0.01175502])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.11040788,  0.0043935 , -0.00215286, -0.00724215, -0.01741274,
+        0.04497878,  0.61751038,  0.09570301,  0.15101846])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.10799935,  0.00339485,  0.00405215,  0.00583575,  0.03161656,
+       -0.01997325, -0.00158728,  0.0004422 ,  0.01185787])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-4.31951269e-03, -8.39037616e-03, -6.37040409e-05,  7.48498815e-04,
+        1.24962561e-02,  4.00038197e-03, -2.01063168e-04, -1.04319985e-03,
+        4.87062338e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.24262467,  0.22050134, -0.00821102,  0.01960838,  0.25186381,
+        0.17619484, -0.00568364,  0.00814702,  0.03483982])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02479373,  0.0136485 ,  0.09310226, -0.04162758,  0.10426432,
+        0.07295174,  0.49000429,  0.10730655,  0.17949293])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.03676667,  0.01585077,  0.01442757, -0.02675571,  0.09497354,
+        0.05401022,  0.53926212,  0.10176215,  0.16635728])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.69269958,  0.06693257, -0.03854338,  0.0008595 ,  0.13498677,
+        0.08502362,  0.00518818,  0.00243379,  0.04910868])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.10273706,  0.03298905, -0.028353  , -0.03346485,  0.10237416,
+        0.07200768,  0.55280689,  0.09488794,  0.10143302])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.15046113,  0.06595123,  0.00499463,  0.00457888,  0.11455989,
+       -0.16917085,  0.00537305, -0.00025726,  0.02196673])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.14717595,  0.01906527, -0.01847249, -0.02189674,  0.01758731,
+       -0.04747586,  0.53732672,  0.14636568,  0.20632395])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.30863536,  0.00645189, -0.04836256, -0.03870856,  0.00674398,
+       -0.04539904,  0.55666203,  0.10739047,  0.1404795 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.01819096,  0.001188  ,  0.08619798, -0.00692631, -0.01611364,
+        0.00055753,  0.45352382,  0.16238266,  0.28564645])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00978028,  0.00234559,  0.07303286,  0.00417437, -0.02337868,
+       -0.00657216,  0.45664166,  0.16365877,  0.27690204])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00901019, -0.00073923,  0.06094344, -0.01354436, -0.0203067 ,
+        0.00297596,  0.48643196,  0.13306825,  0.30719977])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.30299752,  0.03761309, -0.03075085, -0.04091518,  0.09896568,
+        0.07048031,  0.51816547,  0.04772479, -0.00572785])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.01873426, -0.06273473, -0.02439735,  0.00787871,  0.20077847,
+        0.08959591, -0.00215797,  0.00127439,  0.01901352])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.25928959,  0.07472224,  0.00694244,  0.02789441,  0.29390318,
+        0.23080126,  0.00252265, -0.00148492,  0.04446298])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.26156663, -0.07555293,  0.00215107,  0.0161788 ,  0.13966959,
+        0.05017329,  0.00116245,  0.00306641,  0.0258274 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.01328992, -0.01148374,  0.02794386,  0.00069858,  0.08095974,
+       -0.0261284 ,  0.49907796,  0.13609941,  0.28209501])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.23547173,  0.00392407, -0.02480392, -0.01512445,  0.0476192 ,
+       -0.04188737,  0.56215426,  0.08611157,  0.14114267])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.07666819, -0.0097471 , -0.00272893,  0.00458864,  0.06838584,
+       -0.1418147 ,  0.00578825,  0.00552563,  0.0020079 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00329874,  0.02179868, -0.00071807,  0.00436295,  0.03833916,
+       -0.06511621,  0.00029283, -0.00158512,  0.00583626])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-2.06582758e-03, -5.18739576e-04,  1.15129131e-04,  7.62461717e-05,
+        1.37564464e-03, -1.82386862e-03, -5.54511234e-05, -1.57699968e-04,
+        2.40638704e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00124339, -0.00140292, -0.00013892, -0.00017743,  0.00102056,
+       -0.00104172,  0.00011232,  0.00013647,  0.00176096])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.03143169,  0.00349869,  0.12608796, -0.0121317 , -0.02546302,
+        0.02385254,  0.46918266,  0.13185507,  0.28571811])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 3.21979464e-02,  1.43606650e-02,  4.81150721e-02, -2.94086189e-04,
+       -7.97564356e-03,  3.17672397e-02,  5.20741375e-01,  1.09225233e-01,
+        2.40128263e-01])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.06812996, -0.04783663,  0.01005177,  0.0009743 , -0.05046712,
+        0.03247438,  0.00054507,  0.00274462,  0.0068918 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.01965104, -0.00611073,  0.0023588 ,  0.0008863 , -0.00981644,
+        0.00789905, -0.00156914, -0.00255768,  0.00721451])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-4.88098583e-03, -4.48835038e-03, -7.82551307e-04,  7.62436020e-04,
+        1.25357264e-03,  4.80357467e-03,  3.31804376e-05,  4.26044934e-04,
+        2.57965636e-03])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.43520988,  0.03884109, -0.05806249,  0.01784735,  0.08655432,
+        0.03927875,  0.41033227,  0.01281187,  0.01589815])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-7.13925526e-03,  3.13520123e-03,  2.99416132e-02,  1.44682359e-02,
+        3.05217279e-01,  1.54965822e-01,  2.13782409e-04, -2.81520418e-03,
+        2.63903271e-02])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.35130529,  0.01338216, -0.05861786, -0.01043731,  0.11618808,
+        0.03089269,  0.50439482,  0.05658739, -0.00512353])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00783407,  0.00790298,  0.01760424, -0.00746061,  0.10083242,
+        0.02568069,  0.51892009,  0.1092392 ,  0.21214331])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02332011,  0.02512713,  0.01734668,  0.00545333,  0.14714237,
+       -0.047465  , -0.0004285 , -0.00359683,  0.01629425])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.06975896,  0.00858501,  0.00694964,  0.00364008,  0.16261034,
+       -0.03803089, -0.00248485,  0.00092025,  0.01928504])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-1.49062357e-02, -3.48792934e-04,  7.12298920e-02, -1.38364413e-02,
+        1.13018123e-02, -2.87369582e-02,  4.47172244e-01,  1.73304989e-01,
+        2.86858485e-01])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.93123463,  0.00590422,  0.0025964 ,  0.00576122,  0.00278691,
+       -0.00617152, -0.00113817,  0.00184344,  0.05218543])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.01140838,  0.00048717,  0.11470388, -0.02518166, -0.03411391,
+        0.02643264,  0.45000122,  0.15398894,  0.28894081])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-8.80432515e-03,  2.21673072e-03,  9.04971469e-02, -3.41522350e-04,
+       -2.61331801e-02,  2.81817590e-02,  4.80359827e-01,  1.31524209e-01,
+        2.79737479e-01])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02053973,  0.00512978,  0.08775929, -0.01208803, -0.00240786,
+        0.05302646,  0.50165385,  0.12053623,  0.253289  ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 7.26910265e-01, -5.10369249e-02,  8.73708604e-05,  1.43650816e-02,
+        7.46850030e-02,  3.32835771e-02, -6.94723455e-05,  1.15568729e-02,
+        3.81789070e-02])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.05644479,  0.00286649, -0.01629216, -0.01257777,  0.1040012 ,
+        0.06179031,  0.53868193,  0.09929027,  0.16154463])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.35325421,  0.03144347, -0.03839947, -0.00902214,  0.07593103,
+        0.02950148,  0.52351025,  0.04189218, -0.00953303])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.74165417,  0.05095729, -0.02359511,  0.00520924,  0.11986346,
+        0.04157717, -0.00542943,  0.01808224,  0.05034146])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.03366325,  0.00080478,  0.01752317, -0.01004141,  0.04616244,
+       -0.02659492,  0.51782745,  0.13977931,  0.26071543])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.02418353, -0.00367771,  0.01215845, -0.00845129,  0.01734264,
+       -0.0313497 ,  0.51565318,  0.13595605,  0.30459619])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.00849549,  0.03012024, -0.00698069, -0.02716662,  0.0800733 ,
+        0.06195434,  0.55822325,  0.1177567 ,  0.17415446])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.54626566,  0.02384309,  0.00651286,  0.00998799,  0.1580788 ,
+        0.19358679,  0.00286058, -0.00064138,  0.05583463])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00952872,  0.01414099,  0.02604148, -0.0217688 ,  0.11520226,
+        0.05007967,  0.51201754,  0.11005378,  0.19711943])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.86426973, -0.037463  , -0.0217727 ,  0.01093984,  0.06384044,
+        0.04934496,  0.00310237,  0.00242907,  0.06344876])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.0264608 ,  0.01342078,  0.01416557, -0.01308792,  0.09631786,
+       -0.00596566,  0.53975552,  0.10412509,  0.21596368])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.9212828 ,  0.00492216, -0.00759033, -0.00169474,  0.04145287,
+       -0.01370632, -0.00138963,  0.00441875,  0.05092636])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 8.32221057e-01, -1.96283344e-02,  4.19349249e-03,  1.68206103e-02,
+       -4.10757863e-04,  4.25999729e-02,  6.84291616e-04,  1.25489203e-02,
+        4.46295054e-02])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.04600807,  0.05801553,  0.0050951 ,  0.00430146, -0.07334967,
+        0.05477626,  0.00098325, -0.00744943,  0.01304958])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([0.01369386, 0.00415156, 0.03589336, 0.00568217, 0.02046822,
+       0.04120591, 0.55217325, 0.10533625, 0.21483314])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02670943,  0.03862929,  0.05124961,  0.0047183 ,  0.17233701,
+        0.07442251, -0.00161356, -0.00396557,  0.01338019])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.84387301, -0.01202031, -0.0216564 ,  0.0015786 ,  0.0897931 ,
+        0.04230137, -0.00814777,  0.0093373 ,  0.05359377])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.10763604,  0.02604062, -0.04600969, -0.02650051,  0.11778008,
+        0.05958538,  0.57699401,  0.08774131,  0.09430603])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.02292855,  0.11915317,  0.04640061,  0.02067626,  0.38721874,
+        0.20410513, -0.00117527, -0.00173172,  0.03985896])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.87460031,  0.02969375, -0.01279881,  0.00430355,  0.06688475,
+       -0.01877645,  0.00258613,  0.00096576,  0.05085996])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00370565,  0.0209659 ,  0.02728008, -0.01603408,  0.08217614,
+       -0.03219961,  0.51857754,  0.12388013,  0.26300648])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.26116819,  0.01707062, -0.07237516, -0.0195687 ,  0.06836783,
+       -0.0179599 ,  0.57123852,  0.0902188 ,  0.0987496 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.02984737,  0.02642943, -0.00226402,  0.0044696 ,  0.09221537,
+       -0.14986284,  0.00043012, -0.00454872,  0.01190153])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.0179547 ,  0.01221924,  0.04670234, -0.01901781,  0.07426209,
+       -0.03025509,  0.49511024,  0.13509864,  0.275234  ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([-0.00016237, -0.00801876, -0.0029065 ,  0.00176457,  0.03319487,
+       -0.02588999, -0.00176858, -0.00123528,  0.0040583 ])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:25 INFO shap: phi = array([ 0.04573894,  0.00326789,  0.00418362, -0.04141794,  0.01776457,
+       -0.02498356,  0.00204573, -0.00632063, -0.00108927])
+19:57:25 INFO shap: num_full_subsets = 1
+19:57:25 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:25 INFO shap: num_paired_subset_sizes = 4
+19:57:25 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-1.79265221e-03, -7.59387725e-04,  4.51744641e-05,  2.69376796e-04,
+        1.30642248e-03, -1.76378202e-03,  7.70892491e-06, -2.69364104e-04,
+        2.23009322e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00657182,  0.00142499,  0.10136216, -0.00644969, -0.04365827,
+       -0.01003378,  0.43950418,  0.175925  ,  0.29468765])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.00925576,  0.02426732,  0.00945266, -0.01386201,  0.102585  ,
+        0.02836946,  0.52115194,  0.10749082,  0.20404191])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.38068831, -0.15789823, -0.00304635,  0.01474565,  0.10840859,
+        0.08420842,  0.0031229 ,  0.01095857,  0.03708866])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00522889, -0.00623311, -0.00195633,  0.00151519,  0.04678484,
+       -0.03810374,  0.0007472 , -0.00116422,  0.00336993])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.05804434, -0.01443484,  0.00069219, -0.01205039,  0.04561648,
+       -0.05026309,  0.54387152,  0.13844428,  0.26758653])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.24737239,  0.02430546, -0.0257897 , -0.0208139 , -0.01737444,
+        0.01842739,  0.55132796,  0.08643142,  0.13054823])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 9.10670250e-01, -9.99597196e-03, -8.51492785e-03, -1.98915800e-03,
+        3.66574566e-02,  1.13589704e-02,  4.28766792e-04,  3.71711692e-03,
+        5.63069243e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.04467052,  0.08761163,  0.03991361,  0.00688038,  0.30370332,
+        0.14132497, -0.00293252, -0.0077454 ,  0.03848804])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.70688105,  0.05667264, -0.00728921,  0.01086327,  0.12572881,
+        0.05044612, -0.00271586,  0.00354612,  0.05443671])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 8.91238177e-01,  8.95931359e-03,  8.47017261e-03,  1.87923581e-02,
+       -4.94016588e-03,  1.43593250e-02,  3.33053886e-04,  8.09759689e-04,
+        5.38149736e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.39874787, -0.00328664, -0.03204525, -0.01791255, -0.01080003,
+        0.02098345,  0.54926149,  0.06511167,  0.02739509])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-5.52930844e-03,  1.37276924e-04,  1.10089583e-04,  5.03109523e-04,
+       -6.62064947e-03,  6.41104989e-03,  4.92954033e-05, -1.04888296e-03,
+        5.97745722e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00689951,  0.00825504, -0.00215668,  0.00182533, -0.02171237,
+        0.01586979, -0.0005005 ,  0.00030888,  0.00588142])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-2.53465890e-04,  1.62039900e-02,  7.48996999e-02,  3.30310386e-03,
+       -2.30092472e-02,  1.15799892e-02,  4.97463085e-01,  1.21755485e-01,
+        2.77116406e-01])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-5.18267152e-03, -2.98455120e-04,  9.27800675e-04,  1.31555167e-03,
+       -1.60338555e-02,  1.38364643e-02, -6.08640326e-04, -9.36836759e-06,
+        5.78564587e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 9.38398343e-01,  1.08420749e-03, -2.90477222e-04,  1.01997419e-03,
+       -4.90797219e-03,  8.93961260e-03, -6.49981465e-04,  5.83262296e-04,
+        5.42814005e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-9.42178852e-03,  6.42558160e-04,  9.05724790e-04, -3.82752809e-04,
+        1.54436386e-03,  6.46679892e-03,  1.01007036e-05, -1.26047269e-03,
+        5.37853037e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.15407168,  0.02623294, -0.02496897, -0.04933701,  0.12047728,
+        0.04537032,  0.54804865,  0.09551338,  0.08246106])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.06734676,  0.01456165, -0.02241149, -0.03498285,  0.10243343,
+        0.03009157,  0.5635314 ,  0.12949042,  0.14627214])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.20609302,  0.11974278,  0.00726207,  0.00924755,  0.18901449,
+       -0.05273858,  0.00152827, -0.00858486,  0.02530237])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.02290048,  0.00835911,  0.07677045, -0.00421162, -0.00206208,
+       -0.00947231,  0.46089193,  0.15697036,  0.27644877])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-3.01377440e-03,  1.40566066e-03, -2.56147759e-04,  1.51474725e-05,
+       -5.26779547e-04, -1.37479056e-04, -1.16964944e-04, -6.26188011e-04,
+        3.11846480e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.00157954, -0.00809193,  0.08315821, -0.01342168, -0.03692239,
+        0.01435623,  0.48300966,  0.14790421,  0.29805189])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.06362798, -0.00320755,  0.02944272, -0.00985967, -0.01900299,
+        0.05599133,  0.54598491,  0.10852163,  0.21878521])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 3.61290922e-01,  4.64638300e-02,  3.32548539e-02,  1.55472047e-02,
+       -1.15637720e-01,  1.25755153e-01,  1.63430200e-05,  7.98649184e-03,
+        2.33303736e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.03640873, -0.01037573,  0.00664784,  0.00066505, -0.0297398 ,
+        0.02106797,  0.00151228, -0.00429772,  0.00864728])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.07761293,  0.0022778 , -0.01934087,  0.01626596,  0.01427615,
+        0.0537786 ,  0.60998276,  0.08751174,  0.15511196])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02754827,  0.00703745,  0.03590374, -0.01640799,  0.01176226,
+        0.0396725 ,  0.57128842,  0.09879754,  0.22071212])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.04193832,  0.02818077,  0.00388219, -0.00215526,  0.0338183 ,
+        0.06445111,  0.57505004,  0.09917985,  0.15240683])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 2.19927467e-01, -2.46142146e-04, -3.11465137e-02, -2.56412359e-02,
+        3.31063130e-02,  7.49217329e-02,  5.92461164e-01,  7.20727285e-02,
+        6.28574982e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.81297085,  0.04559426, -0.03916812,  0.00881581,  0.08469584,
+        0.04683114, -0.01045699,  0.0192707 ,  0.03015696])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.03808744, -0.03007767,  0.00504048,  0.00584188,  0.23947034,
+        0.11734125,  0.00203729, -0.00383999,  0.02274751])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02910799, -0.01939956,  0.00157073, -0.00340865,  0.06321714,
+       -0.07606054, -0.00186014,  0.00541001,  0.00354689])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.03556372, -0.01528878,  0.14245926, -0.01825325, -0.02107421,
+        0.00959468,  0.41042372,  0.17526136,  0.2923253 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00597568,  0.01479312,  0.07752349, -0.00378464, -0.01889867,
+        0.03119748,  0.50573977,  0.11610569,  0.26791171])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.00732989,  0.00971247,  0.05275964, -0.01682211,  0.01110507,
+        0.05161404,  0.55067442,  0.09822294,  0.22919843])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.02027775,  0.00913609,  0.0783785 , -0.0081657 ,  0.03373505,
+        0.0556412 ,  0.52455601,  0.10798845,  0.21096907])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.03147641, -0.01387427,  0.01544333,  0.00417575,  0.10290996,
+        0.02960347,  0.00275437, -0.00487925,  0.01557082])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 8.64254134e-01,  7.52385024e-03, -8.72843165e-03,  2.86461804e-03,
+        5.24507203e-02,  2.00522957e-02, -3.72632362e-04,  5.23519847e-03,
+        5.53511919e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00349245,  0.0173604 ,  0.01739095, -0.02745137,  0.12038102,
+        0.05283852,  0.51922841,  0.09837415,  0.19889383])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.10660194,  0.00827384,  0.01608031,  0.02071763,  0.37131299,
+        0.19750051, -0.00120962, -0.01053363,  0.03597439])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.03323409,  0.00490148,  0.00683672, -0.0280934 ,  0.08252707,
+       -0.00512737,  0.54520793,  0.11809446,  0.23496657])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.03329612, -0.03800918, -0.01172306,  0.00787878,  0.11749546,
+       -0.04285581,  0.00412   , -0.00183787,  0.01271902])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.15923602,  0.05891797,  0.00385587,  0.01196205,  0.20478494,
+        0.03094278, -0.00350667, -0.00385944,  0.0309544 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.93236594, -0.01132282, -0.00470503,  0.00395118,  0.02784877,
+       -0.01111451,  0.00245469,  0.00410432,  0.04784175])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.26952174, -0.10023933,  0.01706494,  0.00833442,  0.03325852,
+       -0.14833941,  0.00205876,  0.0030511 ,  0.01936301])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00662044, -0.00056036,  0.00021027,  0.00135318, -0.00727739,
+        0.00809123,  0.00018351, -0.00071769,  0.0052535 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 2.23213878e-02, -3.08076868e-03,  3.50889103e-02,  4.35271898e-04,
+       -8.49745761e-03,  4.26136060e-02,  5.36895747e-01,  1.07955550e-01,
+        2.56020851e-01])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02951164,  0.04229423, -0.00044105,  0.00805791, -0.07427595,
+        0.05631733,  0.00147319, -0.00059352,  0.01295036])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 3.61951652e-01,  9.97865915e-03, -4.61514692e-02,  9.71556578e-04,
+        1.11113293e-02,  4.58674749e-02,  5.70188570e-01,  4.48029415e-02,
+       -1.09637435e-04])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.89733221,  0.02121376, -0.00950814,  0.00474195,  0.0206214 ,
+        0.01601889,  0.00095605,  0.00860149,  0.03869677])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([0.629655  , 0.08725322, 0.00759361, 0.00396355, 0.10964011,
+       0.09841835, 0.01305001, 0.0017396 , 0.04684446])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.01386119,  0.03266231, -0.01295812, -0.0215579 ,  0.072537  ,
+        0.06889241,  0.56686623,  0.09711284,  0.17927353])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.33601151,  0.03211976, -0.0457465 , -0.02661724,  0.09263274,
+        0.04597943,  0.51620962,  0.04882907, -0.00077842])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 2.10551084e-02,  4.87226207e-02,  3.87833913e-02,  1.00514987e-02,
+        3.78180360e-01,  1.87080911e-01,  3.25075817e-03, -9.09865253e-05,
+        3.49550900e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.01541628,  0.13169787,  0.01685693,  0.01719594,  0.44341078,
+        0.22878641, -0.00286911, -0.00160373,  0.0427265 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 8.78462684e-01,  2.33136354e-02, -4.25649558e-04,  4.85357136e-03,
+        5.81870015e-02, -1.74327096e-02, -3.26371205e-03,  4.99214996e-03,
+        4.96564311e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02259217,  0.02540748, -0.0007574 ,  0.00183149,  0.0950264 ,
+       -0.15282805,  0.00208994, -0.00146844,  0.0116505 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-2.57260435e-03,  2.99896906e-03, -8.63819389e-04,  8.61692572e-05,
+        1.91513275e-03, -4.13937133e-03, -3.60458630e-05, -1.39640377e-04,
+        2.93507681e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.24453626,  0.08739729, -0.03854853,  0.00290104, -0.09653784,
+        0.02427521, -0.00190737, -0.01353324,  0.01386628])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02816833, -0.00195434,  0.04935158,  0.0067489 , -0.0126864 ,
+        0.02403567,  0.52931664,  0.12143166,  0.2420526 ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 3.92640877e-01,  1.35309105e-01,  2.26319430e-02,  1.51348337e-02,
+       -1.32464015e-02,  5.68548301e-02, -3.06827543e-04,  4.70139132e-03,
+        3.10415682e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.07059164,  0.0102811 ,  0.01960862, -0.01824092, -0.00491695,
+        0.05690481,  0.56981732,  0.09959733,  0.19177313])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.37126783,  0.04987833, -0.05245646, -0.01388689,  0.03109689,
+        0.06440692,  0.5232727 ,  0.07070946, -0.04558372])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([0.0080585 , 0.1424327 , 0.02551862, 0.00115048, 0.1584373 ,
+       0.12119429, 0.00104012, 0.00849753, 0.01910184])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.10487365,  0.01075968, -0.012471  , -0.00960339,  0.0516302 ,
+        0.05999884,  0.6100574 ,  0.09694172,  0.08579733])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.08919378,  0.01108723, -0.00679442, -0.02360352,  0.10746181,
+        0.00843937,  0.56662318,  0.09032949,  0.15341766])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 7.50027353e-01, -4.77573904e-02, -1.05437781e-02,  2.37970417e-02,
+        6.25819580e-02,  1.25101184e-01, -9.13681258e-06, -6.06561287e-05,
+        5.25132102e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.001936  , -0.00612222, -0.00154353, -0.00136443,  0.01545939,
+       -0.01015833,  0.00047554, -0.0003416 ,  0.00443283])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.17145206,  0.01084494, -0.01886629, -0.00394168,  0.02241896,
+       -0.05232786,  0.53103129,  0.12075149,  0.20799224])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-3.99367277e-03,  3.97380893e-03,  6.61016498e-04, -2.55318022e-04,
+        5.76948400e-03, -9.60423035e-03,  1.50447280e-04,  9.14590816e-05,
+        3.25397107e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.06405585, -0.00650771,  0.00634818,  0.00346767, -0.00284405,
+       -0.01457444,  0.51641289,  0.15053093,  0.25931265])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.00259694,  0.00579666,  0.04274536, -0.01358629, -0.00525   ,
+       -0.00673012,  0.47642027,  0.14609103,  0.30698431])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00453648,  0.00886719, -0.00307712,  0.00094969, -0.02397912,
+        0.01577204,  0.00016664,  0.00031344,  0.00690624])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-1.71377994e-03, -3.80193470e-04,  3.17871837e-04,  5.42956521e-04,
+       -2.20730908e-02,  1.77398567e-02,  3.35968228e-04, -9.65126928e-05,
+        5.98814955e-03])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.39560848,  0.14736296,  0.00847257, -0.00176924,  0.01395817,
+        0.08432975,  0.00714504, -0.01318492,  0.00653522])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.30365084,  0.01185876, -0.05540629, -0.03299411,  0.06814933,
+        0.05214145,  0.55051153,  0.06514926,  0.03547059])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.25749101, -0.03284886, -0.00384462,  0.01618759,  0.35091326,
+        0.21480772, -0.00694815,  0.00717153,  0.04054548])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([1.53733518e-01, 6.59467145e-02, 7.82670842e-03, 2.43994955e-02,
+       3.86874920e-01, 2.60172327e-01, 8.32905923e-05, 1.62494758e-03,
+       4.38958367e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.42672518,  0.09153599,  0.0195354 ,  0.01554411,  0.19205064,
+        0.20069708, -0.00560465,  0.00625783,  0.04824952])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.01572739,  0.01673929,  0.03003648, -0.00951951,  0.09560807,
+        0.01600704,  0.50959308,  0.12245108,  0.22617246])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.00358393,  0.01644908,  0.01666022, -0.00874605,  0.0784955 ,
+       -0.01232641,  0.50848623,  0.11132113,  0.27668019])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 1.48659347e-01,  1.17955502e-02, -4.13725747e-04, -2.89781830e-02,
+        4.77927520e-02, -5.32405177e-02,  5.47354056e-01,  1.16149266e-01,
+        2.01167509e-01])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.37329791,  0.01501001, -0.09125808, -0.00476683,  0.01531284,
+       -0.03818125,  0.58843951,  0.07069512,  0.069205  ])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.0001816 ,  0.00337198,  0.00013104,  0.00039464,  0.00010318,
+       -0.00325545, -0.00023103, -0.00163533,  0.00444901])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 9.31203879e-01, -2.18231905e-03,  2.25603034e-03,  8.18293758e-03,
+       -2.48614999e-03,  5.37446496e-03, -1.89827617e-04,  6.11814659e-04,
+        5.31040415e-02])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.8475362 , -0.01144283,  0.01654737,  0.02461586, -0.01985349,
+        0.0581054 , -0.00150549,  0.00519293,  0.04944658])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.09932044,  0.01808867,  0.01353141, -0.02916662,  0.00345708,
+        0.0322668 ,  0.59278285,  0.09583349,  0.17113676])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.02735444, -0.00323353,  0.15799767, -0.01498243,  0.0118603 ,
+        0.06570693,  0.49454457,  0.10629555,  0.19880946])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([-0.01149766,  0.01606296,  0.03934132,  0.00372597,  0.06175376,
+        0.06028118,  0.52931328,  0.10736074,  0.18769756])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.06024584,  0.17457474,  0.00408717,  0.01501049,  0.19880084,
+        0.13277358,  0.00090253, -0.00773558,  0.03122249])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.02166196,  0.02610262,  0.01052753, -0.01013634,  0.07072155,
+        0.04912463,  0.552882  ,  0.09149858,  0.18407546])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.30364538,  0.02803008, -0.02394122, -0.06317381,  0.09045187,
+        0.0766608 ,  0.52593858,  0.07205176, -0.01111979])
+19:57:26 INFO shap: num_full_subsets = 1
+19:57:26 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:26 INFO shap: num_paired_subset_sizes = 4
+19:57:26 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:26 INFO shap: phi = array([ 0.00182649, -0.01308109, -0.00259473, -0.00089925,  0.07446224,
+       -0.067297  ,  0.0011291 ,  0.00295462,  0.00680508])
+19:57:27 INFO shap: num_full_subsets = 1
+19:57:27 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:27 INFO shap: num_paired_subset_sizes = 4
+19:57:27 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:27 INFO shap: phi = array([ 0.30476655,  0.03841851, -0.08043348, -0.03766617,  0.09992819,
+        0.07930825,  0.53357209,  0.06154404, -0.00082718])
+19:57:27 INFO shap: num_full_subsets = 1
+19:57:27 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:27 INFO shap: num_paired_subset_sizes = 4
+19:57:27 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:27 INFO shap: phi = array([ 0.15613737,  0.0022853 , -0.02093495, -0.01311204,  0.02417588,
+       -0.02236562,  0.55062425,  0.10116948,  0.21208912])
+19:57:27 INFO shap: num_full_subsets = 1
+19:57:27 INFO shap: remaining_weight_vector = array([0.40358744, 0.31390135, 0.28251121])
+19:57:27 INFO shap: num_paired_subset_sizes = 4
+19:57:27 INFO shap: weight_left = np.float64(0.5860709592641262)
+19:57:27 INFO shap: phi = array([ 0.04680304,  0.05728784,  0.00502519,  0.00167037, -0.05059592,
+        0.04962541, -0.00186592,  0.00490436,  0.01189079])
+[
+  {
+    "feature": "dest_zero_before_after",
+    "mean_abs_shap": 0.26780001975651974
+  },
+  {
+    "feature": "amount_log",
+    "mean_abs_shap": 0.17927843375939567
+  },
+  {
+    "feature": "type_TRANSFER",
+    "mean_abs_shap": 0.10639116086536055
+  },
+  {
+    "feature": "hour_sin",
+    "mean_abs_shap": 0.06623228927869722
+  },
+  {
+    "feature": "type_CASH_OUT",
+    "mean_abs_shap": 0.0567526586709882
+  },
+  {
+    "feature": "hour_cos",
+    "mean_abs_shap": 0.05253980758951444
+  },
+  {
+    "feature": "oldbalanceDest_log",
+    "mean_abs_shap": 0.025920065520193023
+  },
+  {
+    "feature": "newbalanceDest_log",
+    "mean_abs_shap": 0.025473216678575678
+  },
+  {
+    "feature": "error_balance_dest_log",
+    "mean_abs_shap": 0.013842760496130833
+  },
+  {
+    "feature": "type_CASH_IN",
+    "mean_abs_shap": 0.0
+  }
+]
+19:57:29 INFO fraude: Configuração escolhida pela comparação estatística: mlp + undersample
+19:57:36 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:57:42 INFO fraude.drift: janela 1/6: fraudes=71  AUC-PR estático=0.7278
+19:57:50 INFO fraude.drift: janela 2/6: fraudes=112  AUC-PR estático=0.7335
+19:57:58 INFO fraude.drift: janela 3/6: fraudes=108  AUC-PR estático=0.7937
+19:58:07 INFO fraude.drift: janela 4/6: fraudes=70  AUC-PR estático=0.8197
+19:58:16 INFO fraude.drift: janela 5/6: fraudes=109  AUC-PR estático=0.7709
+19:58:27 INFO fraude.drift: janela 6/6: fraudes=731  AUC-PR estático=0.8077
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7278    0.7278             0.7278
+2            0.7366    0.7335             0.7309
+3            0.7986    0.7937             0.7872
+4            0.8052    0.8197             0.7826
+5            0.7731    0.7709             0.7654
+6            0.8098    0.8077             0.8089
+19:58:29 INFO fraude: Configuração escolhida pela comparação estatística: mlp + undersample
+19:58:35 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:58:41 INFO fraude.drift: janela 1/6: fraudes=71  AUC-PR estático=0.7278
+19:58:45 INFO fraude.drift: janela 2/6: fraudes=112  AUC-PR estático=0.7335
+19:58:53 INFO fraude.drift: janela 3/6: fraudes=108  AUC-PR estático=0.7937
+19:59:01 INFO fraude.drift: janela 4/6: fraudes=70  AUC-PR estático=0.8197
+19:59:10 INFO fraude.drift: janela 5/6: fraudes=109  AUC-PR estático=0.7709
+19:59:19 INFO fraude.drift: janela 6/6: fraudes=731  AUC-PR estático=0.8077
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.7278    0.7278             0.7278
+2            0.7335    0.7335             0.7335
+3            0.8030    0.7937             0.7856
+4            0.8109    0.8197             0.8070
+5            0.7702    0.7709             0.7521
+6            0.8132    0.8077             0.8075
+{
+  "n_rows": 554082,
+  "n_fraud": 1643,
+  "fraud_rate_pct": 0.2965,
+  "trivial_accuracy_pct": 99.7035,
+  "duplicates": 0
+}
+19:59:35 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+19:59:35 INFO fraude: Base: {'name': 'paysim[20%]', 'kind': 'paysim', 'n_rows': 554082, 'n_features': 8, 'n_fraud': 1643, 'fraud_rate_pct': 0.2965, 'duplicates_removed': 0, 'duplicate_frauds_removed': 0}
+19:59:36 INFO fraude.experiments: [1/21] logreg__none ...
+20:00:22 INFO fraude.experiments:     AUC-PR teste=0.9818  CV=0.9880±0.0028  treino=1.6s  latência=3.45ms
+20:00:22 INFO fraude.experiments: [2/21] logreg__smote ...
+  File "C:\Users\T-GAMER\TCC\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\T-GAMER\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+20:01:20 INFO fraude.experiments:     AUC-PR teste=0.9843  CV=0.9897±0.0020  treino=1.8s  latência=3.36ms
+20:01:20 INFO fraude.experiments: [3/21] logreg__undersample ...
+20:01:55 INFO fraude.experiments:     AUC-PR teste=0.9857  CV=0.9897±0.0020  treino=1.3s  latência=3.36ms
+20:01:55 INFO fraude.experiments: [4/21] logreg__class_weight ...
+20:02:46 INFO fraude.experiments:     AUC-PR teste=0.8769  CV=0.8996±0.0444  treino=1.9s  latência=3.37ms
+20:02:46 INFO fraude.experiments: [5/21] random_forest__none ...
+20:16:54 INFO fraude.experiments:     AUC-PR teste=0.9889  CV=0.9942±0.0016  treino=17.6s  latência=16.71ms
+20:16:54 INFO fraude.experiments: [6/21] random_forest__smote ...
+20:40:34 INFO fraude.experiments:     AUC-PR teste=0.9930  CV=0.9956±0.0022  treino=37.6s  latência=16.62ms
+20:40:34 INFO fraude.experiments: [7/21] random_forest__undersample ...
+20:42:33 INFO fraude.experiments:     AUC-PR teste=0.9921  CV=0.9954±0.0020  treino=1.8s  latência=16.72ms
+20:42:33 INFO fraude.experiments: [8/21] random_forest__class_weight ...
+20:56:55 INFO fraude.experiments:     AUC-PR teste=0.9925  CV=0.9957±0.0023  treino=38.1s  latência=16.71ms
+20:56:55 INFO fraude.experiments: [9/21] xgboost__none ...
+20:59:32 INFO fraude.experiments:     AUC-PR teste=0.9893  CV=0.9951±0.0018  treino=3.7s  latência=4.22ms
+20:59:32 INFO fraude.experiments: [10/21] xgboost__smote ...
+21:03:13 INFO fraude.experiments:     AUC-PR teste=0.9910  CV=0.9949±0.0023  treino=5.8s  latência=4.35ms
+21:03:14 INFO fraude.experiments: [11/21] xgboost__undersample ...
+21:04:35 INFO fraude.experiments:     AUC-PR teste=0.9904  CV=0.9953±0.0020  treino=1.5s  latência=4.24ms
+21:04:35 INFO fraude.experiments: [12/21] xgboost__class_weight ...
+21:07:30 INFO fraude.experiments:     AUC-PR teste=0.9891  CV=0.9953±0.0020  treino=4.1s  latência=4.25ms
+21:07:30 INFO fraude.experiments: [13/21] lightgbm__none ...
+21:09:44 INFO fraude.experiments:     AUC-PR teste=0.9896  CV=0.9954±0.0020  treino=1.9s  latência=4.37ms
+21:09:45 INFO fraude.experiments: [14/21] lightgbm__smote ...
+21:12:31 INFO fraude.experiments:     AUC-PR teste=0.9909  CV=0.9949±0.0019  treino=3.3s  latência=4.41ms
+21:12:31 INFO fraude.experiments: [15/21] lightgbm__undersample ...
+21:13:57 INFO fraude.experiments:     AUC-PR teste=0.9920  CV=0.9950±0.0023  treino=1.6s  latência=4.52ms
+21:13:57 INFO fraude.experiments: [16/21] lightgbm__class_weight ...
+21:16:26 INFO fraude.experiments:     AUC-PR teste=0.9888  CV=0.9943±0.0018  treino=4.2s  latência=4.40ms
+21:16:26 INFO fraude.experiments: [17/21] mlp__none ...
+21:18:29 INFO fraude.experiments:     AUC-PR teste=0.9904  CV=0.9921±0.0047  treino=11.5s  latência=3.39ms
+21:18:29 INFO fraude.experiments: [18/21] mlp__smote ...
+21:20:54 INFO fraude.experiments:     AUC-PR teste=0.9922  CV=0.9938±0.0030  treino=6.8s  latência=3.39ms
+21:20:54 INFO fraude.experiments: [19/21] mlp__undersample ...
+21:21:52 INFO fraude.experiments:     AUC-PR teste=0.9849  CV=0.9902±0.0033  treino=5.1s  latência=3.39ms
+21:21:52 INFO fraude.experiments: [20/21] mlp__class_weight ...
+21:23:45 INFO fraude.experiments:     AUC-PR teste=0.9910  CV=0.9937±0.0022  treino=6.5s  latência=3.38ms
+21:23:46 INFO fraude.experiments: [21/21] isolation_forest__none ...
+21:29:08 INFO fraude.experiments:     AUC-PR teste=0.5706  CV=0.5527±0.0232  treino=3.5s  latência=4.10ms
+21:29:10 INFO fraude: Relatório em C:\Users\T-GAMER\TCC\reports\paysim\experiments\summary.md
+           model    balancing  auc_pr  auc_roc  precision  recall     f1    mcc  latency_mean_ms
+   random_forest        smote  0.9930   0.9975     0.9878  0.9848 0.9863 0.9863          16.6202
+   random_forest class_weight  0.9925   0.9972     1.0000  0.9878 0.9939 0.9939          16.7075
+             mlp        smote  0.9922   0.9981     0.9446  0.9848 0.9643 0.9644           3.3858
+   random_forest  undersample  0.9921   0.9967     0.9939  0.9848 0.9893 0.9893          16.7156
+        lightgbm  undersample  0.9920   0.9952     1.0000  0.9878 0.9939 0.9939           4.5221
+             mlp class_weight  0.9910   0.9980     0.9643  0.9848 0.9744 0.9744           3.3848
+         xgboost        smote  0.9910   0.9968     0.9615  0.9878 0.9745 0.9745           4.3465
+        lightgbm        smote  0.9909   0.9950     1.0000  0.9878 0.9939 0.9939           4.4146
+         xgboost  undersample  0.9904   0.9956     0.9503  0.9878 0.9687 0.9688           4.2358
+             mlp         none  0.9904   0.9990     0.9969  0.9787 0.9877 0.9877           3.3917
+        lightgbm         none  0.9896   0.9949     0.9969  0.9848 0.9908 0.9908           4.3664
+         xgboost         none  0.9893   0.9953     0.9819  0.9878 0.9848 0.9848           4.2200
+         xgboost class_weight  0.9891   0.9951     0.9969  0.9878 0.9924 0.9924           4.2544
+   random_forest         none  0.9889   0.9955     0.9878  0.9878 0.9878 0.9878          16.7060
+        lightgbm class_weight  0.9888   0.9952     1.0000  0.9878 0.9939 0.9939           4.4012
+          logreg  undersample  0.9857   0.9968     0.9729  0.9818 0.9773 0.9772           3.3633
+             mlp  undersample  0.9849   0.9983     0.9847  0.9787 0.9817 0.9817           3.3858
+          logreg        smote  0.9843   0.9978     0.9390  0.9818 0.9599 0.9600           3.3629
+          logreg         none  0.9818   0.9908     0.9877  0.9757 0.9817 0.9816           3.4525
+          logreg class_weight  0.8769   0.9969     0.8075  0.9818 0.8861 0.8900           3.3668
+isolation_forest         none  0.5706   0.9809     0.8995  0.5167 0.6564 0.6811           4.1007
+21:29:12 INFO fraude: Configuração escolhida pela CV: random_forest + class_weight (AUC-PR CV=0.9957, experiments)
+21:29:19 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+21:31:38 INFO fraude.artifact: Calibração: isotonic (Brier CV interna: {'none': 3.8e-05, 'sigmoid': 3e-05, 'isotonic': 2.8e-05})
+21:32:23 INFO fraude.artifact: Artefato salvo em C:\Users\T-GAMER\TCC\artifacts\model_paysim.joblib (limiar=1.0000)
+{
+  "kind": "paysim",
+  "dataset": "paysim[20%]",
+  "model": "random_forest",
+  "balancing": "class_weight",
+  "params": {
+    "clf__n_estimators": 300,
+    "clf__min_samples_leaf": 2,
+    "clf__max_features": 0.5,
+    "clf__max_depth": 8
+  },
+  "members": null,
+  "threshold": 1.0,
+  "threshold_policy": {
+    "scenario": "moderado",
+    "fn": 100.0,
+    "fp": 5.0,
+    "fn_use_amount": false
+  },
+  "undersampling_beta": null,
+  "calibration": {
+    "method": "isotonic",
+    "inner_cv_brier": {
+      "none": 3.792068302286073e-05,
+      "sigmoid": 2.9883893587945645e-05,
+      "isotonic": 2.7670114067261595e-05
+    },
+    "test_raw": {
+      "brier": 7.06956879714367e-05,
+      "log_loss": 0.0007924144843090628,
+      "ece": 0.0004998404546190074,
+      "auc_pr": 0.9925449307245059
+    },
+    "test_calibrated": {
+      "brier": 4.2821900886655025e-05,
+      "log_loss": 0.00038387330326213406,
+      "ece": 1.8660655605329215e-05,
+      "auc_pr": 0.9908492290691605
+    }
+  },
+  "input_columns": [
+    "step",
+    "type",
+    "amount",
+    "oldbalanceOrg",
+    "newbalanceOrig",
+    "oldbalanceDest",
+    "newbalanceDest",
+    "nameDest"
+  ],
+  "dataset_info": {
+    "name": "paysim[20%]",
+    "kind": "paysim",
+    "n_rows": 554082,
+    "n_features": 8,
+    "n_fraud": 1643,
+    "fraud_rate_pct": 0.2965,
+    "duplicates_removed": 0,
+    "duplicate_frauds_removed": 0
+  },
+  "train_seconds": 38.28865050000604,
+  "test_metrics": {
+    "threshold": 1.0,
+    "precision": 1.0,
+    "recall": 0.9878419452887538,
+    "f1": 0.9938837920489296,
+    "mcc": 0.9938843915241027,
+    "auc_roc": 0.9969400739774185,
+    "auc_pr": 0.9908492290691605,
+    "accuracy": 0.9999639044550926,
+    "brier": 4.2821900886625684e-05,
+    "tp": 325,
+    "fp": 0,
+    "tn": 110488,
+    "fn": 4,
+    "fpr": 0.0
+  },
+  "test_cost": {
+    "cost_config": {
+      "fn": 100.0,
+      "fp": 5.0,
+      "fn_use_amount": false
+    },
+    "threshold": 1.0,
+    "cost": 400.0,
+    "cost_approve_all": 32900.0,
+    "cost_block_all": 552440.0,
+    "savings_vs_approve_all_pct": 98.78419452887537
+  },
+  "test_cost_all_scenarios": {
+    "conservador": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 10.0,
+        "fn_use_amount": false
+      },
+      "threshold": 1.0,
+      "cost": 400.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 1104880.0,
+      "savings_vs_approve_all_pct": 98.78419452887537
+    },
+    "moderado": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 5.0,
+        "fn_use_amount": false
+      },
+      "threshold": 1.0,
+      "cost": 400.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 552440.0,
+      "savings_vs_approve_all_pct": 98.78419452887537
+    },
+    "agressivo": {
+      "cost_config": {
+        "fn": 100.0,
+        "fp": 1.0,
+        "fn_use_amount": false
+      },
+      "threshold": 0.03571428571428571,
+      "cost": 433.0,
+      "cost_approve_all": 32900.0,
+      "cost_block_all": 110488.0,
+      "savings_vs_approve_all_pct": 98.6838905775076
+    },
+    "valor_transacao": {
+      "cost_config": {
+        "fn": 25.0,
+        "fp": 5.0,
+        "fn_use_amount": true
+      },
+      "threshold": 0.0005136106831022085,
+      "cost": 357711.83999999997,
+      "cost_approve_all": 475453302.21000004,
+      "cost_block_all": 552440.0,
+      "savings_vs_approve_all_pct": 99.92476404342186
+    }
+  },
+  "latency": {
+    "latency_mean_ms": 16.912256667856127,
+    "latency_p50_ms": 16.67004998307675,
+    "latency_p95_ms": 17.31354998482857,
+    "latency_p99_ms": 18.93683098780449,
+    "batch_throughput_tps": 310999.42758653197
+  },
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "imbalanced-learn": "0.12.4",
+    "xgboost": "2.1.3",
+    "lightgbm": "4.5.0",
+    "shap": "0.46.0"
+  },
+  "seed": 42,
+  "created_at": "2026-10-19T00:32:23.177823+00:00"
+}
+21:32:31 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+[
+  {
+    "feature": "error_balance_orig_log",
+    "mean_abs_shap": 0.36446029797921947
+  },
+  {
+    "feature": "newbalanceOrig_log",
+    "mean_abs_shap": 0.05748495376503287
+  },
+  {
+    "feature": "orig_emptied",
+    "mean_abs_shap": 0.051422947687056
+  },
+  {
+    "feature": "oldbalanceOrg_log",
+    "mean_abs_shap": 0.042259883570459233
+  },
+  {
+    "feature": "amount_to_balance_ratio",
+    "mean_abs_shap": 0.022497955147378384
+  },
+  {
+    "feature": "amount_log",
+    "mean_abs_shap": 0.011777765842329136
+  },
+  {
+    "feature": "dest_zero_before_after",
+    "mean_abs_shap": 0.010274423748539796
+  },
+  {
+    "feature": "oldbalanceDest_log",
+    "mean_abs_shap": 0.0079924401821724
+  },
+  {
+    "feature": "type_TRANSFER",
+    "mean_abs_shap": 0.0065953887919180205
+  },
+  {
+    "feature": "newbalanceDest_log",
+    "mean_abs_shap": 0.004879033391381169
+  }
+]
+21:32:36 INFO fraude: Configuração escolhida pela CV: random_forest + class_weight (AUC-PR CV=0.9957, experiments)
+21:32:43 INFO fraude.data: Duplicatas removidas: 0 (fraudes: 0)
+21:33:01 INFO fraude.drift: janela 1/6: fraudes=71  AUC-PR estático=0.9856
+21:33:37 INFO fraude.drift: janela 2/6: fraudes=112  AUC-PR estático=0.9999
+21:34:19 INFO fraude.drift: janela 3/6: fraudes=108  AUC-PR estático=1.0000
+21:35:05 INFO fraude.drift: janela 4/6: fraudes=70  AUC-PR estático=1.0000
+21:35:58 INFO fraude.drift: janela 5/6: fraudes=109  AUC-PR estático=1.0000
+21:36:54 INFO fraude.drift: janela 6/6: fraudes=731  AUC-PR estático=1.0000
+strategy  acumulado  estatico  janela_deslizante
+window                                          
+1            0.9856    0.9856             0.9856
+2            0.9998    0.9999             1.0000
+3            1.0000    1.0000             1.0000
+4            1.0000    1.0000             1.0000
+5            1.0000    1.0000             1.0000
+6            1.0000    1.0000             1.0000
+PAYSIM CONCLUIDO
