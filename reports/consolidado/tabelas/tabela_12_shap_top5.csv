@@ -1,0 +1,6 @@
+﻿Posição;ULB (cartão de crédito);PaySim sem saldo da origem;PaySim completo
+1;V14 (2,23);dest_zero_before_after (0,27);error_balance_orig_log (0,36)
+2;V4 (1,91);amount_log (0,18);newbalanceOrig_log (0,06)
+3;V12 (1,14);type_TRANSFER (0,11);orig_emptied (0,05)
+4;V10 (1,10);hour_sin (0,07);oldbalanceOrg_log (0,04)
+5;V3 (0,96);type_CASH_OUT (0,06);amount_to_balance_ratio (0,02)

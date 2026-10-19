@@ -1,0 +1,4 @@
+﻿Base;Amostra;Transações;Fraudes;Taxa de fraude (%);Atributos de entrada;Duplicatas removidas;Fraudes duplicadas removidas
+ULB (cartão de crédito);100%;275663;473;0,1716;30;9144;19
+PaySim sem saldo da origem;20%;554082;1643;0,2965;6;0;0
+PaySim completo;20%;554082;1643;0,2965;8;0;0

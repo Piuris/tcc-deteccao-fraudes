@@ -361,6 +361,13 @@ def cmd_drift(args):
     print(df.pivot(index="window", columns="strategy", values="auc_pr").round(4).to_string())
 
 
+def cmd_consolidate(args):
+    from .consolidate import build_consolidated
+
+    path = build_consolidated()
+    log.info("Resultados consolidados em %s", path)
+
+
 def cmd_all(args):
     download(args.dataset)
     for fn in (cmd_eda, cmd_experiment, cmd_ensemble, cmd_compare, cmd_train_final, cmd_explain,
@@ -416,6 +423,8 @@ def build_parser() -> argparse.ArgumentParser:
         ("train-final", cmd_train_final, False, True, "Treina e serializa o modelo da API."),
         ("explain", cmd_explain, False, True, "Análise SHAP e LIME do modelo final."),
         ("drift", cmd_drift, False, True, "Análise exploratória de concept drift."),
+        ("consolidate", cmd_consolidate, False, False,
+         "Tabelas e figuras numeradas de todas as bases (reports/consolidado)."),
         ("all", cmd_all, True, True, "Executa todo o fluxo."),
     ]:
         sp = sub.add_parser(name, help=help_)

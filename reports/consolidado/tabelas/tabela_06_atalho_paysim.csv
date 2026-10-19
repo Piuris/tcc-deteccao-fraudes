@@ -1,0 +1,4 @@
+﻿Regra;Fraudes (%);Legítimas (%)
+valor igual ao saldo da origem;97,82052843053695;0,00010860923699838824
+saldo da origem zerado após a transação;97,552660416413;42,72187781026401
+saldo da origem bate exatamente (antes − valor = depois);99,45208815292828;9,899949170877084

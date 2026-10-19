@@ -1,0 +1,18 @@
+{
+  "n": 2770409,
+  "n_fraud": 8213,
+  "rules": {
+    "valor igual ao saldo da origem": {
+      "fraude_pct": 97.82052843053695,
+      "legitima_pct": 0.00010860923699838824
+    },
+    "saldo da origem zerado após a transação": {
+      "fraude_pct": 97.552660416413,
+      "legitima_pct": 42.72187781026401
+    },
+    "saldo da origem bate exatamente (antes − valor = depois)": {
+      "fraude_pct": 99.45208815292828,
+      "legitima_pct": 9.899949170877084
+    }
+  }
+}

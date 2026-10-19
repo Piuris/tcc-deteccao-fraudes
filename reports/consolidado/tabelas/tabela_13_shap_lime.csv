@@ -1,0 +1,9 @@
+﻿Base;Caso;Probabilidade;Sobreposição SHAP × LIME (top 5)
+ULB (cartão de crédito);verdadeiro positivo;0,9993976519172046;4
+ULB (cartão de crédito);falso positivo;0,985991011785135;4
+ULB (cartão de crédito);falso negativo;0,021355618696362287;2
+PaySim sem saldo da origem;verdadeiro positivo;1,0;3
+PaySim sem saldo da origem;falso positivo;0,94;3
+PaySim sem saldo da origem;falso negativo;0,028606965174129355;4
+PaySim completo;verdadeiro positivo;1,0;2
+PaySim completo;falso negativo;0,0005136106831022085;1

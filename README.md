@@ -25,6 +25,7 @@ src/fraude/            pacote principal (python -m fraude ...)
   drift.py             validação temporal e concept drift (estático × retreinado)
   artifact.py          treinamento e serialização do modelo servido
   eda.py               análise exploratória
+  consolidate.py       tabelas e figuras numeradas de todas as bases para o texto
 src/fraude_api/        API FastAPI (main.py, schemas.py)
 tests/                 testes automatizados (pytest)
 scripts/               reproduce.ps1 (fluxo completo), load_test.py (carga da API)
@@ -43,7 +44,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
 pip install -e .
-pytest                       # 85 testes
+pytest                       # 89 testes
 ```
 
 ## Bases de dados
@@ -60,7 +61,7 @@ A base tem 6,3 milhões de linhas; use `--sample-frac 0.2` (amostra estratificad
 execuções viáveis em máquina pessoal.
 
 **Atalho do simulador.** No PaySim o agente fraudador transfere sempre o saldo inteiro da
-conta: `amount == oldbalanceOrg` em 97,4% das fraudes e em 0,0% das transações legítimas.
+conta: `amount == oldbalanceOrg` em 97,8% das fraudes e em 0,0% das transações legítimas.
 Com os saldos da origem, todos os algoritmos, inclusive a regressão logística, chegam a
 AUC-PR ≈ 1,0, e a comparação deixa de ser informativa. Por isso há dois cenários:
 
@@ -84,6 +85,7 @@ python -m fraude train-final --dataset creditcard                 # modelo selec
 python -m fraude explain --dataset creditcard
 python -m fraude drift --dataset creditcard --windows 6
 python -m fraude drift --dataset creditcard --label-delay 1       # simula atraso dos rótulos
+python -m fraude consolidate                                      # reports/consolidado/
 ```
 
 Ou tudo de uma vez: `powershell -ExecutionPolicy Bypass -File scripts\reproduce.ps1`.
@@ -145,6 +147,12 @@ Decisões de projeto que valem ser discutidas no texto:
   verdadeiro positivo, um falso positivo e um falso negativo, e a concordância SHAP×LIME.
 - `drift/` — AUC-PR por janela temporal (estático × janela deslizante × acumulado),
   IC bootstrap, PSI do escore e do valor.
+
+`reports/consolidado/` (comando `consolidate`) reúne todas as bases para o capítulo de
+resultados: `resultados.md` com tabelas e figuras numeradas (título acima, fonte abaixo) e os
+pontos de discussão com os números preenchidos; `tabelas/*.csv` (`;` e vírgula decimal, abre
+direto no Excel) e `figuras/*.png`. Os números vêm dos arquivos de resultado: depois de
+retreinar, basta rodar o comando de novo.
 
 ## API de predição
 
