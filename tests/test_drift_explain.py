@@ -24,7 +24,6 @@ def test_run_drift(small_ds, tmp_path):
                    out_dir=tmp_path, n_windows=3, label_delay=1)
     assert set(df["strategy"]) == {"estatico", "janela_deslizante", "acumulado"}
     assert len(df) == 9
-    # Com atraso de 1 janela, a primeira e a segunda ainda usam o modelo estático.
     w2 = df[df["window"] == 2].set_index("strategy")["auc_pr"]
     assert w2["estatico"] == w2["acumulado"]
     assert (tmp_path / "drift.png").exists()

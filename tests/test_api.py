@@ -75,9 +75,9 @@ def test_fraud_is_blocked(client, small_ds):
 
 
 @pytest.mark.parametrize("bad", [
-    {"Amount": -1.0},          # valor negativo
-    {"V1": "abc"},             # tipo errado
-    {"extra_field": 1},        # campo desconhecido
+    {"Amount": -1.0},
+    {"V1": "abc"},
+    {"extra_field": 1},
 ])
 def test_invalid_creditcard_payload_is_rejected(client, small_ds, bad):
     assert client.post("/v1/creditcard/predict", json=cc_tx(small_ds, **bad)).status_code == 422

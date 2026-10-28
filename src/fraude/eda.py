@@ -31,7 +31,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
         "trivial_accuracy_pct": round(100 * (1 - ds.fraud_rate), 4),
         "top_correlations_with_fraud": numeric.corrwith(df["is_fraud"]).abs()
         .sort_values(ascending=False).head(10).round(4).to_dict(),
-        # Atípicos pelo critério de Tukey (1,5 × IQR), por atributo.
         "outlier_pct_iqr": {
             c: round(100 * float(((numeric[c] < q1 - 1.5 * iqr) | (numeric[c] > q3 + 1.5 * iqr)).mean()), 2)
             for c in numeric.columns
@@ -43,7 +42,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
     (out_dir / "eda.json").write_text(json.dumps(stats, indent=2, ensure_ascii=False, default=str),
                                       encoding="utf-8")
 
-    # 1) Desbalanceamento
     counts = ds.y.value_counts().sort_index()
     fig, ax = plt.subplots(figsize=(5, 3.2))
     ax.bar(["Legítima", "Fraude"], counts.values, color=[LEGIT, FRAUD], width=0.55)
@@ -56,7 +54,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
     fig.savefig(out_dir / "class_balance.png", bbox_inches="tight", dpi=150)
     plt.close(fig)
 
-    # 2) Valor por classe
     fig, ax = plt.subplots(figsize=(6, 3.5))
     bins = np.logspace(0, np.log10(max(ds.amount.max(), 10) + 1), 50)
     for cls, color, label in [(0, LEGIT, "Legítima"), (1, FRAUD, "Fraude")]:
@@ -68,7 +65,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
     fig.savefig(out_dir / "amount_by_class.png", bbox_inches="tight", dpi=150)
     plt.close(fig)
 
-    # 3) Distribuição temporal
     unit = 3600 if ds.kind == "creditcard" else 1
     hours = (ds.time / unit).astype(int)
     per_hour = pd.DataFrame({"h": hours, "y": ds.y}).groupby("h")["y"].agg(["size", "sum"])
@@ -82,7 +78,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
     fig.savefig(out_dir / "temporal_distribution.png", bbox_inches="tight", dpi=150)
     plt.close(fig)
 
-    # 4) Correlação com a classe
     corr = numeric.corrwith(df["is_fraud"]).sort_values()
     fig, ax = plt.subplots(figsize=(6, 0.22 * len(corr) + 1))
     ax.barh(corr.index, corr.values, color=[FRAUD if v > 0 else LEGIT for v in corr.values])
@@ -92,7 +87,6 @@ def run_eda(ds: Dataset, out_dir: Path) -> dict:
     fig.savefig(out_dir / "correlation_with_fraud.png", bbox_inches="tight", dpi=150)
     plt.close(fig)
 
-    # 5) Distribuição das variáveis mais correlacionadas, por classe
     top = corr.abs().sort_values(ascending=False).index[:6]
     fig, axes = plt.subplots(2, 3, figsize=(10, 5.5))
     for ax, col in zip(axes.ravel(), top):

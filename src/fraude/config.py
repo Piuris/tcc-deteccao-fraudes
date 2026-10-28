@@ -36,14 +36,10 @@ class CostConfig:
     fn_use_amount: bool = False
 
 
-# Hipóteses de política de risco avaliadas (razão custo FN : custo FP).
 COST_SCENARIOS: dict[str, CostConfig] = {
-    "conservador": CostConfig(fn=100.0, fp=10.0),   # 10:1 — prioriza experiência do cliente
-    "moderado": CostConfig(fn=100.0, fp=5.0),       # 20:1
-    "agressivo": CostConfig(fn=100.0, fp=1.0),      # 100:1 — prioriza bloquear fraude
-    # Custo dependente do exemplo: deixar passar uma fraude custa o valor dela
-    # (com piso de 25, pois mesmo fraudes de valor ~0 — testes de cartão —
-    # indicam um cartão comprometido); bloquear uma legítima custa 5.
+    "conservador": CostConfig(fn=100.0, fp=10.0),
+    "moderado": CostConfig(fn=100.0, fp=5.0),
+    "agressivo": CostConfig(fn=100.0, fp=1.0),
     "valor_transacao": CostConfig(fn=25.0, fp=5.0, fn_use_amount=True),
 }
 
@@ -54,7 +50,7 @@ class ExperimentConfig:
     test_size: float = 0.2
     cv_folds: int = 5
     n_iter_search: int = 10
-    scoring: str = "average_precision"  # AUC-PR guia a seleção (Saito; Rehmsmeier, 2015)
+    scoring: str = "average_precision"
     n_jobs: int = -1
     models: list[str] = field(
         default_factory=lambda: ["logreg", "random_forest", "xgboost", "lightgbm", "mlp",
@@ -63,7 +59,6 @@ class ExperimentConfig:
     balancing: list[str] = field(
         default_factory=lambda: ["none", "smote", "undersample", "class_weight"]
     )
-    # Subamostra opcional da base para execuções rápidas (None = base inteira).
     sample_frac: float | None = None
 
 

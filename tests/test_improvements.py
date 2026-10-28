@@ -25,8 +25,6 @@ from fraude.stats import (
 )
 
 
-# --------------------------------------------------------------------------- duplicatas
-
 def _with_duplicates(ds: Dataset, n: int = 30) -> Dataset:
     X = pd.concat([ds.X, ds.X.iloc[:n].assign(Time=ds.X["Time"].iloc[:n] + 100)], ignore_index=True)
     y = pd.concat([ds.y, ds.y.iloc[:n]], ignore_index=True)
@@ -39,7 +37,6 @@ def test_drop_duplicates_ignores_time(small_ds):
     assert len(clean.y) == len(small_ds.y)
     assert clean.extra["duplicates_removed"] == 30
     assert clean.summary()["duplicates_removed"] == 30
-    # alinhamento preservado entre X, y, time e amount
     assert (clean.X["Amount"].to_numpy() == clean.amount.to_numpy()).all()
 
 
@@ -59,13 +56,11 @@ def test_no_duplicate_crosses_train_test_after_dedupe(small_ds, quick_cfg):
     assert not any(tuple(r) in keys_tr for r in clean.X.iloc[te][cols].round(10).to_numpy())
 
 
-# --------------------------------------------------------------------------- calibração
-
 def _overconfident(n=20_000, seed=0):
     rng = np.random.default_rng(seed)
     y = (rng.random(n) < 0.02).astype(int)
     logit = np.where(y == 1, 2.0, -2.0) + rng.normal(0, 1.5, n)
-    scores = 1 / (1 + np.exp(-3 * logit))  # escores extremos demais
+    scores = 1 / (1 + np.exp(-3 * logit))
     return scores, y
 
 
@@ -77,8 +72,6 @@ def test_calibration_improves_brier_and_keeps_order(method):
     p = cal.transform(s[te])
     assert brier_score_loss(y[te], p) < brier_score_loss(y[te], s[te])
     assert expected_calibration_error(y[te], p) < expected_calibration_error(y[te], s[te])
-    # Platt é estritamente monotônico: a ordenação (e a AUC-PR) não muda. A isotônica
-    # é uma função em degraus — cria empates e pode perder um pouco de resolução.
     tol = 1e-9 if method == "sigmoid" else 0.05
     assert average_precision_score(y[te], p) == pytest.approx(average_precision_score(y[te], s[te]), abs=tol)
 
@@ -95,15 +88,12 @@ def test_ece_perfect_calibration_is_zero():
     assert expected_calibration_error(np.array([0, 0, 1, 1]), p) == 0
 
 
-# --------------------------------------------------------------------------- estatística
-
 def test_corrected_ttest():
     a = np.array([0.80, 0.82, 0.81, 0.79, 0.83])
     t, p = corrected_ttest(a, a, 0.25)
     assert p == 1.0
     t, p = corrected_ttest(a + 0.1, a + np.array([0, 0.001, -0.001, 0.002, 0]), 0.25)
     assert p < 0.05 and t > 0
-    # A correção torna o teste mais conservador que o t pareado comum.
     from scipy.stats import ttest_rel
     b = a - np.array([0.01, -0.005, 0.02, 0.0, 0.01])
     assert corrected_ttest(a, b, 0.25)[1] > ttest_rel(a, b).pvalue
@@ -113,7 +103,7 @@ def test_holm():
     adj = holm({"a": 0.01, "b": 0.04, "c": 0.03})
     assert adj["a"] == pytest.approx(0.03)
     assert adj["c"] == pytest.approx(0.06)
-    assert adj["b"] == pytest.approx(0.06)  # monotonicidade
+    assert adj["b"] == pytest.approx(0.06)
 
 
 def _scores():
@@ -140,18 +130,15 @@ def test_friedman_and_compare_to_best():
 def test_select_parsimonious_prefers_fastest_equivalent():
     table = compare_to_best(_scores())
     chosen = select_parsimonious(table, {"melhor": 15.0, "empatado_rapido": 2.0, "pior": 0.5})
-    assert chosen == "empatado_rapido"  # "pior" é mais rápido, mas é significativamente pior
+    assert chosen == "empatado_rapido"
 
 
 def test_select_parsimonious_practical_margin():
-    # "fraco" não é significativamente pior (teste sem poder), mas perde 0,03 de AUC-PR:
-    # a margem prática impede trocar desempenho por 0,5 ms.
     table = pd.DataFrame({"auc_pr_mean": [0.857, 0.856, 0.824],
                           "equivalent_to_best": [True, True, True]},
                          index=["ensemble", "xgb", "fraco"])
     lat = {"ensemble": 2.9, "xgb": 2.05, "fraco": 1.54}
     assert select_parsimonious(table, lat) == "xgb"
-    # latências dentro da tolerância contam como empate: vence a maior AUC-PR
     assert select_parsimonious(table, {"ensemble": 2.0, "xgb": 1.9, "fraco": 1.54}) == "ensemble"
 
 
@@ -164,10 +151,8 @@ def test_repeated_cv_scores_resumable(small_ds, tmp_path):
     s1 = repeated_cv_scores(build, cands, X, y, n_splits=3, n_repeats=2, out_csv=out)
     assert s1.shape == (6, 2)
     s2 = repeated_cv_scores(lambda spec: 1 / 0, cands, X, y, n_splits=3, n_repeats=2, out_csv=out)
-    pd.testing.assert_frame_equal(s1, s2)  # nada recalculado
+    pd.testing.assert_frame_equal(s1, s2)
 
-
-# --------------------------------------------------------------------------- ensembles
 
 def _records():
     return [
@@ -203,12 +188,10 @@ def test_run_ensemble_experiment(small_ds, quick_cfg, tmp_path):
     assert (tmp_path / "summary.md").exists()
 
 
-# --------------------------------------------------------------------------- custo por valor
-
 def test_value_scenario_uses_amount():
     assert COST_SCENARIOS["valor_transacao"].fn_use_amount
     y = np.array([1, 1, 0])
     amount = np.array([1000.0, 3.0, 50.0])
     r = cost_report(y, np.array([0.1, 0.9, 0.1]), 0.5, CostConfig(fn=25, fp=5, fn_use_amount=True), amount)
-    assert r["cost"] == 1000.0               # deixou passar a fraude de 1000
-    assert r["cost_approve_all"] == 1025.0   # 1000 + piso de 25 para a fraude de 3
+    assert r["cost"] == 1000.0
+    assert r["cost_approve_all"] == 1025.0

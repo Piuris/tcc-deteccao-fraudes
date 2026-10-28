@@ -40,7 +40,6 @@ def test_expected_cost_with_amount():
     y = np.array([1, 1, 0])
     pred = np.array([0, 0, 0])
     amount = np.array([500.0, 10.0, 1.0])
-    # FN custa o valor da transação, com piso em fn=50.
     assert expected_cost(y, pred, CostConfig(fn=50, fp=5, fn_use_amount=True), amount) == 550
 
 
@@ -61,7 +60,7 @@ def test_best_threshold_cost_reacts_to_cost_ratio():
     p = np.clip(0.4 * y + rng.random(2000) * 0.7, 0, 1)
     t_cheap_fn, _ = best_threshold_cost(y, p, CostConfig(fn=2, fp=1))
     t_costly_fn, _ = best_threshold_cost(y, p, CostConfig(fn=200, fp=1))
-    assert t_costly_fn < t_cheap_fn  # FN caro => limiar mais baixo
+    assert t_costly_fn < t_cheap_fn
 
 
 def test_cost_report_savings():
@@ -72,10 +71,9 @@ def test_cost_report_savings():
 
 
 def test_savings_vs_best_trivial_catches_block_almost_all():
-    # FN caríssimo: bloquear tudo custa 15, aprovar tudo 1000; o modelo custa 10.
     r = {"cost": 10.0, "cost_approve_all": 1000.0, "cost_block_all": 15.0}
     from fraude.evaluation import savings_vs_best_trivial
-    assert round(savings_vs_best_trivial(r), 2) == 33.33  # e não 99%
+    assert round(savings_vs_best_trivial(r), 2) == 33.33
 
 
 def test_best_threshold_f1_perfect_separation():
@@ -86,11 +84,11 @@ def test_best_threshold_f1_perfect_separation():
 
 def test_dal_pozzolo_correction():
     p = np.array([0.0, 0.5, 1.0])
-    np.testing.assert_allclose(dal_pozzolo_correction(p, 1.0), p)  # sem subamostragem
+    np.testing.assert_allclose(dal_pozzolo_correction(p, 1.0), p)
     corrected = dal_pozzolo_correction(p, 0.01)
     assert corrected[0] == 0 and corrected[2] == pytest.approx(1)
     assert corrected[1] == pytest.approx(0.01 * 0.5 / (0.01 * 0.5 - 0.5 + 1))
-    assert corrected[1] < 0.5  # subamostragem infla as probabilidades
+    assert corrected[1] < 0.5
 
 
 def test_bootstrap_ci_contains_point_estimate():

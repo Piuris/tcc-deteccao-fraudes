@@ -50,10 +50,6 @@ BALANCING_LABELS = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Isolation Forest com interface de classificador
-# ---------------------------------------------------------------------------
-
 class IsolationForestDetector(BaseEstimator, ClassifierMixin):
     """Isolation Forest (Liu; Ting; Zhou, 2008) exposto como classificador.
 
@@ -96,10 +92,6 @@ class IsolationForestDetector(BaseEstimator, ClassifierMixin):
         return (self.predict_proba(X)[:, 1] >= 0.5).astype(int)
 
 
-# ---------------------------------------------------------------------------
-# Aprendizado sensível a custo para o MLP
-# ---------------------------------------------------------------------------
-
 def cost_proportionate_resample(X, y, seed: int = SEED):
     """Reamostragem proporcional ao custo (Zadrozny; Langford; Abe, 2003).
 
@@ -119,10 +111,6 @@ def cost_proportionate_resample(X, y, seed: int = SEED):
     idx = rng.choice(n, size=n, replace=True, p=weights / weights.sum())
     return X[idx], y[idx]
 
-
-# ---------------------------------------------------------------------------
-# Construção dos pipelines
-# ---------------------------------------------------------------------------
 
 def is_applicable(model: str, balancing: str) -> bool:
     """Isolation Forest não usa rótulos no treino: balanceamento não se aplica."""
@@ -232,7 +220,6 @@ def param_space(model: str, balancing: str, minority_ratio: float = 0.0) -> dict
         },
     }
     space = dict(spaces[model])
-    # A proporção pós-reamostragem é tratada como hiperparâmetro.
     ratios = {"smote": [0.05, 0.1, 0.25, 0.5], "undersample": [0.01, 0.05, 0.1, 0.5]}
     if balancing in ratios:
         valid = [r for r in ratios[balancing] if r > minority_ratio] or [1.0]

@@ -8,7 +8,6 @@ from fraude.data import Dataset, PAYSIM_COLS, load_synthetic
 
 @pytest.fixture(scope="session")
 def small_ds(tmp_path_factory):
-    # caminho inexistente: gera a base em memória, sem depender de data/synthetic_creditcard.csv
     missing = tmp_path_factory.mktemp("synth") / "nao_existe.csv"
     return load_synthetic(missing, n_samples=3000, fraud_rate=0.04, seed=7)
 

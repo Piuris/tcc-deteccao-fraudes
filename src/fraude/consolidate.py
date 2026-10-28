@@ -23,7 +23,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import ensemble  # noqa: F401  (registra os rótulos dos ensembles)
+from . import ensemble  # noqa: F401
 from .config import ARTIFACTS_DIR, DATA_DIR, REPORTS_DIR
 from .evaluation import savings_vs_best_trivial
 from .models import BALANCING_LABELS, MODEL_LABELS
@@ -47,8 +47,6 @@ STRATEGIES = {"estatico": "Estático", "janela_deslizante": "Janela deslizante",
 SOURCES = {"experiments": "", "busca50": " [busca n=50]", "ensemble": ""}
 FONTE = "Fonte: elaborado pelo autor."
 
-
-# --------------------------------------------------------------------------- formatação
 
 def br(x, nd: int = 3) -> str:
     """Número com vírgula decimal; vazio para ausentes."""
@@ -122,8 +120,6 @@ class Document:
         return ref
 
 
-# --------------------------------------------------------------------------- análises auxiliares
-
 def duplicate_leakage(reports: Path, data_dir: Path = DATA_DIR) -> dict | None:
     """Quantas fraudes do teste da execução sem deduplicação tinham cópia exata no treino."""
     split = reports / "creditcard_v1_com_duplicatas" / "experiments" / "split.npz"
@@ -131,7 +127,7 @@ def duplicate_leakage(reports: Path, data_dir: Path = DATA_DIR) -> dict | None:
         return None
     from .data import TIME_COLUMNS, load_creditcard
 
-    ds = load_creditcard(data_dir / "creditcard.csv")  # sem deduplicação, como na execução original
+    ds = load_creditcard(data_dir / "creditcard.csv")
     sp = np.load(split)
     cols = [c for c in ds.X.columns if c not in TIME_COLUMNS]
     keys = pd.util.hash_pandas_object(ds.X[cols].assign(_y=ds.y.to_numpy()), index=False).to_numpy()
@@ -182,8 +178,6 @@ def _key_label(key: str) -> str:
     model, _, balancing = cfg.partition("__")
     return label(model, balancing, source or "experiments")
 
-
-# --------------------------------------------------------------------------- seções
 
 def section_bases(doc: Document, reports: Path) -> None:
     rows = []

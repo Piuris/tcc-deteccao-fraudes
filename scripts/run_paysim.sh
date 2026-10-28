@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Fluxo completo do PaySim (Git Bash). Uso: bash scripts/run_paysim.sh
-# 1) cenário sem os saldos da origem (comparação informativa entre algoritmos);
-# 2) cenário completo (todos os atributos; mostra o atalho do simulador).
 set -euo pipefail
 export LOKY_MAX_CPU_COUNT=$(nproc) PYTHONWARNINGS=ignore
 PY=.venv/Scripts/python

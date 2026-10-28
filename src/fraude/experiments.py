@@ -112,7 +112,6 @@ def run_single(ds: Dataset, model: str, balancing: str, cfg: ExperimentConfig,
         bi = search.best_index_
         fold_scores = [float(search.cv_results_[f"split{k}_test_score"][bi]) for k in range(cfg.cv_folds)]
         train_seconds = float(search.refit_time_)
-        # Limiar escolhido com predições out-of-fold no treino (teste intocado).
         oof, _ = oof_predict(best, X_tr, y_tr, skf)
     else:
         best_params = params or {}
@@ -229,7 +228,6 @@ def run_experiments(ds: Dataset, cfg: ExperimentConfig, out_dir: Path,
         log.info("    AUC-PR teste=%.4f  CV=%.4f±%.4f  treino=%.1fs  latência=%.2fms",
                  record["test_metrics"]["default"]["auc_pr"], record["cv_auc_pr_mean"],
                  record["cv_auc_pr_std"], record["train_seconds"], record["latency_mean_ms"])
-        # Gravação incremental.
         records_path.write_text(json.dumps(list(records.values()), indent=2, ensure_ascii=False),
                                 encoding="utf-8")
         np.savez_compressed(probas_path, **probas)

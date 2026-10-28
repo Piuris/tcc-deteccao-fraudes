@@ -27,10 +27,6 @@ from sklearn.metrics import (
 from .config import SEED, CostConfig
 
 
-# ---------------------------------------------------------------------------
-# Métricas de classificação
-# ---------------------------------------------------------------------------
-
 def classification_metrics(y_true, proba, threshold: float = 0.5) -> dict:
     y_true = np.asarray(y_true).astype(int)
     proba = np.asarray(proba, dtype=float)
@@ -68,10 +64,6 @@ def bootstrap_ci(y_true, proba, metric=average_precision_score, n_boot: int = 50
     return float(lo), float(hi)
 
 
-# ---------------------------------------------------------------------------
-# Função de custo e escolha do limiar
-# ---------------------------------------------------------------------------
-
 def _fn_costs(y_true, cost: CostConfig, amount=None) -> np.ndarray:
     y_true = np.asarray(y_true).astype(int)
     if cost.fn_use_amount and amount is not None:
@@ -108,7 +100,7 @@ def cost_curve(y_true, proba, cost: CostConfig, amount=None) -> pd.DataFrame:
     total_legit = cum_legit[-1]
 
     candidates = np.concatenate([np.unique(p_sorted), [np.inf]])
-    k = np.searchsorted(p_sorted, candidates, side="left")  # nº de itens com p < t
+    k = np.searchsorted(p_sorted, candidates, side="left")
     fn_cost = cum_fraud[k]
     fp = total_legit - cum_legit[k]
     total = fn_cost + cost.fp * fp
@@ -161,10 +153,6 @@ def savings_vs_best_trivial(report: dict) -> float:
     return 100 * (1 - report["cost"] / trivial) if trivial else 0.0
 
 
-# ---------------------------------------------------------------------------
-# Calibração após subamostragem (Dal Pozzolo et al., 2015)
-# ---------------------------------------------------------------------------
-
 def dal_pozzolo_correction(proba, beta: float) -> np.ndarray:
     """Corrige probabilidades estimadas por um modelo treinado com subamostragem.
 
@@ -175,10 +163,6 @@ def dal_pozzolo_correction(proba, beta: float) -> np.ndarray:
     return beta * ps / (beta * ps - ps + 1.0)
 
 
-# ---------------------------------------------------------------------------
-# Custo computacional
-# ---------------------------------------------------------------------------
-
 def measure_latency(model, X: pd.DataFrame, n_single: int = 300, batch_size: int = 10_000,
                     seed: int = SEED) -> dict:
     """Latência de inferência por transação (uma por vez) e vazão em lote.
@@ -188,7 +172,7 @@ def measure_latency(model, X: pd.DataFrame, n_single: int = 300, batch_size: int
     """
     rng = np.random.default_rng(seed)
     rows = rng.choice(len(X), size=min(n_single, len(X)), replace=False)
-    model.predict_proba(X.iloc[[rows[0]]])  # aquecimento
+    model.predict_proba(X.iloc[[rows[0]]])
     times = []
     for i in rows:
         row = X.iloc[[i]]

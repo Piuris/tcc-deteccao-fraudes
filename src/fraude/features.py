@@ -209,7 +209,7 @@ class Preprocessor(BaseEstimator, TransformerMixin):
 
 def build_preprocessor(kind: str) -> Preprocessor:
     """Pré-processamento completo para o tipo de base."""
-    _build_steps(kind)  # valida o tipo cedo
+    _build_steps(kind)
     return Preprocessor(kind)
 
 

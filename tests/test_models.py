@@ -26,7 +26,6 @@ def test_every_configuration_trains_and_predicts(small_ds, model, balancing):
     pipe.fit(X.iloc[:2000], y.iloc[:2000])
     proba = pipe.predict_proba(X.iloc[2000:])[:, 1]
     assert proba.shape == (1000,) and np.all((proba >= 0) & (proba <= 1))
-    # Todos devem ser melhores que o acaso (AP do acaso = prevalência).
     assert average_precision_score(y.iloc[2000:], proba) > y.mean()
 
 
@@ -59,7 +58,7 @@ def test_cost_proportionate_resample_balances_classes():
 def test_undersampling_beta():
     y = np.r_[np.ones(10), np.zeros(1000)]
     assert undersampling_beta(y, 0.1) == pytest.approx(100 / 1000)
-    assert undersampling_beta(y, 0.001) == 1.0  # não pode manter mais do que existe
+    assert undersampling_beta(y, 0.001) == 1.0
 
 
 def test_paysim_pipeline(paysim_ds):
@@ -78,7 +77,6 @@ def test_run_experiments_end_to_end(small_ds, quick_cfg, tmp_path):
     quick_cfg.models = ["logreg", "lightgbm", "isolation_forest"]
     quick_cfg.balancing = ["none", "undersample"]
     table = run_experiments(small_ds, quick_cfg, tmp_path)
-    # isolation_forest só roda sem balanceamento
     assert len(table) == 5
     assert {"auc_pr", "mcc", "latency_p95_ms", "cost"} <= set(table.columns)
     assert (tmp_path / "results.json").exists() and (tmp_path / "test_probas.npz").exists()
@@ -89,7 +87,6 @@ def test_run_experiments_end_to_end(small_ds, quick_cfg, tmp_path):
     assert all("undersampling_calibration" in r for r in under)
     assert select_best(records)["cv_auc_pr_mean"] == max(r["cv_auc_pr_mean"] for r in records)
 
-    # Retomada: nada é recalculado.
     again = run_experiments(small_ds, quick_cfg, tmp_path, resume=True)
     assert len(again) == 5
 

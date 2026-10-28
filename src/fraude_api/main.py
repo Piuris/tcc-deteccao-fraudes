@@ -44,7 +44,6 @@ def _load_predictors(directory: Path) -> dict[str, Predictor]:
             continue
         override = os.environ.get(f"FRAUDE_THRESHOLD_{kind.upper()}")
         predictors[kind] = Predictor.load(path, threshold=float(override) if override else None)
-        # Aquecimento: cria o explicador SHAP e faz uma predição antes da 1ª requisição.
         sample = predictors[kind].bundle["background"].head(1)
         predictors[kind].predict_proba(sample)
         predictors[kind].explainer().top_factors(sample)

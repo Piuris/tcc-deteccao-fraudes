@@ -18,7 +18,6 @@ from .ensemble import ENSEMBLES  # noqa: E402
 from .evaluation import cost_curve, expected_cost, savings_vs_best_trivial  # noqa: E402
 from .models import BALANCING, BALANCING_LABELS, MODEL_LABELS, MODELS  # noqa: E402
 
-# Paleta categórica em ordem fixa (cor acompanha o modelo, nunca a posição).
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
 ALL_MODELS = MODELS + list(ENSEMBLES)
 MODEL_COLORS = dict(zip(ALL_MODELS, SERIES))
@@ -115,7 +114,6 @@ def plot_cost_curves(records: list[dict], probas: dict, y_test, amount_test, out
     for r in _best_per_model(records):
         curve = cost_curve(y_test, probas[_key(r)], cost, amount_test)
         curve = curve[np.isfinite(curve["threshold"])]
-        # Reduz a resolução para o gráfico (milhares de limiares).
         grid = np.linspace(0, 1, 401)
         idx = np.clip(np.searchsorted(curve["threshold"].to_numpy(), grid), 0, len(curve) - 1)
         ax.plot(grid, curve["cost"].to_numpy()[idx], color=MODEL_COLORS[r["model"]],

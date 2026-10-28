@@ -96,7 +96,7 @@ def holm(pvalues: dict[str, float]) -> dict[str, float]:
 def compare_to_best(scores: pd.DataFrame, n_splits: int = 5, alpha: float = ALPHA) -> pd.DataFrame:
     means = scores.mean()
     best = means.idxmax()
-    ratio = 1 / (n_splits - 1)  # n_teste / n_treino em k-fold
+    ratio = 1 / (n_splits - 1)
     raw = {}
     tstats = {}
     for c in scores.columns:
@@ -118,8 +118,8 @@ def compare_to_best(scores: pd.DataFrame, n_splits: int = 5, alpha: float = ALPH
     return table.sort_values("auc_pr_mean", ascending=False)
 
 
-PRACTICAL_MARGIN = 0.01   # perda máxima de AUC-PR aceita em troca de custo menor
-LATENCY_TOL_MS = 0.5      # diferenças de latência abaixo disso são tratadas como empate
+PRACTICAL_MARGIN = 0.01
+LATENCY_TOL_MS = 0.5
 
 
 def select_parsimonious(table: pd.DataFrame, latency_ms: dict[str, float],

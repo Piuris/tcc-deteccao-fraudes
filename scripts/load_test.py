@@ -26,7 +26,6 @@ from fraude.data import load_dataset
 async def run(args) -> dict:
     ds = load_dataset(args.dataset)
     rng = np.random.default_rng(args.seed)
-    # Enriquecida com fraudes para exercitar os dois caminhos de decisão.
     fraud = np.flatnonzero(ds.y.to_numpy() == 1)
     idx = np.concatenate([rng.choice(len(ds.y), args.requests - args.requests // 10),
                           rng.choice(fraud, args.requests // 10)])
@@ -42,7 +41,7 @@ async def run(args) -> dict:
     client_ms, server_ms, errors = [], [], 0
 
     async with httpx.AsyncClient(timeout=30) as client:
-        await client.post(url, json=payloads[0], params=params)  # aquecimento
+        await client.post(url, json=payloads[0], params=params)
 
         async def one(p):
             nonlocal errors

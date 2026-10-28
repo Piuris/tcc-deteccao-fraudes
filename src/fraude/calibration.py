@@ -48,7 +48,6 @@ class ProbabilityCalibrator:
     def fit(self, scores, y) -> "ProbabilityCalibrator":
         y = np.asarray(y).astype(int)
         if self.method == "sigmoid":
-            # Platt sobre o log-odds: preserva a ordem e lida com escores extremos.
             self.model_ = LogisticRegression(C=1e4, max_iter=1000).fit(_logit(scores), y)
         elif self.method == "isotonic":
             self.model_ = IsotonicRegression(y_min=0.0, y_max=1.0, out_of_bounds="clip").fit(
@@ -117,7 +116,7 @@ def adaptive_bins(y, p, n_bins: int = 10, min_pos: int = 5) -> list[tuple[float,
         if pos >= per_bin:
             bins.append((start, i + 1))
             start, pos = i + 1, 0
-    if start < len(p):  # cauda inferior com poucas fraudes: junta à última faixa
+    if start < len(p):
         if bins:
             bins[-1] = (bins[-1][0], len(p))
         else:

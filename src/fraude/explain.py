@@ -37,7 +37,7 @@ def _is_tree(clf) -> bool:
 
 def _positive_class(values) -> np.ndarray:
     """Normaliza as diferentes formas de saída do SHAP para (n, f) da classe fraude."""
-    if isinstance(values, list):  # versões antigas: lista por classe
+    if isinstance(values, list):
         return np.asarray(values[1])
     values = np.asarray(values)
     if values.ndim == 3:
@@ -61,7 +61,6 @@ class LocalExplainer:
         self.clf = pipeline.named_steps["clf"]
         self.names = feature_names(self.pre)
         self.nsamples = nsamples
-        # O cálculo do SHAP não é seguro entre threads (a API atende em paralelo).
         self._lock = threading.Lock()
         bg = self.pre.transform(background_raw)
         if _is_tree(self.clf):
@@ -82,7 +81,7 @@ class LocalExplainer:
                 vals = self._explainer.shap_values(Xt, nsamples=self.nsamples, silent=True)
         vals = _positive_class(vals)
         if isinstance(self.clf, IsolationForestDetector):
-            vals = -vals  # SHAP explica o score_samples; anomalia = sinal invertido
+            vals = -vals
         return Xt, vals
 
     def top_factors(self, X_raw: pd.DataFrame, k: int = 5) -> list[list[dict]]:
@@ -132,7 +131,6 @@ def run_explainability(pipeline, X_train: pd.DataFrame, X_test: pd.DataFrame, y_
     explainer = LocalExplainer(pipeline, background)
     names = explainer.names
 
-    # Amostra global: todas as fraudes do teste + legítimas aleatórias.
     fraud_idx = np.flatnonzero(y_test == 1)
     legit_idx = np.flatnonzero(y_test == 0)
     n_global = n_global if explainer.method == "shap_tree" else min(n_global, 300)
@@ -156,7 +154,6 @@ def run_explainability(pipeline, X_train: pd.DataFrame, X_test: pd.DataFrame, y_
     plt.savefig(out_dir / "shap_bar.png", bbox_inches="tight", dpi=150)
     plt.close("all")
 
-    # Explicações locais para casos concretos.
     proba = pipeline.predict_proba(X_test)[:, 1]
     if calibrator is not None:
         proba = calibrator.transform(proba)

@@ -34,7 +34,6 @@ def test_paysim_balance_errors(paysim_ds):
     out = PaySimFeatures().transform(paysim_ds.X)
     assert out.isna().sum().sum() == 0
     assert set(out["type"]) <= {"TRANSFER", "CASH_OUT"}
-    # Nas fraudes geradas a origem é zerada.
     assert out.loc[paysim_ds.y == 1, "orig_emptied"].mean() > 0.9
 
 
@@ -42,7 +41,7 @@ def test_paysim_restricted_uses_no_origin_balance(paysim_ds):
     from fraude.data import PAYSIM_ORIGIN_COLS
     from fraude.features import PAYSIM_ORIGIN_FEATURES, build_preprocessor, feature_names
 
-    X = paysim_ds.X.drop(columns=PAYSIM_ORIGIN_COLS)  # como em load_paysim(without_origin_balance=True)
+    X = paysim_ds.X.drop(columns=PAYSIM_ORIGIN_COLS)
     out = PaySimFeatures(restricted=True).transform(X)
     assert not set(PAYSIM_ORIGIN_FEATURES) & set(out.columns)
     pre = build_preprocessor("paysim_restrito").fit(X, paysim_ds.y)
@@ -60,12 +59,12 @@ def test_preprocessor_is_fit_only_on_training_data(small_ds):
     """Os parâmetros de padronização devem vir do treino, não da base inteira."""
     X = small_ds.X
     train, test = X.iloc[:1000], X.iloc[1000:].copy()
-    test["Amount"] = test["Amount"] * 1000  # distribuição bem diferente no "teste"
+    test["Amount"] = test["Amount"] * 1000
     pre = build_preprocessor("creditcard").fit(train)
     scaler = pre.columns_.named_transformers_["money"].named_steps["scale"]
     expected = signed_log1p(train["Amount"]).clip(max=np.quantile(signed_log1p(train["Amount"]), 0.999))
     np.testing.assert_allclose(scaler.mean_[0], expected.mean(), rtol=1e-6)
-    pre.transform(test)  # não reajusta
+    pre.transform(test)
     np.testing.assert_allclose(scaler.mean_[0], expected.mean(), rtol=1e-6)
 
 

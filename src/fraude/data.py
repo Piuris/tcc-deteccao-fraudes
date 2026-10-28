@@ -41,9 +41,6 @@ PAYSIM_COLS = [
     "newbalanceDest",
     "nameDest",
 ]
-# Saldos da conta de origem. No simulador, o agente fraudador transfere sempre o
-# saldo inteiro (amount == oldbalanceOrg em ~97% das fraudes e ~0% das legítimas),
-# o que torna a base trivialmente separável; o cenário "paysim_sem_saldo" os remove.
 PAYSIM_ORIGIN_COLS = ["oldbalanceOrg", "newbalanceOrig"]
 
 
@@ -61,7 +58,7 @@ class Dataset:
     y: pd.Series
     time: pd.Series
     amount: pd.Series
-    kind: str  # "creditcard" ou "paysim" — define o pré-processamento
+    kind: str
     description: str = ""
     extra: dict = field(default_factory=dict)
 
@@ -122,10 +119,6 @@ class Dataset:
         return self._select(mask, name=f"{self.name}[{frac:.0%}]")
 
 
-# ---------------------------------------------------------------------------
-# ULB Credit Card Fraud Detection
-# ---------------------------------------------------------------------------
-
 def load_creditcard(path: Path | None = None) -> Dataset:
     path = Path(path or DATA_DIR / ULB_FILE)
     if not path.exists():
@@ -154,10 +147,6 @@ def _creditcard_from_frame(df: pd.DataFrame, name: str, description: str) -> Dat
         description=description,
     )
 
-
-# ---------------------------------------------------------------------------
-# PaySim
-# ---------------------------------------------------------------------------
 
 def load_paysim(path: Path | None = None, only_fraud_prone_types: bool = True,
                 without_origin_balance: bool = False) -> Dataset:
@@ -202,10 +191,6 @@ def load_paysim(path: Path | None = None, only_fraud_prone_types: bool = True,
     )
 
 
-# ---------------------------------------------------------------------------
-# Base sintética (testes e demonstração)
-# ---------------------------------------------------------------------------
-
 def make_synthetic_creditcard(n_samples: int = 20_000, fraud_rate: float = 0.01,
                               seed: int = SEED) -> pd.DataFrame:
     """Gera uma base com o mesmo esquema da ULB, para testes e demonstrações.
@@ -224,7 +209,6 @@ def make_synthetic_creditcard(n_samples: int = 20_000, fraud_rate: float = 0.01,
     )
     df = pd.DataFrame(X, columns=ULB_V_COLS)
     df["Time"] = np.sort(rng.uniform(0, 172_800, n_samples))
-    # Deriva gradual: o padrão das fraudes se desloca ao longo dos dois dias.
     shift = (df["Time"] / 172_800).to_numpy()
     df.loc[y == 1, "V3"] += 1.5 * shift[y == 1]
     amount = rng.lognormal(mean=3.5, sigma=1.2, size=n_samples)

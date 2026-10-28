@@ -29,11 +29,7 @@ from .models import BALANCING, MODELS
 log = logging.getLogger("fraude")
 
 
-# ---------------------------------------------------------------------------
-# download
-# ---------------------------------------------------------------------------
-
-ULB_OPENML_FILE_ID = 1673544  # OpenML data_id=1597
+ULB_OPENML_FILE_ID = 1673544
 
 
 def _fetch_ulb_arff():
@@ -101,10 +97,6 @@ def download(dataset: str) -> None:
     else:
         sys.exit(f"Base desconhecida: {dataset}")
 
-
-# ---------------------------------------------------------------------------
-# helpers
-# ---------------------------------------------------------------------------
 
 def _cfg(args) -> ExperimentConfig:
     cfg = ExperimentConfig()
@@ -177,14 +169,9 @@ def _chosen_config(args) -> dict:
     return _spec(best)
 
 
-# ---------------------------------------------------------------------------
-# comandos
-# ---------------------------------------------------------------------------
-
 def cmd_eda(args):
     from .eda import run_eda
 
-    # A EDA descreve a base como publicada (com duplicatas) e informa quantas existem.
     ds = load_dataset(args.dataset, args.sample_frac, dedupe=False)
     stats = run_eda(ds, _report_dir(args) / "eda")
     print(json.dumps({k: stats[k] for k in ("n_rows", "n_fraud", "fraud_rate_pct",
@@ -436,7 +423,6 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None):
     import warnings
 
-    # Ruído conhecido: scikit-learn 1.5 + SciPy recente (opção 'iprint' do L-BFGS).
     warnings.filterwarnings("ignore", message="Unknown solver options: iprint")
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):

@@ -83,7 +83,6 @@ def run_drift(ds: Dataset, model: str = "lightgbm", balancing: str = "class_weig
     ref_scores = static.predict_proba(X.iloc[train_idx])[:, 1]
     rows = []
     for w, w_idx in enumerate(windows):
-        # Histórico com rótulo disponível no início da janela w.
         known_end = (train_idx[-1] + 1) if w - label_delay <= 0 else windows[w - label_delay - 1][-1] + 1
         history = np.arange(known_end)
         has_new_labels = known_end > len(train_idx)
