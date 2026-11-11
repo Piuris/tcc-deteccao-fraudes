@@ -14,7 +14,7 @@ Ela traz dois modelos: o da base de cartões ULB, que é o modelo principal do t
 
 ## Opção 1: acesso online (recomendado, sem instalar nada)
 
-1. Abra **<LINK_DA_APLICACAO>/docs**.
+1. Abra **https://tcc-deteccao-fraudes.onrender.com/docs**.
 2. Se a página demorar a carregar, aguarde cerca de 1 minuto. O servidor gratuito (Render) hiberna depois de 15 minutos sem uso e acorda no primeiro acesso. Depois disso, as respostas são imediatas.
 
 Depois siga o [roteiro de testes](#roteiro-de-testes).

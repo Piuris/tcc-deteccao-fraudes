@@ -9,7 +9,7 @@ desbalanceadas, com tratamento do desbalanceamento, função de custo, explicabi
 
 ## Acesso para a banca
 
-O guia [GUIA_BANCA.md](GUIA_BANCA.md) explica como testar a API: online (Render), com Docker ou no Windows com `iniciar.ps1`. Ele traz um roteiro de testes com transações reais do conjunto de teste.
+O guia [GUIA_BANCA.md](GUIA_BANCA.md) explica como testar a API: online (https://tcc-deteccao-fraudes.onrender.com/docs), com Docker ou no Windows com `iniciar.ps1`. Ele traz um roteiro de testes com transações reais do conjunto de teste.
 
 ## Estrutura
 
