@@ -3,6 +3,12 @@
 **TCC:** Sistema de Detecção de Fraudes em Transações Financeiras com Machine Learning
 **Autor:** João Vitor Pires · TADS, IFRS Campus Canoas · Orientador: Prof. Dr. Rafael Coimbra Pinto
 
+| | |
+|---|---|
+| **Aplicação online** | https://tcc-deteccao-fraudes.onrender.com/docs |
+| **Código-fonte** | https://github.com/Piuris/tcc-deteccao-fraudes |
+| **Contato** | joaovpires2004@gmail.com |
+
 A aplicação é uma API REST que recebe uma transação e devolve:
 - a probabilidade de fraude;
 - a decisão (aprovar ou bloquear);
@@ -106,4 +112,4 @@ Este modelo usa todos os atributos, inclusive os saldos da origem. Por isso ele 
 
 O código está em https://github.com/Piuris/tcc-deteccao-fraudes. O `README.md` explica como reproduzir os experimentos do zero. Isso exige baixar as bases e algumas horas de processamento. Os testes automatizados (89) rodam com `pytest`.
 
-**Contato:** João Vitor Pires · <EMAIL_DO_AUTOR>
+**Contato:** João Vitor Pires · joaovpires2004@gmail.com
