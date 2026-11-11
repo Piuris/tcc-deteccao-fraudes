@@ -16,3 +16,6 @@ where = ["src"]
 testpaths = ["tests"]
 addopts = "-q"
 filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
+
+[tool.setuptools.package-data]
+fraude_api = ["exemplos.json"]

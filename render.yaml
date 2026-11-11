@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: tcc-deteccao-fraudes
+    runtime: python
+    plan: free
+    region: virginia
+    buildCommand: pip install -r requirements-api.txt && pip install --no-deps -e .
+    startCommand: uvicorn fraude_api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: FRAUDE_ARTIFACTS_DIR
+        value: artifacts
+      - key: MPLCONFIGDIR
+        value: /tmp/matplotlib

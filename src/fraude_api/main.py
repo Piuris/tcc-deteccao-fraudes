@@ -15,6 +15,7 @@ Variáveis de ambiente:
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import time
@@ -22,7 +23,8 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import Body, FastAPI, HTTPException, Query, Request
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
 from fraude.artifact import Predictor, artifact_path
@@ -33,6 +35,15 @@ from .schemas import BatchResponse, CreditCardTransaction, ModelInfo, PaySimTran
 log = logging.getLogger("fraude_api")
 KINDS = ("creditcard", "paysim")
 MAX_BATCH = 1000
+_EX_PATH = Path(__file__).with_name("exemplos.json")
+EXEMPLOS = json.loads(_EX_PATH.read_text(encoding="utf-8")) if _EX_PATH.exists() else {}
+
+
+def _batch_example(kind: str) -> dict:
+    ex = EXEMPLOS.get(kind, {})
+    if not ex:
+        return {}
+    return {"todos": {"summary": "Todos os casos de exemplo", "value": [e["value"] for e in ex.values()]}}
 
 
 def _load_predictors(directory: Path) -> dict[str, Predictor]:
@@ -105,6 +116,10 @@ def create_app(artifacts_dir: Path | None = None) -> FastAPI:
 
     explain_q = Query(True, description="Calcula os principais fatores da decisão (SHAP).")
 
+    @app.get("/", include_in_schema=False)
+    def root():
+        return RedirectResponse("/docs")
+
     @app.get("/health", tags=["operação"])
     def health(request: Request):
         return {"status": "ok", "models_loaded": sorted(request.app.state.predictors)}
@@ -116,21 +131,21 @@ def create_app(artifacts_dir: Path | None = None) -> FastAPI:
                           metadata=preds[k].metadata() if k in preds else None) for k in KINDS]
 
     @app.post("/v1/creditcard/predict", response_model=Prediction, tags=["cartão de crédito (ULB)"])
-    def predict_creditcard(tx: CreditCardTransaction, request: Request, explain: bool = explain_q):
+    def predict_creditcard(request: Request, tx: CreditCardTransaction = Body(openapi_examples=EXEMPLOS.get("creditcard") or None), explain: bool = explain_q):
         return predict(get_predictor(request, "creditcard"), [tx], explain)[0]
 
     @app.post("/v1/creditcard/predict/batch", response_model=BatchResponse,
               tags=["cartão de crédito (ULB)"])
-    def predict_creditcard_batch(txs: list[CreditCardTransaction], request: Request,
+    def predict_creditcard_batch(request: Request, txs: list[CreditCardTransaction] = Body(openapi_examples=_batch_example("creditcard") or None),
                                  explain: bool = Query(False)):
         return _batch(get_predictor(request, "creditcard"), txs, explain)
 
     @app.post("/v1/paysim/predict", response_model=Prediction, tags=["mobile money (PaySim)"])
-    def predict_paysim(tx: PaySimTransaction, request: Request, explain: bool = explain_q):
+    def predict_paysim(request: Request, tx: PaySimTransaction = Body(openapi_examples=EXEMPLOS.get("paysim") or None), explain: bool = explain_q):
         return predict(get_predictor(request, "paysim"), [tx], explain)[0]
 
     @app.post("/v1/paysim/predict/batch", response_model=BatchResponse, tags=["mobile money (PaySim)"])
-    def predict_paysim_batch(txs: list[PaySimTransaction], request: Request,
+    def predict_paysim_batch(request: Request, txs: list[PaySimTransaction] = Body(openapi_examples=_batch_example("paysim") or None),
                              explain: bool = Query(False)):
         return _batch(get_predictor(request, "paysim"), txs, explain)
 
