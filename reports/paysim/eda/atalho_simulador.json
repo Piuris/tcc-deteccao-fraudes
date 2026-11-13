@@ -13,6 +13,14 @@
     "saldo da origem bate exatamente (antes − valor = depois)": {
       "fraude_pct": 99.45208815292828,
       "legitima_pct": 9.899949170877084
+    },
+    "conta de destino com saldo zero antes e depois (TRANSFER)": {
+      "fraude_pct": 99.2921649987796,
+      "legitima_pct": 0.020044930901719327
+    },
+    "conta de destino com saldo zero antes e depois (CASH_OUT)": {
+      "fraude_pct": 0.048590864917395525,
+      "legitima_pct": 0.0716401657753436
     }
   }
 }

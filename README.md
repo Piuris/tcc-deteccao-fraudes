@@ -30,6 +30,7 @@ src/fraude/            pacote principal (python -m fraude ...)
   artifact.py          treinamento e serialização do modelo servido
   eda.py               análise exploratória
   consolidate.py       tabelas e figuras numeradas de todas as bases para o texto
+  robustness.py        incerteza do modelo final, limiar de Elkan, vazamento com modelo fixo
 src/fraude_api/        API FastAPI (main.py, schemas.py)
 tests/                 testes automatizados (pytest)
 scripts/               reproduce.ps1 (fluxo completo), load_test.py (carga da API)
@@ -157,6 +158,11 @@ resultados: `resultados.md` com tabelas e figuras numeradas (título acima, font
 pontos de discussão com os números preenchidos; `tabelas/*.csv` (`;` e vírgula decimal, abre
 direto no Excel) e `figuras/*.png`. Os números vêm dos arquivos de resultado: depois de
 retreinar, basta rodar o comando de novo.
+
+O mesmo comando grava em `reports/<base>/robustez/` as análises de robustez: IC por bootstrap
+do custo, da precisão e da revocação do modelo final, custo com o limiar teórico de Elkan,
+desempenho por tipo de operação no PaySim e, na ULB, o efeito das duplicatas com o modelo
+fixo. Como dependem das bases em `data/`, ficam em cache; apague a pasta para recalcular.
 
 ## API de predição
 

@@ -1,0 +1,11 @@
+{
+  "config": "XGBoost + Sensível a custo (pesos)",
+  "test_frauds": 98,
+  "frauds_with_copy": 8,
+  "legit_with_copy": 2524,
+  "auc_pr_full_test": 0.8855145591163099,
+  "auc_pr_without_copies": 0.8735600061956933,
+  "score_frauds_with_copy_mean": 0.9999943971633911,
+  "score_frauds_with_copy_min": 0.9999803304672241,
+  "score_frauds_without_copy_mean": 0.8318617343902588
+}

@@ -98,6 +98,33 @@ class LocalExplainer:
         return out
 
 
+def _waterfall(exp, path: Path, max_display: int = 12) -> None:
+    """Gráfico em cascata do SHAP com rótulos em português.
+
+    O gráfico do SHAP sobrepõe os rótulos de f(x) no eixo superior; aqui cada
+    eixo auxiliar recebe um único rótulo, com vírgula decimal.
+    """
+    import shap
+
+    def br(v: float, nd: int) -> str:
+        return f"{v:.{nd}f}".replace(".", ",")
+
+    plt.figure()
+    shap.plots.waterfall(exp, max_display=max_display, show=False)
+    fig = plt.gcf()
+    main, bottom, top = fig.axes[:3]
+    main.set_yticklabels([t.get_text().replace("other features", "outros atributos")
+                          for t in main.get_yticklabels()])
+    base = float(exp.base_values)
+    fx = base + float(np.sum(exp.values))
+    bottom.set_xticks([base])
+    bottom.set_xticklabels([f"\nE[f(X)] = {br(base, 3)}"], fontsize=12)
+    top.set_xticks([fx])
+    top.set_xticklabels([f"f(x) = {br(fx, 2)}"], fontsize=12)
+    fig.savefig(path, bbox_inches="tight", dpi=150)
+    plt.close("all")
+
+
 def _pick_cases(y: np.ndarray, proba: np.ndarray, threshold: float) -> dict[str, int]:
     """Casos representativos para a discussão: VP, FP e FN de maior relevância."""
     pred = proba >= threshold
@@ -172,11 +199,7 @@ def run_explainability(pipeline, X_train: pd.DataFrame, X_test: pd.DataFrame, y_
         if isinstance(clf, IsolationForestDetector):
             expected = -expected
         exp = shap.Explanation(values=row_v[0], base_values=expected, data=row_t[0], feature_names=names)
-        plt.figure()
-        shap.plots.waterfall(exp, max_display=12, show=False)
-        plt.title(f"SHAP — {label.replace('_', ' ')} (p={proba[i]:.3f})")
-        plt.savefig(out_dir / f"shap_waterfall_{label}.png", bbox_inches="tight", dpi=150)
-        plt.close("all")
+        _waterfall(exp, out_dir / f"shap_waterfall_{label}.png")
 
         le = lime_exp.explain_instance(row_t[0], clf.predict_proba, num_features=10)
         fig = le.as_pyplot_figure()

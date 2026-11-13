@@ -2,3 +2,5 @@
 valor igual ao saldo da origem;97,82052843053695;0,00010860923699838824
 saldo da origem zerado após a transação;97,552660416413;42,72187781026401
 saldo da origem bate exatamente (antes − valor = depois);99,45208815292828;9,899949170877084
+conta de destino com saldo zero antes e depois (TRANSFER);99,2921649987796;0,020044930901719327
+conta de destino com saldo zero antes e depois (CASH_OUT);0,048590864917395525;0,0716401657753436

@@ -1,0 +1,141 @@
+{
+  "n_boot": 500,
+  "confusion": {
+    "tp": 250,
+    "fp": 41,
+    "tn": 110447,
+    "fn": 79
+  },
+  "prevalence": 0.002968858568631167,
+  "brier_reference": 0.0029600444474306323,
+  "brier_skill_raw": 0.7036399678871121,
+  "brier_skill_calibrated": 0.6805881059024471,
+  "ci95": {
+    "precision": [
+      0.8207632778126964,
+      0.8945578231292517
+    ],
+    "recall": [
+      0.7173252279635258,
+      0.8054711246200608
+    ],
+    "cost": [
+      6649.5,
+      9512.875
+    ],
+    "savings_vs_best_trivial_pct": [
+      71.08548632218846,
+      79.7887537993921
+    ],
+    "brier_skill": [
+      0.6337183231931254,
+      0.7258793628402831
+    ]
+  },
+  "share_bootstrap_brier_improved": 0.0,
+  "cost_sensitivity": [
+    {
+      "scenario": "conservador",
+      "fn": 100.0,
+      "fp": 10.0,
+      "elkan": {
+        "threshold": 0.09090909090909091,
+        "cost": 8870.0,
+        "savings_vs_best_trivial_pct": 73.03951367781156
+      },
+      "chosen_threshold": {
+        "threshold": 0.07142857142857142,
+        "cost": 8310.0,
+        "savings_vs_best_trivial_pct": 74.74164133738601
+      }
+    },
+    {
+      "scenario": "moderado",
+      "fn": 100.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.047619047619047616,
+        "cost": 8105.0,
+        "savings_vs_best_trivial_pct": 75.36474164133739
+      },
+      "chosen_threshold": {
+        "threshold": 0.07142857142857142,
+        "cost": 8105.0,
+        "savings_vs_best_trivial_pct": 75.36474164133739
+      }
+    },
+    {
+      "scenario": "agressivo",
+      "fn": 100.0,
+      "fp": 1.0,
+      "elkan": {
+        "threshold": 0.009900990099009901,
+        "cost": 6740.0,
+        "savings_vs_best_trivial_pct": 79.51367781155015
+      },
+      "chosen_threshold": {
+        "threshold": 0.07142857142857142,
+        "cost": 7941.0,
+        "savings_vs_best_trivial_pct": 75.86322188449847
+      }
+    },
+    {
+      "scenario": "fn_20",
+      "fn": 20.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.2,
+        "cost": 1885.0,
+        "savings_vs_best_trivial_pct": 71.35258358662614
+      },
+      "chosen_threshold": {
+        "threshold": 0.07142857142857142,
+        "cost": 1785.0,
+        "savings_vs_best_trivial_pct": 72.87234042553192
+      }
+    },
+    {
+      "scenario": "fn_50",
+      "fn": 50.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.09090909090909091,
+        "cost": 4435.0,
+        "savings_vs_best_trivial_pct": 73.03951367781156
+      },
+      "chosen_threshold": {
+        "threshold": 0.07142857142857142,
+        "cost": 4155.0,
+        "savings_vs_best_trivial_pct": 74.74164133738601
+      }
+    }
+  ],
+  "raw_threshold_05": {
+    "threshold": 0.5,
+    "cost": 9850.0,
+    "savings_vs_best_trivial_pct": 70.06079027355622
+  },
+  "distinct_scores": 44,
+  "frauds_with_score_1": 22,
+  "legit_with_score_1": 0,
+  "by_type": [
+    {
+      "type": "CASH_OUT",
+      "n": 89409,
+      "frauds": 160,
+      "prevalence": 0.0017895290183314878,
+      "auc_pr": 0.5237324319906537,
+      "detected": 81,
+      "false_positives": 38
+    },
+    {
+      "type": "TRANSFER",
+      "n": 21408,
+      "frauds": 169,
+      "prevalence": 0.00789424514200299,
+      "auc_pr": 0.9940824223278756,
+      "detected": 169,
+      "false_positives": 3
+    }
+  ]
+}

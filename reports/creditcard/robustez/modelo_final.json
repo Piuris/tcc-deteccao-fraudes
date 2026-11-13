@@ -1,0 +1,121 @@
+{
+  "n_boot": 500,
+  "confusion": {
+    "tp": 79,
+    "fp": 24,
+    "tn": 55014,
+    "fn": 16
+  },
+  "prevalence": 0.0017231059438086083,
+  "brier_reference": 0.0017201368497150196,
+  "brier_skill_raw": 0.6872454875607499,
+  "brier_skill_calibrated": 0.711296938988661,
+  "ci95": {
+    "precision": [
+      0.6952380952380952,
+      0.84375
+    ],
+    "recall": [
+      0.7578947368421053,
+      0.9052631578947369
+    ],
+    "cost": [
+      1034.75,
+      2440.4999999999995
+    ],
+    "savings_vs_best_trivial_pct": [
+      74.31052631578947,
+      89.10789473684211
+    ],
+    "brier_skill": [
+      0.611221096614642,
+      0.8061441428166949
+    ]
+  },
+  "share_bootstrap_brier_improved": 0.926,
+  "cost_sensitivity": [
+    {
+      "scenario": "conservador",
+      "fn": 100.0,
+      "fp": 10.0,
+      "elkan": {
+        "threshold": 0.09090909090909091,
+        "cost": 1960.0,
+        "savings_vs_best_trivial_pct": 79.36842105263158
+      },
+      "chosen_threshold": {
+        "threshold": 0.0345108647924632,
+        "cost": 1840.0,
+        "savings_vs_best_trivial_pct": 80.63157894736842
+      }
+    },
+    {
+      "scenario": "moderado",
+      "fn": 100.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.047619047619047616,
+        "cost": 1905.0,
+        "savings_vs_best_trivial_pct": 79.94736842105263
+      },
+      "chosen_threshold": {
+        "threshold": 0.0345108647924632,
+        "cost": 1720.0,
+        "savings_vs_best_trivial_pct": 81.89473684210526
+      }
+    },
+    {
+      "scenario": "agressivo",
+      "fn": 100.0,
+      "fp": 1.0,
+      "elkan": {
+        "threshold": 0.009900990099009901,
+        "cost": 1394.0,
+        "savings_vs_best_trivial_pct": 85.32631578947368
+      },
+      "chosen_threshold": {
+        "threshold": 0.0345108647924632,
+        "cost": 1624.0,
+        "savings_vs_best_trivial_pct": 82.90526315789474
+      }
+    },
+    {
+      "scenario": "fn_20",
+      "fn": 20.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.2,
+        "cost": 440.0,
+        "savings_vs_best_trivial_pct": 76.84210526315789
+      },
+      "chosen_threshold": {
+        "threshold": 0.0345108647924632,
+        "cost": 440.0,
+        "savings_vs_best_trivial_pct": 76.84210526315789
+      }
+    },
+    {
+      "scenario": "fn_50",
+      "fn": 50.0,
+      "fp": 5.0,
+      "elkan": {
+        "threshold": 0.09090909090909091,
+        "cost": 980.0,
+        "savings_vs_best_trivial_pct": 79.36842105263158
+      },
+      "chosen_threshold": {
+        "threshold": 0.0345108647924632,
+        "cost": 920.0,
+        "savings_vs_best_trivial_pct": 80.63157894736842
+      }
+    }
+  ],
+  "raw_threshold_05": {
+    "threshold": 0.5,
+    "cost": 1960.0,
+    "savings_vs_best_trivial_pct": 79.36842105263158
+  },
+  "distinct_scores": 54239,
+  "frauds_with_score_1": 0,
+  "legit_with_score_1": 0
+}

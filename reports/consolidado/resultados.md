@@ -39,7 +39,9 @@ Na execução sem deduplicação, 8 das 98 fraudes do conjunto de teste tinham u
 | Regressão Logística (referência) + Sensível a custo (pesos) | 0,748 | 0,735 | 0,709 | 0,697 | -0,012 |
 | MLP (rede neural) + Subamostragem aleatória | 0,786 | 0,735 | 0,694 | 0,672 | -0,022 |
 | Isolation Forest (não supervisionado) + Sem tratamento | 0,294 | 0,266 | 0,330 | 0,238 | -0,091 |
-Diferença média no teste: -0,034; na validação cruzada: -0,003. Fonte: elaborado pelo autor.
+Diferença média no teste: -0,034; na validação cruzada: -0,003. Os dois conjuntos de teste são diferentes, então a diferença soma vazamento e variação amostral. Fonte: elaborado pelo autor.
+
+Com o modelo fixo (XGBoost + Sensível a custo (pesos) treinado no treino com duplicatas), as 8 fraudes do teste com cópia no treino receberam escore médio de 1,000 (mínimo 1,000), contra 0,832 nas demais. Retirar do teste as linhas com cópia muda a AUC-PR de 0,886 para 0,874: o vazamento, isolado, vale 0,012.
 
 ## Comparação dos algoritmos — ULB (cartão de crédito)
 
@@ -153,17 +155,19 @@ Fonte: elaborado pelo autor.
 | valor igual ao saldo da origem | 97,8 | 0,0 |
 | saldo da origem zerado após a transação | 97,6 | 42,7 |
 | saldo da origem bate exatamente (antes − valor = depois) | 99,5 | 9,9 |
+| conta de destino com saldo zero antes e depois (TRANSFER) | 99,3 | 0,0 |
+| conta de destino com saldo zero antes e depois (CASH_OUT) | 0,0 | 0,1 |
 Base inteira: 2.770.409 transações, 8.213 fraudes. Fonte: elaborado pelo autor.
 
 ## Comparação estatística e escolha do modelo final
 CV repetida 5×3 no treino (15 partições, as mesmas para todas as configurações), teste de Friedman com pós-teste de Nemenyi e teste t corrigido de Nadeau-Bengio contra a melhor configuração, com ajuste de Holm (α = 0,05).
 
 **Tabela 7** – Testes de comparação múltipla
-| Base | Configurações | χ² de Friedman | p | Diferença crítica (Nemenyi) | Não significativamente piores que a melhor |
+| Base | Configurações | χ² de Friedman | p | Diferença crítica (Nemenyi) | Não distinguíveis da melhor |
 |---|---|---|---|---|---|
-| ULB (cartão de crédito) | 31 | 327,52 | 9,5e-52 | 12,50 | 25 |
-| PaySim sem saldo da origem | 31 | 373,10 | 7,3e-61 | 12,50 | 15 |
-Fonte: elaborado pelo autor.
+| ULB (cartão de crédito) | 31 | 327,52 | < 0,001 | 12,50 | 25 |
+| PaySim sem saldo da origem | 31 | 373,10 | < 0,001 | 12,50 | 15 |
+Friedman e Nemenyi supõem blocos independentes; aqui os blocos são partições da mesma base, por isso o valor-p indica apenas que há diferenças. "Não distinguíveis": não significativamente piores pelo t corrigido com Holm, o que não demonstra equivalência. Fonte: elaborado pelo autor.
 
 **Tabela 8** – Configuração escolhida por cada critério
 | Base | Critério | Configuração | AUC-PR CV repetida | p (Holm) vs. melhor | Latência (ms) | AUC-PR teste |
@@ -174,7 +178,7 @@ Fonte: elaborado pelo autor.
 | PaySim sem saldo da origem | Maior média | XGBoost + Sem tratamento [busca n=50] | 0,769 | 1,000 | 3,47 | 0,809 |
 | PaySim sem saldo da origem | Regra original | MLP (rede neural) + SMOTE | 0,761 | 0,216 | 2,74 | 0,802 |
 | PaySim sem saldo da origem | Regra com margem prática | MLP (rede neural) + Subamostragem aleatória | 0,761 | 0,395 | 2,80 | 0,800 |
-Regra original: a de menor latência entre as não significativamente piores que a melhor. Regra com margem prática: além disso, até 0,01 de AUC-PR abaixo da melhor; latências até 0,5 ms acima da mínima contam como empate, e vence a de maior AUC-PR. Fonte: elaborado pelo autor.
+Regra original: a de menor latência entre as não distinguíveis da melhor. Regra com margem prática: além disso, até 0,01 de AUC-PR abaixo da melhor; latências até 0,5 ms acima da mínima contam como empate, e vence a de maior AUC-PR. Fonte: elaborado pelo autor.
 
 **Figura 6** – Ranking médio na CV repetida e diferença crítica de Nemenyi — ULB (cartão de crédito)
 ![Figura 6](figuras/figura_06_ranking_creditcard.png)
@@ -187,12 +191,12 @@ Fonte: elaborado pelo autor.
 ## Modelos finais
 
 **Tabela 9** – Desempenho dos modelos finais no conjunto de teste
-| Base | Configuração | Calibração | Limiar | AUC-PR | AUC-ROC | Precisão | Revocação | F1 | MCC | VP | FP | FN | Latência média (ms) | Latência p99 (ms) |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ULB (cartão de crédito) | XGBoost + Sensível a custo (pesos) | Platt | 0,0345 | 0,839 | 0,980 | 0,767 | 0,832 | 0,798 | 0,798 | 79 | 24 | 16 | 2,27 | 3,22 |
-| PaySim sem saldo da origem | MLP (rede neural) + Subamostragem aleatória | Isotônica | 0,0714 | 0,792 | 0,953 | 0,859 | 0,760 | 0,806 | 0,807 | 250 | 41 | 79 | 2,80 | 3,03 |
-| PaySim completo | Random Forest + Sensível a custo (pesos) | Isotônica | 1,0000 | 0,991 | 0,997 | 1,000 | 0,988 | 0,994 | 0,994 | 325 | 0 | 4 | 16,91 | 18,94 |
-Limiar de custo mínimo do cenário moderado, na escala calibrada. VP/FP/FN: verdadeiros positivos, falsos positivos e falsos negativos. Fonte: elaborado pelo autor.
+| Base | Configuração | Calibração | Limiar | AUC-PR | AUC-ROC | Precisão | Revocação | F1 | MCC | VP | FP | FN | VN | Latência média (ms) | Latência p99 (ms) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ULB (cartão de crédito) | XGBoost + Sensível a custo (pesos) | Platt | 0,0345 | 0,839 | 0,980 | 0,767 [0,695; 0,844] | 0,832 [0,758; 0,905] | 0,798 | 0,798 | 79 | 24 | 16 | 55.014 | 2,27 | 3,22 |
+| PaySim sem saldo da origem | MLP (rede neural) + Subamostragem aleatória | Isotônica | 0,0714 | 0,792 | 0,953 | 0,859 [0,821; 0,895] | 0,760 [0,717; 0,805] | 0,806 | 0,807 | 250 | 41 | 79 | 110.447 | 2,80 | 3,03 |
+| PaySim completo | Random Forest + Sensível a custo (pesos) | Isotônica | 1,0000 | 0,991 | 0,997 | 1,000 [1,000; 1,000] | 0,988 [0,974; 0,997] | 0,994 | 0,994 | 325 | 0 | 4 | 110.488 | 16,91 | 18,94 |
+Limiar de custo mínimo do cenário moderado, na escala calibrada. VP/FP/FN/VN: verdadeiros positivos, falsos positivos, falsos negativos e verdadeiros negativos. Entre colchetes, IC de 95% por bootstrap estratificado (500 reamostragens). Fonte: elaborado pelo autor.
 
 ## Calibração das probabilidades
 Método escolhido pelo menor Brier em validação cruzada interna sobre as predições out-of-fold do treino; valores medidos no teste.
@@ -200,10 +204,10 @@ Método escolhido pelo menor Brier em validação cruzada interna sobre as predi
 **Tabela 10** – Métricas de calibração no teste, antes e depois da calibração
 | Base | Método | Brier antes | Brier depois | ECE antes | ECE depois | Log loss antes | Log loss depois | AUC-PR antes | AUC-PR depois |
 |---|---|---|---|---|---|---|---|---|---|
-| ULB (cartão de crédito) | Platt | 0,00054 | 0,00050 | 0,00049 | 0,00024 | 0,00383 | 0,00292 | 0,839 | 0,839 |
-| PaySim sem saldo da origem | Isotônica | 0,00088 | 0,00095 | 0,00082 | 0,00050 | 0,00581 | 0,00581 | 0,800 | 0,792 |
-| PaySim completo | Isotônica | 0,00007 | 0,00004 | 0,00050 | 0,00002 | 0,00079 | 0,00038 | 0,993 | 0,991 |
-ECE: erro de calibração esperado (10 faixas). Fonte: elaborado pelo autor.
+| ULB (cartão de crédito) | Platt | 0,00054 | 0,00050 | 0,00049 | 0,00024 | 0,003830 | 0,002919 | 0,839 | 0,839 |
+| PaySim sem saldo da origem | Isotônica | 0,00088 | 0,00095 | 0,00082 | 0,00050 | 0,005809 | 0,005813 | 0,800 | 0,792 |
+| PaySim completo | Isotônica | 0,00007 | 0,00004 | 0,00050 | 0,00002 | 0,000792 | 0,000384 | 0,993 | 0,991 |
+ECE: erro de calibração esperado, com 10 faixas de largura igual. No diagrama de confiabilidade, as faixas têm o mesmo número de fraudes. Fonte: elaborado pelo autor.
 
 **Figura 8** – Diagrama de confiabilidade do modelo final — ULB
 ![Figura 8](figuras/figura_08_confiabilidade_ulb.png)
@@ -242,7 +246,7 @@ Fonte: elaborado pelo autor.
 | 3 | V12 (1,14) | type_TRANSFER (0,11) | orig_emptied (0,05) |
 | 4 | V10 (1,10) | hour_sin (0,07) | oldbalanceOrg_log (0,04) |
 | 5 | V3 (0,96) | type_CASH_OUT (0,06) | amount_to_balance_ratio (0,02) |
-Atributos no espaço após a engenharia de atributos. Fonte: elaborado pelo autor.
+Atributos no espaço após a engenharia de atributos. Média do |SHAP| sobre todas as fraudes do teste e legítimas sorteadas até 2.000 casos (300 no KernelExplainer). Unidade: log-odds no XGBoost; probabilidade no Random Forest e na MLP. Compare só dentro de cada coluna. Fonte: elaborado pelo autor.
 
 **Tabela 13** – Concordância entre SHAP e LIME nas explicações locais
 | Base | Caso | Probabilidade | Sobreposição SHAP × LIME (top 5) |
@@ -277,14 +281,14 @@ Fonte: elaborado pelo autor.
 Treino nos primeiros 40% da linha do tempo e teste em 6 janelas consecutivas. Estático: nunca retreinado; janela deslizante: retreinado com a janela anterior; acumulado: retreinado com todo o histórico disponível.
 
 **Tabela 14** – AUC-PR média nas janelas temporais, por estratégia de retreino
-| Base | Atraso dos rótulos (janelas) | Estático | Janela deslizante | Acumulado | Pior janela (estático) | PSI máximo do escore | Fraudes por janela |
-|---|---|---|---|---|---|---|---|
-| ULB (cartão de crédito) | 0 | 0,766 | 0,771 | 0,777 | 0,661 | 0,373 | 22–80 |
-| ULB (cartão de crédito) | 1 | 0,766 | 0,767 | 0,775 | 0,661 | 0,373 | 22–80 |
-| PaySim sem saldo da origem | 0 | 0,776 | 0,767 | 0,775 | 0,728 | 0,054 | 70–731 |
-| PaySim sem saldo da origem | 1 | 0,776 | 0,769 | 0,776 | 0,728 | 0,054 | 70–731 |
-| PaySim completo | 0 | 0,998 | 0,998 | 0,998 | 0,986 | 0,009 | 70–731 |
-PSI acima de 0,25 indica mudança relevante de distribuição. Fonte: elaborado pelo autor.
+| Base | Atraso dos rótulos (janelas) | Estático | Janela deslizante | Acumulado | Pior janela (estático) | PSI máximo do escore | Fraudes por janela | Prevalência por janela (%) | AUC-PR nas 2 janelas de maior PSI |
+|---|---|---|---|---|---|---|---|---|---|
+| ULB (cartão de crédito) | 0 | 0,766 | 0,771 | 0,777 | 0,661 | 0,373 | 22–80 | 0,08–0,29 | 0,848 e 0,835 |
+| ULB (cartão de crédito) | 1 | 0,766 | 0,767 | 0,775 | 0,661 | 0,373 | 22–80 | 0,08–0,29 | 0,848 e 0,835 |
+| PaySim sem saldo da origem | 0 | 0,776 | 0,767 | 0,775 | 0,728 | 0,054 | 70–731 | 0,13–1,32 | 0,808 e 0,728 |
+| PaySim sem saldo da origem | 1 | 0,776 | 0,769 | 0,776 | 0,728 | 0,054 | 70–731 | 0,13–1,32 | 0,808 e 0,728 |
+| PaySim completo | 0 | 0,998 | 0,998 | 0,998 | 0,986 | 0,009 | 70–731 | 0,13–1,32 | 0,986 e 1,000 |
+PSI acima de 0,25 indica mudança relevante de distribuição. A AUC-PR depende da prevalência, que varia entre as janelas. Fonte: elaborado pelo autor.
 
 **Figura 14** – AUC-PR por janela temporal — ULB (cartão de crédito)
 ![Figura 14](figuras/figura_14_drift_creditcard.png)
@@ -294,10 +298,75 @@ Fonte: elaborado pelo autor.
 ![Figura 15](figuras/figura_15_drift_paysim_sem_saldo.png)
 Fonte: elaborado pelo autor.
 
+## Análises de robustez
+
+**Tabela 15** – Configuração escolhida pela regra com margem prática, por margem e tolerância — ULB (cartão de crédito)
+| Margem de AUC-PR | Tolerância 0,00 ms | Tolerância 0,25 ms | Tolerância 0,50 ms | Tolerância 1,00 ms |
+|---|---|---|---|---|
+| 0,0025 | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | Ensemble XGBoost + LightGBM |
+| 0,0050 | XGBoost + SMOTE [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | Ensemble XGBoost + LightGBM |
+| 0,0100 | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | Ensemble XGBoost + LightGBM |
+| 0,0150 | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | Ensemble XGBoost + LightGBM |
+| 0,0200 | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] | Ensemble XGBoost + LightGBM |
+| 0,0300 | MLP (rede neural) + Sem tratamento | MLP (rede neural) + Sem tratamento | XGBoost + SMOTE [busca n=50] | XGBoost + Sensível a custo (pesos) [busca n=50] |
+Valores usados no trabalho: margem 0,01 e tolerância 0,5 ms. Fonte: elaborado pelo autor.
+
+**Tabela 16** – Configuração escolhida pela regra com margem prática, por margem e tolerância — PaySim sem saldo da origem
+| Margem de AUC-PR | Tolerância 0,00 ms | Tolerância 0,25 ms | Tolerância 0,50 ms | Tolerância 1,00 ms |
+|---|---|---|---|---|
+| 0,0025 | XGBoost + Subamostragem aleatória [busca n=50] | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sem tratamento [busca n=50] |
+| 0,0050 | XGBoost + Subamostragem aleatória [busca n=50] | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sem tratamento [busca n=50] | XGBoost + Sem tratamento [busca n=50] |
+| 0,0100 | MLP (rede neural) + SMOTE | MLP (rede neural) + Subamostragem aleatória | MLP (rede neural) + Subamostragem aleatória | XGBoost + Sem tratamento [busca n=50] |
+| 0,0150 | MLP (rede neural) + SMOTE | MLP (rede neural) + Subamostragem aleatória | MLP (rede neural) + Subamostragem aleatória | XGBoost + Sem tratamento [busca n=50] |
+| 0,0200 | MLP (rede neural) + SMOTE | MLP (rede neural) + Subamostragem aleatória | MLP (rede neural) + Subamostragem aleatória | XGBoost + Sem tratamento [busca n=50] |
+| 0,0300 | MLP (rede neural) + SMOTE | MLP (rede neural) + Subamostragem aleatória | MLP (rede neural) + Subamostragem aleatória | XGBoost + Sem tratamento [busca n=50] |
+Valores usados no trabalho: margem 0,01 e tolerância 0,5 ms. Fonte: elaborado pelo autor.
+
+**Tabela 17** – Incerteza do custo e da calibração dos modelos finais no teste
+| Base | VN | Custo moderado [IC 95%] | Economia vs. melhor trivial, IC 95% (%) | Brier de referência | Brier skill antes → depois [IC 95%] | Calibração reduziu o Brier (% das reamostragens) | Valores distintos de probabilidade |
+|---|---|---|---|---|---|---|---|
+| ULB (cartão de crédito) | 55.014 | 1.720 [1.035; 2.440] | [74,3; 89,1] | 0,00172 | 0,687 → 0,711 [0,61; 0,81] | 93 | 54.239 |
+| PaySim sem saldo da origem | 110.447 | 8.105 [6.650; 9.513] | [71,1; 79,8] | 0,00296 | 0,704 → 0,681 [0,63; 0,73] | 0 | 44 |
+| PaySim completo | 110.488 | 400 [100; 852] | [97,4; 99,7] | 0,00296 | 0,976 → 0,986 [0,97; 1,00] | 100 | 6 |
+IC de 95% por bootstrap estratificado (500 reamostragens). Brier de referência: preditor constante na prevalência, p(1 − p). Brier skill: 1 − Brier / Brier de referência. Fonte: elaborado pelo autor.
+
+**Tabela 18** – Custo no teste com o limiar teórico de Elkan e com o limiar escolhido no treino
+| Base | Custos | Limiar de Elkan | Custo (Elkan) | Economia (Elkan, %) | Limiar escolhido | Custo (limiar escolhido) | Economia (limiar escolhido, %) |
+|---|---|---|---|---|---|---|---|
+| ULB (cartão de crédito) | Conservador (FN 100, FP 10) | 0,0909 | 1.960 | 79,4 | 0,0345 | 1.840 | 80,6 |
+| ULB (cartão de crédito) | Moderado (FN 100, FP 5) | 0,0476 | 1.905 | 79,9 | 0,0345 | 1.720 | 81,9 |
+| ULB (cartão de crédito) | Agressivo (FN 100, FP 1) | 0,0099 | 1.394 | 85,3 | 0,0345 | 1.624 | 82,9 |
+| ULB (cartão de crédito) | FN 20, FP 5 | 0,2000 | 440 | 76,8 | 0,0345 | 440 | 76,8 |
+| ULB (cartão de crédito) | FN 50, FP 5 | 0,0909 | 980 | 79,4 | 0,0345 | 920 | 80,6 |
+| ULB (cartão de crédito) | Moderado, escore bruto com limiar 0,5 | — | — | — | 0,5000 | 1.960 | 79,4 |
+| PaySim sem saldo da origem | Conservador (FN 100, FP 10) | 0,0909 | 8.870 | 73,0 | 0,0714 | 8.310 | 74,7 |
+| PaySim sem saldo da origem | Moderado (FN 100, FP 5) | 0,0476 | 8.105 | 75,4 | 0,0714 | 8.105 | 75,4 |
+| PaySim sem saldo da origem | Agressivo (FN 100, FP 1) | 0,0099 | 6.740 | 79,5 | 0,0714 | 7.941 | 75,9 |
+| PaySim sem saldo da origem | FN 20, FP 5 | 0,2000 | 1.885 | 71,4 | 0,0714 | 1.785 | 72,9 |
+| PaySim sem saldo da origem | FN 50, FP 5 | 0,0909 | 4.435 | 73,0 | 0,0714 | 4.155 | 74,7 |
+| PaySim sem saldo da origem | Moderado, escore bruto com limiar 0,5 | — | — | — | 0,5000 | 9.850 | 70,1 |
+| PaySim completo | Conservador (FN 100, FP 10) | 0,0909 | 410 | 98,8 | 1,0000 | 400 | 98,8 |
+| PaySim completo | Moderado (FN 100, FP 5) | 0,0476 | 405 | 98,8 | 1,0000 | 400 | 98,8 |
+| PaySim completo | Agressivo (FN 100, FP 1) | 0,0099 | 433 | 98,7 | 1,0000 | 400 | 98,8 |
+| PaySim completo | FN 20, FP 5 | 0,2000 | 85 | 98,7 | 1,0000 | 80 | 98,8 |
+| PaySim completo | FN 50, FP 5 | 0,0909 | 205 | 98,8 | 1,0000 | 200 | 98,8 |
+| PaySim completo | Moderado, escore bruto com limiar 0,5 | — | — | — | 0,5000 | 405 | 98,8 |
+Limiar de Elkan: custo de um FP / (custo de um FP + custo de um FN), válido para probabilidades calibradas. Economia contra a melhor política trivial. Fonte: elaborado pelo autor.
+
+**Tabela 19** – Desempenho do modelo final no teste por tipo de operação (PaySim)
+| Base | Tipo | Transações | Fraudes | Prevalência (%) | AUC-PR | Fraudes detectadas | Falsos positivos |
+|---|---|---|---|---|---|---|---|
+| PaySim sem saldo da origem | CASH_OUT | 89.409 | 160 | 0,18 | 0,524 | 81 | 38 |
+| PaySim sem saldo da origem | TRANSFER | 21.408 | 169 | 0,79 | 0,994 | 169 | 3 |
+| PaySim completo | CASH_OUT | 89.409 | 160 | 0,18 | 0,980 | 156 | 0 |
+| PaySim completo | TRANSFER | 21.408 | 169 | 0,79 | 1,000 | 169 | 0 |
+Fraudes detectadas e falsos positivos no limiar do modelo final. Fonte: elaborado pelo autor.
+
 ## Pontos para a discussão
-- **Vazamento por duplicatas.** 8 das 98 fraudes do teste tinham cópia exata no treino. Removê-las mudou a AUC-PR no teste em -0,034 em média, contra -0,003 na CV: o vazamento inflava sobretudo a estimativa no teste.
-- **Poder do teste estatístico e regra de seleção.** Com 15 partições, 25 de 31 configurações não diferem significativamente da melhor na ULB. A regra original escolheria MLP (rede neural) + SMOTE (AUC-PR 0,824, 1,54 ms), 0,033 abaixo da melhor para economizar 0,51 ms. A margem prática levou a XGBoost + Sensível a custo (pesos) [busca n=50] (AUC-PR 0,857, 2,05 ms). A regra foi revista depois de ver os resultados, o que deve ser declarado no texto.
+- **Vazamento por duplicatas.** 8 das 98 fraudes do teste tinham cópia exata no treino. Removê-las mudou a AUC-PR no teste em -0,034 em média, contra -0,003 na CV, mas os conjuntos de teste diferem. Com o modelo fixo, as fraudes copiadas foram memorizadas (escore médio 1,000) e o vazamento isolado vale 0,012 de AUC-PR; o restante é variação entre conjuntos de teste.
+- **Poder do teste estatístico e regra de seleção.** Com 15 partições, 25 de 31 configurações não puderam ser distinguidas da melhor na ULB, o que indica ausência de evidência de diferença, e não equivalência. A regra original escolheria MLP (rede neural) + SMOTE (AUC-PR 0,824, 1,54 ms), 0,033 abaixo da melhor para economizar 0,51 ms. A margem prática levou a XGBoost + Sensível a custo (pesos) [busca n=50] (AUC-PR 0,857, 2,05 ms). A regra foi revista depois de ver os resultados, o que deve ser declarado no texto.
 - **Atalho do PaySim.** A regra "valor igual ao saldo da origem" vale para 97,8% das fraudes e 0,0% das legítimas. Com todos os atributos, a AUC-PR de teste dos modelos supervisionados fica entre 0,877 e 0,993 (regressão logística: 0,986); sem os saldos da origem, entre 0,458 e 0,806.
+- **Atalho no destino.** Nas transferências, a conta de destino tem saldo zero antes e depois em 99,3% das fraudes e 0,0% das legítimas, também no cenário sem saldo da origem. O modelo final desse cenário tem AUC-PR 0,994 em TRANSFER e 0,524 em CASH_OUT.
 - **Economia enganosa.** No cenário de custo pelo valor, PaySim sem saldo da origem mostra 99,9% de economia contra aprovar tudo, mas 10,7% contra a melhor política trivial: com fraudes de centenas de milhares e FP fixo em 5, o limiar ótimo cai para perto de zero. Os custos de erro precisam estar na escala dos valores da base.
 - **Calibração.** Reduziu o Brier em ULB (cartão de crédito) (0,00054 → 0,00050), PaySim completo (0,00007 → 0,00004). Piorou no teste em PaySim sem saldo da origem (Isotônica: 0,00088 → 0,00095): a escolha feita no treino nem sempre se confirma no teste.
 - **Drift.** AUC-PR média por estratégia — ULB (cartão de crédito): estático 0,766, acumulado 0,777, PSI máx. 0,373; PaySim sem saldo da origem: estático 0,776, acumulado 0,775, PSI máx. 0,054; PaySim completo: estático 0,998, acumulado 0,998, PSI máx. 0,009. O retreino trouxe ganho pequeno na ULB e nenhum no PaySim, cujo simulador gera fraudes pelo mesmo processo o tempo todo (PSI baixo). Poucas fraudes por janela deixam os intervalos de confiança largos, e a ULB cobre só dois dias.

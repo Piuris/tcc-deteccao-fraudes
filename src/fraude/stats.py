@@ -141,6 +141,16 @@ def select_parsimonious(table: pd.DataFrame, latency_ms: dict[str, float],
     return fast.sort_values(["auc_pr_mean", "latency_ms"], ascending=[False, True]).index[0]
 
 
+def selection_sensitivity(table: pd.DataFrame, latency_ms: dict[str, float],
+                          margins=(0.0025, 0.005, 0.01, 0.015, 0.02, 0.03),
+                          tolerances=(0.0, 0.25, 0.5, 1.0)) -> pd.DataFrame:
+    """Configuração escolhida pela regra com margem prática para outras
+    margens de AUC-PR e tolerâncias de latência."""
+    return pd.DataFrame([{"margin": m, "latency_tol_ms": t,
+                          "choice": select_parsimonious(table, latency_ms, margin=m, latency_tol_ms=t)}
+                         for m in margins for t in tolerances])
+
+
 def plot_ranks(friedman: dict, table: pd.DataFrame, labels: dict[str, str], path: Path) -> None:
     """Ranking médio com a diferença crítica de Nemenyi e o resultado do teste t corrigido."""
     ranks = pd.Series(friedman["average_ranks"]).sort_values()

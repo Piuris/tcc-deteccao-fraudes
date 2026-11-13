@@ -24,10 +24,10 @@ import numpy as np
 import pandas as pd
 
 from . import ensemble  # noqa: F401
-from .config import ARTIFACTS_DIR, DATA_DIR, REPORTS_DIR
+from .config import ARTIFACTS_DIR, DATA_DIR, REPORTS_DIR, SEED
 from .evaluation import savings_vs_best_trivial
 from .models import BALANCING_LABELS, MODEL_LABELS
-from .stats import LATENCY_TOL_MS, PRACTICAL_MARGIN, select_parsimonious
+from .stats import LATENCY_TOL_MS, PRACTICAL_MARGIN, select_parsimonious, selection_sensitivity
 
 log = logging.getLogger(__name__)
 
@@ -137,26 +137,122 @@ def duplicate_leakage(reports: Path, data_dir: Path = DATA_DIR) -> dict | None:
     return {"test_frauds": int(len(te_fraud)), "with_copy_in_train": int(in_train.sum())}
 
 
+SHORTCUT_RULES = (
+    "valor igual ao saldo da origem",
+    "saldo da origem zerado após a transação",
+    "saldo da origem bate exatamente (antes − valor = depois)",
+    "conta de destino com saldo zero antes e depois (TRANSFER)",
+    "conta de destino com saldo zero antes e depois (CASH_OUT)",
+)
+
+
 def paysim_shortcut(reports: Path, data_dir: Path = DATA_DIR) -> dict | None:
-    """Mede o atalho do simulador na base inteira (TRANSFER e CASH_OUT); guarda em cache."""
+    """Mede os atalhos do simulador na base inteira (TRANSFER e CASH_OUT); guarda em cache.
+
+    As regras da conta de destino são medidas dentro de cada tipo de operação,
+    porque o padrão aparece só nas transferências.
+    """
     cache = reports / "paysim" / "eda" / "atalho_simulador.json"
-    if cache.exists():
-        return _read_json(cache)
+    cached = _read_json(cache) if cache.exists() else None
+    if cached and all(r in cached["rules"] for r in SHORTCUT_RULES):
+        return cached
     if not (data_dir / "paysim.csv").exists():
-        return None
+        return cached
     from .data import load_paysim
 
     ds = load_paysim(data_dir / "paysim.csv")
     X, fraud = ds.X, ds.y.to_numpy() == 1
     amount, old_o, new_o = X["amount"], X["oldbalanceOrg"], X["newbalanceOrig"]
+    dest_zero = ((X["oldbalanceDest"] == 0) & (X["newbalanceDest"] == 0) & (amount > 0)).to_numpy()
+    everything = np.ones(len(fraud), dtype=bool)
     rules = {
-        "valor igual ao saldo da origem": np.isclose(amount, old_o),
-        "saldo da origem zerado após a transação": ((old_o > 0) & (new_o == 0)).to_numpy(),
-        "saldo da origem bate exatamente (antes − valor = depois)": np.isclose(old_o - amount, new_o),
+        SHORTCUT_RULES[0]: (np.isclose(amount, old_o), everything),
+        SHORTCUT_RULES[1]: (((old_o > 0) & (new_o == 0)).to_numpy(), everything),
+        SHORTCUT_RULES[2]: (np.isclose(old_o - amount, new_o), everything),
+        SHORTCUT_RULES[3]: (dest_zero, (X["type"] == "TRANSFER").to_numpy()),
+        SHORTCUT_RULES[4]: (dest_zero, (X["type"] == "CASH_OUT").to_numpy()),
     }
     out = {"n": int(len(fraud)), "n_fraud": int(fraud.sum()), "rules": {
-        k: {"fraude_pct": float(100 * v[fraud].mean()), "legitima_pct": float(100 * v[~fraud].mean())}
-        for k, v in rules.items()}}
+        k: {"fraude_pct": float(100 * v[fraud & s].mean()), "legitima_pct": float(100 * v[~fraud & s].mean())}
+        for k, (v, s) in rules.items()}}
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    cache.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
+def _sample_frac(reports: Path, ds: str) -> float | None:
+    info = _read_json(reports / ds / "experiments" / "dataset.json") or {}
+    frac = info.get("name", "").partition("[")[2].rstrip("]%")
+    return float(frac) / 100 if frac else None
+
+
+def _load_for_report(ds: str, data_dir: Path, frac: float | None, dedupe: bool = True):
+    """Carrega a base como nos experimentos, mas a partir de ``data_dir``."""
+    from .data import load_creditcard, load_paysim
+
+    if ds == "creditcard":
+        data = load_creditcard(data_dir / "creditcard.csv")
+    else:
+        data = load_paysim(data_dir / "paysim.csv", without_origin_balance=(ds == "paysim_sem_saldo"))
+    if dedupe:
+        data = data.drop_duplicates()
+    return data.subsample(frac)
+
+
+def _data_file(ds: str) -> str:
+    return "creditcard.csv" if ds == "creditcard" else "paysim.csv"
+
+
+def final_robustness(reports: Path, artifacts: Path, data_dir: Path = DATA_DIR) -> dict[str, dict]:
+    """Incerteza e sensibilidade de cada modelo final no teste; guarda em cache por base."""
+    from .artifact import Predictor
+    from .robustness import final_model_robustness
+
+    out = {}
+    for ds in DATASETS:
+        cache = reports / ds / "robustez" / "modelo_final.json"
+        if cache.exists():
+            out[ds] = _read_json(cache)
+            continue
+        split = reports / ds / "experiments" / "split.npz"
+        model = artifacts / f"model_{ARTIFACT_KIND[ds]}.joblib"
+        if not (split.exists() and model.exists() and (data_dir / _data_file(ds)).exists()):
+            continue
+        data = _load_for_report(ds, data_dir, _sample_frac(reports, ds))
+        sp = np.load(split)
+        X_te, y_te = data.X.iloc[sp["test"]], data.y.to_numpy()[sp["test"]]
+        if not np.array_equal(y_te, sp["y_test"]):
+            log.warning("Partição de %s não confere com a base; robustez ignorada.", ds)
+            continue
+        pred = Predictor.load(model)
+        raw = pred.pipeline.predict_proba(X_te[pred.columns])[:, 1]
+        types = X_te["type"].to_numpy() if "type" in X_te else None
+        out[ds] = final_model_robustness(y_te, raw, pred.predict_proba(X_te), pred.threshold, types=types)
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text(json.dumps(out[ds], indent=2, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
+def duplicate_effect(reports: Path, artifacts: Path, data_dir: Path = DATA_DIR) -> dict | None:
+    """Vazamento por duplicatas com o modelo final da ULB fixo; guarda em cache."""
+    cache = reports / "creditcard_v1_com_duplicatas" / "robustez" / "modelo_fixo.json"
+    if cache.exists():
+        return _read_json(cache)
+    split = reports / "creditcard_v1_com_duplicatas" / "experiments" / "split.npz"
+    meta = _artifact("creditcard", artifacts)
+    if not (split.exists() and meta and (data_dir / "creditcard.csv").exists()):
+        return None
+    from .ensemble import build_from_spec
+    from .robustness import duplicate_effect_fixed_model
+
+    data = _load_for_report("creditcard", data_dir, None, dedupe=False)
+    sp = np.load(split)
+    y_tr = data.y.to_numpy()[sp["train"]]
+    spec = {k: meta.get(k) for k in ("model", "balancing", "params", "members")}
+    pipe = build_from_spec(spec, data.kind, pos_weight=float((y_tr == 0).sum() / max((y_tr == 1).sum(), 1)),
+                           seed=meta.get("seed", SEED))
+    out = {"config": label(meta["model"], meta["balancing"]),
+           **duplicate_effect_fixed_model(data.X, data.y, sp["train"], sp["test"], pipe)}
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
     return out
@@ -230,7 +326,17 @@ def section_duplicates(doc: Document, reports: Path, facts: dict, data_dir: Path
     doc.table(shown, "AUC-PR com e sem a remoção das duplicatas, por configuração (ULB)",
               "duplicatas", data,
               note=f"Diferença média no teste: {br(facts['dup_mean_delta_test'])}; "
-                   f"na validação cruzada: {br(facts['dup_mean_delta_cv'])}.")
+                   f"na validação cruzada: {br(facts['dup_mean_delta_cv'])}. Os dois conjuntos de teste "
+                   "são diferentes, então a diferença soma vazamento e variação amostral.")
+    fixed = facts.get("dup_fixed")
+    if fixed:
+        doc.add(f"Com o modelo fixo ({fixed['config']} treinado no treino com duplicatas), as "
+                f"{fixed['frauds_with_copy']} fraudes do teste com cópia no treino receberam escore médio de "
+                f"{br(fixed['score_frauds_with_copy_mean'])} (mínimo {br(fixed['score_frauds_with_copy_min'])}), "
+                f"contra {br(fixed['score_frauds_without_copy_mean'])} nas demais. Retirar do teste as linhas "
+                f"com cópia muda a AUC-PR de {br(fixed['auc_pr_full_test'])} para "
+                f"{br(fixed['auc_pr_without_copies'])}: o vazamento, isolado, vale "
+                f"{br(fixed['auc_pr_full_test'] - fixed['auc_pr_without_copies'])}.")
 
 
 def _comparison_rows(records: list[dict]) -> pd.DataFrame:
@@ -294,6 +400,7 @@ def section_statistics(doc: Document, reports: Path, facts: dict) -> None:
                                         "lat": float(t.loc[v, "latency_mean_ms"]),
                                         "test": float(t.loc[v, "test_auc_pr"])} for k, v in sel.items()}
         facts[f"{ds}_n_equiv"] = (int(t["equivalent_to_best"].sum()), len(t))
+        facts[f"{ds}_sensitivity"] = selection_sensitivity(t, t["latency_mean_ms"].to_dict())
         for role, name in [("melhor", "Maior média"), ("original", "Regra original"),
                            ("revisada", "Regra com margem prática")]:
             k = sel[role]
@@ -310,18 +417,21 @@ def section_statistics(doc: Document, reports: Path, facts: dict) -> None:
     summary = pd.DataFrame([{
         "Base": DATASETS[ds], "Configurações": n, "χ² de Friedman": fr["statistic"], "p": fr["p_value"],
         "Diferença crítica (Nemenyi)": fr["critical_difference"],
-        "Não significativamente piores que a melhor": eq} for ds, fr, tests, eq, n in done])
+        "Não distinguíveis da melhor": eq} for ds, fr, tests, eq, n in done])
     doc.table(summary.assign(**{"χ² de Friedman": summary["χ² de Friedman"].map(lambda v: br(v, 2)),
-                                "p": summary["p"].map(lambda v: f"{v:.1e}".replace(".", ",")),
+                                "p": summary["p"].map(lambda v: "< 0,001" if v < 0.001 else br(v)),
                                 "Diferença crítica (Nemenyi)": summary["Diferença crítica (Nemenyi)"].map(
                                     lambda v: br(v, 2))}),
-              "Testes de comparação múltipla", "friedman", summary)
+              "Testes de comparação múltipla", "friedman", summary,
+              note="Friedman e Nemenyi supõem blocos independentes; aqui os blocos são partições da mesma "
+                   "base, por isso o valor-p indica apenas que há diferenças. \"Não distinguíveis\": não "
+                   "significativamente piores pelo t corrigido com Holm, o que não demonstra equivalência.")
     data = pd.DataFrame(rows)
     shown = data.assign(**{c: data[c].map(br) for c in ["AUC-PR CV repetida", "p (Holm) vs. melhor",
                                                         "AUC-PR teste"]},
                         **{"Latência (ms)": data["Latência (ms)"].map(lambda v: br(v, 2))})
     doc.table(shown, "Configuração escolhida por cada critério", "selecao", data,
-              note="Regra original: a de menor latência entre as não significativamente piores que a "
+              note="Regra original: a de menor latência entre as não distinguíveis da "
                    f"melhor. Regra com margem prática: além disso, até {br(PRACTICAL_MARGIN, 2)} de AUC-PR "
                    f"abaixo da melhor; latências até {br(LATENCY_TOL_MS, 1)} ms acima da mínima contam "
                    "como empate, e vence a de maior AUC-PR.")
@@ -343,11 +453,16 @@ def section_final(doc: Document, reports: Path, facts: dict, artifacts: Path) ->
             continue
         t, lat = m["test_metrics"], m["latency"]
         cal = m.get("calibration") or {}
+        ci = (facts.get("robust", {}).get(ds) or {}).get("ci95", {})
+        nan2 = [np.nan, np.nan]
         rows.append({"Base": name, "Configuração": label(m["model"], m["balancing"]),
                      "Calibração": {"sigmoid": "Platt", "isotonic": "Isotônica"}.get(cal.get("method"), "Nenhuma"),
                      "Limiar": t["threshold"], "AUC-PR": t["auc_pr"], "AUC-ROC": t["auc_roc"],
-                     "Precisão": t["precision"], "Revocação": t["recall"], "F1": t["f1"], "MCC": t["mcc"],
-                     "VP": t["tp"], "FP": t["fp"], "FN": t["fn"],
+                     "Precisão": t["precision"], "Precisão IC95 inf": ci.get("precision", nan2)[0],
+                     "Precisão IC95 sup": ci.get("precision", nan2)[1],
+                     "Revocação": t["recall"], "Revocação IC95 inf": ci.get("recall", nan2)[0],
+                     "Revocação IC95 sup": ci.get("recall", nan2)[1], "F1": t["f1"], "MCC": t["mcc"],
+                     "VP": t["tp"], "FP": t["fp"], "FN": t["fn"], "VN": t["tn"],
                      "Latência média (ms)": lat["latency_mean_ms"], "Latência p99 (ms)": lat["latency_p99_ms"]})
         if cal.get("test_raw"):
             raw, calib = cal["test_raw"], cal["test_calibrated"]
@@ -369,22 +484,31 @@ def section_final(doc: Document, reports: Path, facts: dict, artifacts: Path) ->
     doc.add("## Modelos finais")
     data = pd.DataFrame(rows)
     nd = {"Limiar": 4, "Latência média (ms)": 2, "Latência p99 (ms)": 2}
-    shown = data.assign(**{c: data[c].map(lambda v, c=c: br(v, nd.get(c, 3)))
-                           for c in data.columns if c not in ("Base", "Configuração", "Calibração")})
+    ci_cols = [c for c in data.columns if "IC95" in c]
+    shown = data.drop(columns=ci_cols).assign(
+        **{c: data[c].map(lambda v, c=c: br(v, nd.get(c, 3)))
+           for c in data.columns if c not in ("Base", "Configuração", "Calibração", *ci_cols)})
+    for c in ("Precisão", "Revocação"):
+        shown[c] = [f"{br(v)} [{br(a)}; {br(b)}]" if pd.notna(a) else br(v)
+                    for v, a, b in zip(data[c], data[f"{c} IC95 inf"], data[f"{c} IC95 sup"])]
     doc.table(shown, "Desempenho dos modelos finais no conjunto de teste", "modelos_finais", data,
               note="Limiar de custo mínimo do cenário moderado, na escala calibrada. "
-                   "VP/FP/FN: verdadeiros positivos, falsos positivos e falsos negativos.")
+                   "VP/FP/FN/VN: verdadeiros positivos, falsos positivos, falsos negativos e verdadeiros "
+                   "negativos. Entre colchetes, IC de 95% por bootstrap estratificado (500 reamostragens).")
 
     if cal_rows:
         cdata = pd.DataFrame(cal_rows)
         facts["calibration"] = cdata
-        cshown = cdata.assign(**{c: cdata[c].map(lambda v: br(v, 5)) for c in cdata.columns[2:8]},
+        cshown = cdata.assign(**{c: cdata[c].map(lambda v: br(v, 5)) for c in cdata.columns[2:6]},
+                              **{c: cdata[c].map(lambda v: br(v, 6)) for c in cdata.columns[6:8]},
                               **{c: cdata[c].map(br) for c in cdata.columns[8:]})
         doc.add("## Calibração das probabilidades",
                 "Método escolhido pelo menor Brier em validação cruzada interna sobre as predições "
                 "out-of-fold do treino; valores medidos no teste.")
         doc.table(cshown, "Métricas de calibração no teste, antes e depois da calibração",
-                  "calibracao", cdata, note="ECE: erro de calibração esperado (10 faixas).")
+                  "calibracao", cdata,
+                  note="ECE: erro de calibração esperado, com 10 faixas de largura igual. No diagrama de "
+                       "confiabilidade, as faixas têm o mesmo número de fraudes.")
         doc.figure(reports / "creditcard" / "calibracao" / "reliability.png",
                    "Diagrama de confiabilidade do modelo final — ULB", "confiabilidade_ulb")
 
@@ -420,7 +544,10 @@ def section_explain(doc: Document, reports: Path, facts: dict) -> None:
     doc.add("## Explicabilidade")
     data = pd.DataFrame({"Posição": range(1, 6), **cols})
     doc.table(data, "Cinco atributos mais importantes (média do |SHAP|) no modelo final de cada base",
-              "shap_top5", note="Atributos no espaço após a engenharia de atributos.")
+              "shap_top5",
+              note="Atributos no espaço após a engenharia de atributos. Média do |SHAP| sobre todas as fraudes "
+                   "do teste e legítimas sorteadas até 2.000 casos (300 no KernelExplainer). Unidade: log-odds "
+                   "no XGBoost; probabilidade no Random Forest e na MLP. Compare só dentro de cada coluna.")
     if overlaps:
         odata = pd.DataFrame(overlaps)
         doc.table(odata.assign(Probabilidade=odata["Probabilidade"].map(lambda v: br(v, 4))),
@@ -443,11 +570,16 @@ def section_drift(doc: Document, reports: Path, facts: dict) -> None:
             d = pd.read_csv(p)
             mean = d.groupby("strategy")["auc_pr"].mean()
             frauds = d.groupby("window")["n_fraud"].first()
+            prev = d.groupby("window")["fraud_rate_pct"].first()
+            static = d[d.strategy == "estatico"]
+            top_psi = static.nlargest(2, "psi_score")
             rows.append({"Base": name, "Atraso dos rótulos (janelas)": delay,
                          **{STRATEGIES[s]: mean.get(s, np.nan) for s in STRATEGIES},
-                         "Pior janela (estático)": d.loc[d.strategy == "estatico", "auc_pr"].min(),
+                         "Pior janela (estático)": static["auc_pr"].min(),
                          "PSI máximo do escore": d["psi_score"].max(),
-                         "Fraudes por janela": f"{frauds.min()}–{frauds.max()}"})
+                         "Fraudes por janela": f"{frauds.min()}–{frauds.max()}",
+                         "Prevalência por janela (%)": f"{br(prev.min(), 2)}–{br(prev.max(), 2)}",
+                         "AUC-PR nas 2 janelas de maior PSI": " e ".join(br(v) for v in top_psi["auc_pr"])})
     if not rows:
         return
     data = pd.DataFrame(rows)
@@ -459,7 +591,8 @@ def section_drift(doc: Document, reports: Path, facts: dict) -> None:
             "retreinado com todo o histórico disponível.")
     doc.table(data.assign(**{c: data[c].map(br) for c in num}),
               "AUC-PR média nas janelas temporais, por estratégia de retreino", "drift", data,
-              note="PSI acima de 0,25 indica mudança relevante de distribuição.")
+              note="PSI acima de 0,25 indica mudança relevante de distribuição. A AUC-PR depende da "
+                   "prevalência, que varia entre as janelas.")
     for ds, name in DATASETS.items():
         if ds != "paysim":
             doc.figure(reports / ds / "drift" / "drift.png", f"AUC-PR por janela temporal — {name}",
@@ -480,6 +613,105 @@ def section_shortcut(doc: Document, reports: Path, facts: dict, data_dir: Path) 
               note=f"Base inteira: {br(sc['n'])} transações, {br(sc['n_fraud'])} fraudes.")
 
 
+COST_LABELS = {"conservador": "Conservador (FN 100, FP 10)", "moderado": "Moderado (FN 100, FP 5)",
+               "agressivo": "Agressivo (FN 100, FP 1)", "fn_20": "FN 20, FP 5", "fn_50": "FN 50, FP 5"}
+
+
+def section_robustness(doc: Document, facts: dict) -> None:
+    """Sensibilidade da seleção, incerteza do custo, calibração × custo e PaySim por tipo."""
+    sens = {ds: facts.get(f"{ds}_sensitivity") for ds in ("creditcard", "paysim_sem_saldo")}
+    robust = facts.get("robust", {})
+    if not any(v is not None for v in sens.values()) and not robust:
+        return
+    doc.add("## Análises de robustez")
+    for ds, s in sens.items():
+        if s is None:
+            continue
+        table = s.assign(choice=s["choice"].map(_key_label)).pivot(
+            index="margin", columns="latency_tol_ms", values="choice")
+        shown = table.reset_index()
+        shown.columns = ["Margem de AUC-PR", *[f"Tolerância {br(c, 2)} ms" for c in table.columns]]
+        shown["Margem de AUC-PR"] = shown["Margem de AUC-PR"].map(lambda v: br(v, 4))
+        doc.table(shown, f"Configuração escolhida pela regra com margem prática, por margem e tolerância — "
+                         f"{DATASETS[ds]}", f"sensibilidade_selecao_{ds}", s,
+                  note=f"Valores usados no trabalho: margem {br(PRACTICAL_MARGIN, 2)} e tolerância "
+                       f"{br(LATENCY_TOL_MS, 1)} ms.")
+
+    rows = []
+    for ds, r in robust.items():
+        ci = r["ci95"]
+        rows.append({"Base": DATASETS[ds], "VN": r["confusion"]["tn"],
+                     "Custo (moderado)": None, "Custo IC95 inf": ci["cost"][0], "Custo IC95 sup": ci["cost"][1],
+                     "Economia IC95 inf (%)": ci["savings_vs_best_trivial_pct"][0],
+                     "Economia IC95 sup (%)": ci["savings_vs_best_trivial_pct"][1],
+                     "Brier de referência": r["brier_reference"],
+                     "Brier skill (antes)": r["brier_skill_raw"], "Brier skill (depois)": r["brier_skill_calibrated"],
+                     "Brier skill IC95 inf": ci["brier_skill"][0], "Brier skill IC95 sup": ci["brier_skill"][1],
+                     "Reamostragens em que a calibração reduziu o Brier (%)":
+                         100 * r["share_bootstrap_brier_improved"],
+                     "Valores distintos de probabilidade": r["distinct_scores"],
+                     "Fraudes com probabilidade 1": r["frauds_with_score_1"]})
+        rows[-1]["Custo (moderado)"] = next(s["chosen_threshold"]["cost"] for s in r["cost_sensitivity"]
+                                            if s["scenario"] == "moderado")
+    if rows:
+        data = pd.DataFrame(rows)
+        shown = pd.DataFrame({
+            "Base": data["Base"], "VN": data["VN"].map(br),
+            "Custo moderado [IC 95%]": [f"{br(a, 0)} [{br(b, 0)}; {br(c, 0)}]" for a, b, c in
+                                       zip(data["Custo (moderado)"], data["Custo IC95 inf"], data["Custo IC95 sup"])],
+            "Economia vs. melhor trivial, IC 95% (%)": [f"[{br(a, 1)}; {br(b, 1)}]" for a, b in
+                                                        zip(data["Economia IC95 inf (%)"],
+                                                            data["Economia IC95 sup (%)"])],
+            "Brier de referência": data["Brier de referência"].map(lambda v: br(v, 5)),
+            "Brier skill antes → depois [IC 95%]": [f"{br(a)} → {br(b)} [{br(c, 2)}; {br(d, 2)}]" for a, b, c, d in
+                                                    zip(data["Brier skill (antes)"], data["Brier skill (depois)"],
+                                                        data["Brier skill IC95 inf"], data["Brier skill IC95 sup"])],
+            "Calibração reduziu o Brier (% das reamostragens)":
+                data["Reamostragens em que a calibração reduziu o Brier (%)"].map(lambda v: br(v, 0)),
+            "Valores distintos de probabilidade": data["Valores distintos de probabilidade"].map(br),
+        })
+        doc.table(shown, "Incerteza do custo e da calibração dos modelos finais no teste", "incerteza_final", data,
+                  note="IC de 95% por bootstrap estratificado (500 reamostragens). Brier de referência: preditor "
+                       "constante na prevalência, p(1 − p). Brier skill: 1 − Brier / Brier de referência.")
+
+        krows = []
+        for ds, r in robust.items():
+            for s in r["cost_sensitivity"]:
+                krows.append({"Base": DATASETS[ds], "Custos": COST_LABELS.get(s["scenario"], s["scenario"]),
+                              "Limiar de Elkan": s["elkan"]["threshold"], "Custo (Elkan)": s["elkan"]["cost"],
+                              "Economia (Elkan, %)": s["elkan"]["savings_vs_best_trivial_pct"],
+                              "Limiar escolhido": s["chosen_threshold"]["threshold"],
+                              "Custo (limiar escolhido)": s["chosen_threshold"]["cost"],
+                              "Economia (limiar escolhido, %)": s["chosen_threshold"]["savings_vs_best_trivial_pct"]})
+            b = r["raw_threshold_05"]
+            krows.append({"Base": DATASETS[ds], "Custos": "Moderado, escore bruto com limiar 0,5",
+                          "Limiar de Elkan": np.nan, "Custo (Elkan)": np.nan, "Economia (Elkan, %)": np.nan,
+                          "Limiar escolhido": b["threshold"], "Custo (limiar escolhido)": b["cost"],
+                          "Economia (limiar escolhido, %)": b["savings_vs_best_trivial_pct"]})
+        kdata = pd.DataFrame(krows)
+        kshown = kdata.assign(**{c: kdata[c].map(lambda v: br(v, 4)) for c in ("Limiar de Elkan", "Limiar escolhido")},
+                              **{c: kdata[c].map(lambda v: br(v, 0))
+                                 for c in ("Custo (Elkan)", "Custo (limiar escolhido)")},
+                              **{c: kdata[c].map(lambda v: br(v, 1)) for c in ("Economia (Elkan, %)",
+                                                                             "Economia (limiar escolhido, %)")})
+        doc.table(kshown, "Custo no teste com o limiar teórico de Elkan e com o limiar escolhido no treino",
+                  "custo_elkan", kdata,
+                  note="Limiar de Elkan: custo de um FP / (custo de um FP + custo de um FN), válido para "
+                       "probabilidades calibradas. Economia contra a melhor política trivial.")
+
+    by_type = [{"Base": DATASETS[ds], "Tipo": t["type"], "Transações": t["n"], "Fraudes": t["frauds"],
+                "Prevalência (%)": 100 * t["prevalence"], "AUC-PR": t["auc_pr"], "Fraudes detectadas": t["detected"],
+                "Falsos positivos": t["false_positives"]}
+               for ds, r in robust.items() for t in r.get("by_type", [])]
+    if by_type:
+        tdata = pd.DataFrame(by_type)
+        doc.table(tdata.assign(**{c: tdata[c].map(br) for c in ("Transações", "Fraudes", "AUC-PR",
+                                                                 "Fraudes detectadas", "Falsos positivos")},
+                               **{"Prevalência (%)": tdata["Prevalência (%)"].map(lambda v: br(v, 2))}),
+                  "Desempenho do modelo final no teste por tipo de operação (PaySim)", "paysim_por_tipo", tdata,
+                  note="Fraudes detectadas e falsos positivos no limiar do modelo final.")
+
+
 def section_discussion(doc: Document, facts: dict) -> None:
     pts = []
     if "dup_mean_delta_test" in facts:
@@ -488,14 +720,19 @@ def section_discussion(doc: Document, facts: dict) -> None:
                    + (f"{leak['with_copy_in_train']} das {leak['test_frauds']} fraudes do teste tinham cópia "
                       "exata no treino. " if leak else "")
                    + f"Removê-las mudou a AUC-PR no teste em {br(facts['dup_mean_delta_test'])} em média, "
-                   f"contra {br(facts['dup_mean_delta_cv'])} na CV: o vazamento inflava sobretudo a "
-                   "estimativa no teste.")
+                   f"contra {br(facts['dup_mean_delta_cv'])} na CV, mas os conjuntos de teste diferem. "
+                   + (f"Com o modelo fixo, as fraudes copiadas foram memorizadas (escore médio "
+                      f"{br(facts['dup_fixed']['score_frauds_with_copy_mean'])}) e o vazamento isolado vale "
+                      f"{br(facts['dup_fixed']['auc_pr_full_test'] - facts['dup_fixed']['auc_pr_without_copies'])} "
+                      "de AUC-PR; o restante é variação entre conjuntos de teste."
+                      if facts.get("dup_fixed") else ""))
     sel = facts.get("creditcard_selection")
     if sel:
         o, r, b = sel["original"], sel["revisada"], sel["melhor"]
         n_eq, n = facts["creditcard_n_equiv"]
         pts.append("**Poder do teste estatístico e regra de seleção.** Com 15 partições, "
-                   f"{n_eq} de {n} configurações não diferem significativamente da melhor na ULB. A regra "
+                   f"{n_eq} de {n} configurações não puderam ser distinguidas da melhor na ULB, o que indica "
+                   "ausência de evidência de diferença, e não equivalência. A regra "
                    f"original escolheria {o['label']} (AUC-PR {br(o['auc'])}, {br(o['lat'], 2)} ms), "
                    f"{br(b['auc'] - o['auc'])} abaixo da melhor para economizar "
                    f"{br(r['lat'] - o['lat'], 2)} ms. A margem prática levou a {r['label']} "
@@ -511,6 +748,15 @@ def section_discussion(doc: Document, facts: dict) -> None:
                       f"{br(rng[0])} e {br(rng[1])} "
                       f"(regressão logística: {br(facts['paysim_logreg'])}); " if rng else "")
                    + (f"sem os saldos da origem, entre {br(rng2[0])} e {br(rng2[1])}." if rng2 else ""))
+        dest = facts["shortcut"]["rules"].get(SHORTCUT_RULES[3])
+        types = {t["type"]: t for t in facts.get("robust", {}).get("paysim_sem_saldo", {}).get("by_type", [])}
+        if dest:
+            pts.append("**Atalho no destino.** Nas transferências, a conta de destino tem saldo zero antes e "
+                       f"depois em {pct(dest['fraude_pct'])} das fraudes e {pct(dest['legitima_pct'])} das "
+                       "legítimas, também no cenário sem saldo da origem."
+                       + (f" O modelo final desse cenário tem AUC-PR {br(types['TRANSFER']['auc_pr'])} em "
+                          f"TRANSFER e {br(types['CASH_OUT']['auc_pr'])} em CASH_OUT."
+                          if {"TRANSFER", "CASH_OUT"} <= types.keys() else ""))
     costs = facts.get("costs")
     if costs is not None:
         v = costs[costs["Cenário"].str.startswith("Valor")]
@@ -559,6 +805,8 @@ def build_consolidated(reports: Path = REPORTS_DIR, out: Path | None = None,
     doc.add("# Resultados consolidados",
             "Gerado por `python -m fraude consolidate` a partir de `reports/` e `artifacts/`. "
             "As tabelas estão também em `tabelas/` (CSV com vírgula decimal) e as figuras em `figuras/`.")
+    facts["dup_fixed"] = duplicate_effect(reports, artifacts, data_dir)
+    facts["robust"] = final_robustness(reports, artifacts, data_dir)
     section_bases(doc, reports)
     section_duplicates(doc, reports, facts, data_dir)
     for ds in DATASETS:
@@ -568,6 +816,7 @@ def build_consolidated(reports: Path = REPORTS_DIR, out: Path | None = None,
     section_final(doc, reports, facts, artifacts)
     section_explain(doc, reports, facts)
     section_drift(doc, reports, facts)
+    section_robustness(doc, facts)
     section_discussion(doc, facts)
     path = out / "resultados.md"
     path.write_text("\n".join(doc.lines), encoding="utf-8")
