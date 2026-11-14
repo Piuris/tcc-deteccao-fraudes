@@ -60,7 +60,9 @@ Na primeira execução, o script instala as dependências, o que leva alguns min
 
 ## Roteiro de testes
 
-Na página `/docs`, cada rota tem um botão **Try it out**. As rotas de predição já trazem **transações reais do conjunto de teste**. Esses exemplos não foram usados no treino do modelo. Escolha um exemplo na lista **Examples**, clique em **Execute** e veja a resposta logo abaixo.
+Na página `/docs`, cada rota tem um botão **Try it out**. As rotas de predição já trazem **transações reais do conjunto de teste**. Esses exemplos não foram usados no treino do modelo. Escolha um exemplo na lista **Examples**, clique em **Execute** e veja a resposta logo abaixo, em **Server response**.
+
+Mais abaixo, na seção **Responses**, cada rota mostra a resposta esperada para cada exemplo, com uma explicação de como lê-la. Ali também há exemplos do erro de validação (HTTP 422).
 
 ### 1. Verificar se a API está no ar
 
@@ -84,8 +86,8 @@ O limiar de bloqueio é **0,0345**. Ele foi escolhido pela função de custo do 
 Como ler a resposta:
 - `fraud_probability`: probabilidade calibrada de fraude.
 - `threshold` e `decision`: o limiar aplicado e a decisão resultante.
-- `top_factors`: os cinco atributos que mais pesaram, com o valor SHAP de cada um. Um valor positivo aumenta o risco.
-- `latency_ms`: tempo de processamento no servidor.
+- `top_factors`: os cinco atributos que mais pesaram, com o valor SHAP de cada um (`contribution`). Um valor positivo aumenta o risco. O campo `value` mostra o atributo depois do pré-processamento, que é o que o modelo recebe. Por isso ele difere do valor enviado.
+- `latency_ms`: tempo de processamento no servidor, sem contar a rede. Inclui o cálculo da explicação SHAP, que é a parte mais cara: no teste de carga local (seção 4.11), a média foi de 5,89 ms sem explicação e 44,45 ms com ela. Para medir sem a explicação, use `explain=false`. No servidor online (plano gratuito, com CPU compartilhada), o valor varia de uma chamada para outra.
 
 Na ULB, os atributos V1 a V28 são anonimizados. A explicação mostra o que o modelo usou, mas não tem significado de negócio (seção 4.9).
 
@@ -110,6 +112,6 @@ Este modelo usa todos os atributos, inclusive os saldos da origem. Por isso ele 
 
 ## Código-fonte e reprodução dos experimentos
 
-O código está em https://github.com/Piuris/tcc-deteccao-fraudes. O `README.md` explica como reproduzir os experimentos do zero. Isso exige baixar as bases e algumas horas de processamento. Os testes automatizados (89) rodam com `pytest`.
+O código está em https://github.com/Piuris/tcc-deteccao-fraudes. O `README.md` explica como reproduzir os experimentos do zero. Isso exige baixar as bases e algumas horas de processamento. Os testes automatizados (95) rodam com `pytest`.
 
 **Contato:** João Vitor Pires · joaovpires2004@gmail.com

@@ -33,7 +33,7 @@ src/fraude/            pacote principal (python -m fraude ...)
   robustness.py        incerteza do modelo final, limiar de Elkan, vazamento com modelo fixo
 src/fraude_api/        API FastAPI (main.py, schemas.py)
 tests/                 testes automatizados (pytest)
-scripts/               reproduce.ps1 (fluxo completo), load_test.py (carga da API)
+scripts/               reproduce.ps1 (fluxo completo), load_test.py (carga da API), gerar_exemplos.py e gerar_respostas.py (exemplos do Swagger)
 notebooks/             01_analise_exploratoria.ipynb, 02_resultados.ipynb
 data/                  bases (não versionadas)
 artifacts/             modelos serializados (.joblib + .json de metadados)

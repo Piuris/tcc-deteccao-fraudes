@@ -1,0 +1,400 @@
+{
+  "creditcard": {
+    "200": {
+      "vp": {
+        "summary": "Fraude detectada",
+        "description": "Resposta da API ao exemplo de requisição \"Fraude detectada\". A probabilidade (0,9905) é maior ou igual ao limiar (0,0345), por isso a decisão é \"bloquear\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "creditcard-vp",
+          "fraud_probability": 0.9905,
+          "threshold": 0.0345,
+          "decision": "bloquear",
+          "is_fraud": true,
+          "top_factors": [
+            {
+              "feature": "V14",
+              "value": -4.9211,
+              "contribution": 2.7082,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V10",
+              "value": -2.0902,
+              "contribution": 1.9221,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V4",
+              "value": 4.2315,
+              "contribution": 1.4663,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V12",
+              "value": -3.6893,
+              "contribution": 1.0922,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V25",
+              "value": 1.5527,
+              "contribution": -0.9435,
+              "direction": "reduz_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "creditcard-xgboost-class_weight-2026-10-18T19:05:17",
+          "latency_ms": 13.9541
+        }
+      },
+      "vn": {
+        "summary": "Transação legítima",
+        "description": "Resposta da API ao exemplo de requisição \"Transação legítima\". A probabilidade (0,0001) é menor que o limiar (0,0345), por isso a decisão é \"aprovar\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "creditcard-vn",
+          "fraud_probability": 0.0001,
+          "threshold": 0.0345,
+          "decision": "aprovar",
+          "is_fraud": false,
+          "top_factors": [
+            {
+              "feature": "V4",
+              "value": -1.6068,
+              "contribution": -3.41,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V9",
+              "value": 1.7825,
+              "contribution": -1.3266,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V12",
+              "value": 1.1932,
+              "contribution": -1.3072,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V14",
+              "value": -0.7893,
+              "contribution": -1.0219,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V3",
+              "value": 0.7571,
+              "contribution": -0.9636,
+              "direction": "reduz_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "creditcard-xgboost-class_weight-2026-10-18T19:05:17",
+          "latency_ms": 15.1743
+        }
+      },
+      "fp": {
+        "summary": "Falso alarme",
+        "description": "Resposta da API ao exemplo de requisição \"Falso alarme\". A probabilidade (0,3272) é maior ou igual ao limiar (0,0345), por isso a decisão é \"bloquear\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "creditcard-fp",
+          "fraud_probability": 0.3272,
+          "threshold": 0.0345,
+          "decision": "bloquear",
+          "is_fraud": true,
+          "top_factors": [
+            {
+              "feature": "V14",
+              "value": -7.7142,
+              "contribution": 2.5248,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V7",
+              "value": 1.4611,
+              "contribution": -2.3329,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V10",
+              "value": -2.7867,
+              "contribution": 2.0021,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "V2",
+              "value": 1.9583,
+              "contribution": -1.242,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V4",
+              "value": 2.5011,
+              "contribution": 1.0825,
+              "direction": "aumenta_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "creditcard-xgboost-class_weight-2026-10-18T19:05:17",
+          "latency_ms": 12.7303
+        }
+      },
+      "fn": {
+        "summary": "Fraude não detectada",
+        "description": "Resposta da API ao exemplo de requisição \"Fraude não detectada\". A probabilidade (0,0009) é menor que o limiar (0,0345), por isso a decisão é \"aprovar\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "creditcard-fn",
+          "fraud_probability": 0.0009,
+          "threshold": 0.0345,
+          "decision": "aprovar",
+          "is_fraud": false,
+          "top_factors": [
+            {
+              "feature": "V3",
+              "value": 1.4699,
+              "contribution": -3.0581,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V14",
+              "value": -0.4941,
+              "contribution": -1.73,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V12",
+              "value": 0.2017,
+              "contribution": -1.6397,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V10",
+              "value": 0.3012,
+              "contribution": -1.0571,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "V28",
+              "value": -1.0724,
+              "contribution": -0.8826,
+              "direction": "reduz_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "creditcard-xgboost-class_weight-2026-10-18T19:05:17",
+          "latency_ms": 12.2572
+        }
+      }
+    },
+    "422": {
+      "negativo": {
+        "summary": "Valor negativo",
+        "description": "`Amount` enviado como -10: a API recusa antes de chegar ao modelo.",
+        "value": {
+          "detail": [
+            {
+              "type": "greater_than_equal",
+              "loc": [
+                "body",
+                "Amount"
+              ],
+              "msg": "Input should be greater than or equal to 0"
+            }
+          ]
+        }
+      },
+      "ausente": {
+        "summary": "Campo obrigatório ausente",
+        "description": "Requisição sem o campo `Amount`.",
+        "value": {
+          "detail": [
+            {
+              "type": "missing",
+              "loc": [
+                "body",
+                "Amount"
+              ],
+              "msg": "Field required"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "paysim": {
+    "200": {
+      "vp": {
+        "summary": "Fraude detectada",
+        "description": "Resposta da API ao exemplo de requisição \"Fraude detectada\". A probabilidade (1,0000) é maior ou igual ao limiar (1,0000), por isso a decisão é \"bloquear\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "paysim-vp",
+          "fraud_probability": 1.0,
+          "threshold": 1.0,
+          "decision": "bloquear",
+          "is_fraud": true,
+          "top_factors": [
+            {
+              "feature": "error_balance_orig_log",
+              "value": -2.8142,
+              "contribution": 0.3146,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "oldbalanceOrg_log",
+              "value": 1.7587,
+              "contribution": 0.0897,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "newbalanceOrig_log",
+              "value": -0.3284,
+              "contribution": 0.0363,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "orig_emptied",
+              "value": 1.1562,
+              "contribution": 0.0298,
+              "direction": "aumenta_risco"
+            },
+            {
+              "feature": "amount_to_balance_ratio",
+              "value": -0.2879,
+              "contribution": 0.0297,
+              "direction": "aumenta_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "paysim-random_forest-class_weight-2026-10-19T00:32:23",
+          "latency_ms": 43.8702
+        }
+      },
+      "vn": {
+        "summary": "Transação legítima",
+        "description": "Resposta da API ao exemplo de requisição \"Transação legítima\". A probabilidade (0,0000) é menor que o limiar (1,0000), por isso a decisão é \"aprovar\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "paysim-vn",
+          "fraud_probability": 0.0,
+          "threshold": 1.0,
+          "decision": "aprovar",
+          "is_fraud": false,
+          "top_factors": [
+            {
+              "feature": "error_balance_orig_log",
+              "value": 0.3927,
+              "contribution": -0.3518,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "orig_emptied",
+              "value": -0.8649,
+              "contribution": -0.0544,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "oldbalanceOrg_log",
+              "value": -1.0128,
+              "contribution": -0.0352,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "amount_to_balance_ratio",
+              "value": 0.0802,
+              "contribution": -0.0286,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "newbalanceOrig_log",
+              "value": -0.3284,
+              "contribution": 0.0222,
+              "direction": "aumenta_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "paysim-random_forest-class_weight-2026-10-19T00:32:23",
+          "latency_ms": 42.6305
+        }
+      },
+      "fn": {
+        "summary": "Fraude não detectada",
+        "description": "Resposta da API ao exemplo de requisição \"Fraude não detectada\". A probabilidade (0,0005) é menor que o limiar (1,0000), por isso a decisão é \"aprovar\". Em `top_factors`, `value` é o atributo depois do pré-processamento (por isso difere do valor enviado) e `contribution` é o valor SHAP: positivo aumenta o risco, negativo reduz. `latency_ms` aqui foi medido em execução local.",
+        "value": {
+          "transaction_id": "paysim-fn",
+          "fraud_probability": 0.0005,
+          "threshold": 1.0,
+          "decision": "aprovar",
+          "is_fraud": false,
+          "top_factors": [
+            {
+              "feature": "error_balance_orig_log",
+              "value": 0.3259,
+              "contribution": -0.3475,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "orig_emptied",
+              "value": -0.8649,
+              "contribution": -0.0517,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "oldbalanceOrg_log",
+              "value": -1.0128,
+              "contribution": -0.0319,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "amount_log",
+              "value": -0.0087,
+              "contribution": -0.024,
+              "direction": "reduz_risco"
+            },
+            {
+              "feature": "newbalanceOrig_log",
+              "value": -0.3284,
+              "contribution": 0.0222,
+              "direction": "aumenta_risco"
+            }
+          ],
+          "explanation_method": "shap_tree",
+          "model_version": "paysim-random_forest-class_weight-2026-10-19T00:32:23",
+          "latency_ms": 41.3665
+        }
+      }
+    },
+    "422": {
+      "negativo": {
+        "summary": "Valor negativo",
+        "description": "`amount` enviado como -10: a API recusa antes de chegar ao modelo.",
+        "value": {
+          "detail": [
+            {
+              "type": "greater_than_equal",
+              "loc": [
+                "body",
+                "amount"
+              ],
+              "msg": "Input should be greater than or equal to 0"
+            }
+          ]
+        }
+      },
+      "ausente": {
+        "summary": "Campo obrigatório ausente",
+        "description": "Requisição sem o campo `amount`.",
+        "value": {
+          "detail": [
+            {
+              "type": "missing",
+              "loc": [
+                "body",
+                "amount"
+              ],
+              "msg": "Field required"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

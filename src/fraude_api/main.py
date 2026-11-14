@@ -30,13 +30,22 @@ from pydantic import BaseModel
 from fraude.artifact import Predictor, artifact_path
 from fraude.config import ARTIFACTS_DIR
 
-from .schemas import BatchResponse, CreditCardTransaction, ModelInfo, PaySimTransaction, Prediction
+from .schemas import (
+    BatchResponse,
+    CreditCardTransaction,
+    ModelInfo,
+    PaySimTransaction,
+    Prediction,
+    ValidationErrorResponse,
+)
 
 log = logging.getLogger("fraude_api")
 KINDS = ("creditcard", "paysim")
 MAX_BATCH = 1000
 _EX_PATH = Path(__file__).with_name("exemplos.json")
 EXEMPLOS = json.loads(_EX_PATH.read_text(encoding="utf-8")) if _EX_PATH.exists() else {}
+_RESP_PATH = Path(__file__).with_name("respostas.json")
+RESPOSTAS = json.loads(_RESP_PATH.read_text(encoding="utf-8")) if _RESP_PATH.exists() else {}
 
 
 def _batch_example(kind: str) -> dict:
@@ -44,6 +53,33 @@ def _batch_example(kind: str) -> dict:
     if not ex:
         return {}
     return {"todos": {"summary": "Todos os casos de exemplo", "value": [e["value"] for e in ex.values()]}}
+
+
+def _responses(kind: str, batch: bool = False) -> dict:
+    """Respostas reais da API aos exemplos, exibidas na seção "Responses" do Swagger."""
+    resp = RESPOSTAS.get(kind)
+    if not resp:
+        return {}
+    ok, erros = resp["200"], resp["422"]
+    if batch:
+        erros = {k: {**e, "value": {"detail": [{**d, "loc": [d["loc"][0], 0, *d["loc"][1:]]}
+                                               for d in e["value"]["detail"]]}}
+                 for k, e in erros.items()}
+        preds = [e["value"] for e in ok.values()]
+        ok = {"todos": {"summary": "Todos os casos de exemplo",
+                        "description": "Resposta ao exemplo \"Todos os casos de exemplo\": uma predição "
+                                       "por transação, na ordem enviada. Em lote, a explicação vem "
+                                       "desligada por padrão (explain=false).",
+                        "value": {"predictions": [{**p, "top_factors": None, "explanation_method": None}
+                                                  for p in preds],
+                                  "latency_ms": round(sum(p["latency_ms"] for p in preds), 4)}}}
+    return {
+        200: {"description": "Transação avaliada. Escolha um exemplo na lista para ver a resposta real.",
+              "content": {"application/json": {"examples": ok}}},
+        422: {"model": ValidationErrorResponse,
+              "description": "Requisição inválida: a API indica o campo com problema.",
+              "content": {"application/json": {"examples": erros}}},
+    }
 
 
 def _load_predictors(directory: Path) -> dict[str, Predictor]:
@@ -130,21 +166,24 @@ def create_app(artifacts_dir: Path | None = None) -> FastAPI:
         return [ModelInfo(kind=k, loaded=k in preds,
                           metadata=preds[k].metadata() if k in preds else None) for k in KINDS]
 
-    @app.post("/v1/creditcard/predict", response_model=Prediction, tags=["cartão de crédito (ULB)"])
+    @app.post("/v1/creditcard/predict", response_model=Prediction, tags=["cartão de crédito (ULB)"],
+              responses=_responses("creditcard"))
     def predict_creditcard(request: Request, tx: CreditCardTransaction = Body(openapi_examples=EXEMPLOS.get("creditcard") or None), explain: bool = explain_q):
         return predict(get_predictor(request, "creditcard"), [tx], explain)[0]
 
     @app.post("/v1/creditcard/predict/batch", response_model=BatchResponse,
-              tags=["cartão de crédito (ULB)"])
+              tags=["cartão de crédito (ULB)"], responses=_responses("creditcard", batch=True))
     def predict_creditcard_batch(request: Request, txs: list[CreditCardTransaction] = Body(openapi_examples=_batch_example("creditcard") or None),
                                  explain: bool = Query(False)):
         return _batch(get_predictor(request, "creditcard"), txs, explain)
 
-    @app.post("/v1/paysim/predict", response_model=Prediction, tags=["mobile money (PaySim)"])
+    @app.post("/v1/paysim/predict", response_model=Prediction, tags=["mobile money (PaySim)"],
+              responses=_responses("paysim"))
     def predict_paysim(request: Request, tx: PaySimTransaction = Body(openapi_examples=EXEMPLOS.get("paysim") or None), explain: bool = explain_q):
         return predict(get_predictor(request, "paysim"), [tx], explain)[0]
 
-    @app.post("/v1/paysim/predict/batch", response_model=BatchResponse, tags=["mobile money (PaySim)"])
+    @app.post("/v1/paysim/predict/batch", response_model=BatchResponse, tags=["mobile money (PaySim)"],
+              responses=_responses("paysim", batch=True))
     def predict_paysim_batch(request: Request, txs: list[PaySimTransaction] = Body(openapi_examples=_batch_example("paysim") or None),
                              explain: bool = Query(False)):
         return _batch(get_predictor(request, "paysim"), txs, explain)

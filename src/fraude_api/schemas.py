@@ -54,27 +54,46 @@ class PaySimTransaction(_Base):
 
 
 class Factor(BaseModel):
-    feature: str
-    value: float = Field(description="Valor do atributo após o pré-processamento.")
-    contribution: float = Field(description="Valor SHAP (positivo aumenta o risco).")
-    direction: Literal["aumenta_risco", "reduz_risco"]
+    feature: str = Field(description="Nome do atributo.")
+    value: float = Field(description="Valor do atributo depois do pré-processamento (o que o modelo "
+                                     "vê); por isso pode diferir do valor enviado.")
+    contribution: float = Field(description="Valor SHAP: quanto o atributo empurrou o escore. Positivo "
+                                            "aumenta o risco; negativo reduz. Na escala do modelo "
+                                            "(log-odds no XGBoost da ULB, probabilidade no Random "
+                                            "Forest do PaySim).")
+    direction: Literal["aumenta_risco", "reduz_risco"] = Field(description="Sinal da contribuição, por extenso.")
 
 
 class Prediction(BaseModel):
-    transaction_id: str | None
-    fraud_probability: float = Field(ge=0, le=1)
-    threshold: float
-    decision: Literal["bloquear", "aprovar"]
-    is_fraud: bool
-    top_factors: list[Factor] | None = Field(None, description="Principais fatores (SHAP).")
-    explanation_method: str | None = None
-    model_version: str
-    latency_ms: float = Field(description="Tempo de processamento no servidor.")
+    transaction_id: str | None = Field(description="O identificador enviado na requisição.")
+    fraud_probability: float = Field(ge=0, le=1, description="Probabilidade calibrada de fraude, de 0 a 1.")
+    threshold: float = Field(description="Limiar de bloqueio, escolhido pela função de custo "
+                                         "(cenário moderado).")
+    decision: Literal["bloquear", "aprovar"] = Field(description="\"bloquear\" se fraud_probability ≥ "
+                                                                 "threshold; senão, \"aprovar\".")
+    is_fraud: bool = Field(description="A mesma decisão, como verdadeiro/falso.")
+    top_factors: list[Factor] | None = Field(None, description="Os cinco atributos que mais pesaram "
+                                                               "(SHAP). Vazio se explain=false.")
+    explanation_method: str | None = Field(None, description="Método da explicação (shap_tree = SHAP "
+                                                             "exato para árvores).")
+    model_version: str = Field(description="Algoritmo, balanceamento e data do treino do modelo servido.")
+    latency_ms: float = Field(description="Tempo de processamento no servidor, em milissegundos, sem "
+                                          "contar a rede.")
 
 
 class BatchResponse(BaseModel):
-    predictions: list[Prediction]
-    latency_ms: float
+    predictions: list[Prediction] = Field(description="Uma predição por transação, na ordem enviada.")
+    latency_ms: float = Field(description="Tempo total do lote no servidor, em milissegundos.")
+
+
+class ValidationIssue(BaseModel):
+    type: str = Field(description="Tipo do problema (ex.: missing, greater_than_equal).")
+    loc: list[str | int] = Field(description="Onde está o problema: parte da requisição e nome do campo.")
+    msg: str = Field(description="Mensagem do validador.")
+
+
+class ValidationErrorResponse(BaseModel):
+    detail: list[ValidationIssue] = Field(description="Um item por campo com problema.")
 
 
 class ModelInfo(BaseModel):
